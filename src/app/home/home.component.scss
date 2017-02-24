@@ -1,14 +1,75 @@
- * {
+// component styles are encapsulated and only applied to their components
+div, p {
+	word-wrap: break-word;
+    white-space: nowrap;
+}
+.card{
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.15);
+}
+button:-webkit-any-link {
+    color: -webkit-link;
+    cursor: auto;
+}
+button {
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+    color: #4078c0;
+}
+.container {
+  margin:.2rem;
+}
+.complete-button {
+    width: auto;
+    margin: auto;
+    border: 1px solid #ededed;
+    border-radius: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    line-height: 1.5;
+    display: inline;
+    margin-right:0.5em;
+    margin-left:auto;
+}
+.right {
+	float: right;
+}
+.complete-button:hover {
+    background-color: #eee;
+}
+.avatar img {
+    border-radius:50%;
+    border-radius:50%;
+    border-image-repeat:stretch;
+    border-image-slice:100%;
+    border-image-source:none;
+    cursor:auto;
+    display:inline;
+    flex-shrink:0;
+    height:36px;
+    line-height:normal;
+    text-align:start;
+    text-size-adjust:100%;
+    user-select:none;
+    white-space:normal;
+    width:36px;
+    -webkit-font-smoothing:antialiased;
+    -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+}
+.avatar {
+    margin-right:5px;
+}
+
+
+* * {
   text-rendering: optimizelegibility;
  }
- .clr-icon {
-  &.clr-clarity-logo {
-    /*background-image: url(./img/ucclogo.png);*/
-  }
-}
-clr-header {
-    background-color: #082450;
-    background: linear-gradient(to right, #0288d1, #29b6f6);
+.mat-toolbar.mat-primary {
+  background-color: #082450;
+  background: linear-gradient(to right, #0288d1, #29b6f6);
 }
 .mobile-hidden{
   display: none;
@@ -19,12 +80,6 @@ clr-header {
 @media screen and (min-width: 480px) {
   .mobile-hidden{
     display: flex;
-  }
-}
-.clr-icon {
-  &.erad-notif {
-    /*background-image: url(./img/ic_account_circle_white_24px.svg);*/
-    background-image: 200%;
   }
 }
 .dropdown-menu {
@@ -68,7 +123,6 @@ clr-header {
   left: 0;
 }
 .links .logout {
-    color: #abb4c5;
 }
 .dropdown-menu .av:hover #user_dropdown_avatar_uploader_button, .dropdown-menu .uploader.uploading #user_dropdown_avatar_uploader_button {
     opacity: 1;
@@ -211,9 +265,6 @@ a {
 .header-spacer {
   flex: 1 1 auto;
 }
-a {
-  color:#fafafa;
-}
 header .search-box input[type="text"], header .search input[type="text"], .header .search-box input[type="text"], .header .search input[type="text"] {
   border: none;
   background: none;
@@ -254,6 +305,33 @@ input[type=text] {
   background-color: #fff;
   height: 36px;
 }
+.create-fab {
+  position: fixed;
+  margin-top:25%;
+  margin-right: 5%;
+  float: left;
+  margin-left: 80%
+}
+.feed{
+  padding: 0;
+}
+.mat-card {
+  padding:0;
+  border-radius: 0;
+}
+.card-extra {
+  padding:12px;
+}
+.mat-chip:not(.mat-basic-chip) {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 24px;
+  font-size: 11px;
+  line-height: 14px;
+}
+.mat-card-header {
+  max-height: 48px;
+}
 @media screen and (min-width: 720px) {
   .sub-nav, .subnav {
     display: flex;
@@ -261,7 +339,23 @@ input[type=text] {
   .subnav-hidden {
     display: flex
   }
+  .desktop-hidden {
+    display: none;
+  }
   /*TODO: Fix subnav visibility*/
+  .feed{
+    padding: 0 5%;
+    margin: 2%;
+  }
+  .card{
+    margin-top:12px;
+  }
+  .container {
+    margin:.8rem;
+  }
+  .mat-card-header {
+    max-height: 28px;
+  }
 }
 
 ul {

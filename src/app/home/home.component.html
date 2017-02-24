@@ -1,0 +1,146 @@
+<md-sidenav-container class="main-container">
+  <md-sidenav #sidenav class="main-sidenav">
+    <md-list>
+      <div class="content">
+        <div *ngIf="authUser" class="av">
+            <span class="m-avatar">
+                <img src="{{authUser[0].profile_pic_url}}" height="74" width="74" alt="{{authUser[0].first_name}}">
+            </span>
+        </div>
+        <div *ngIf="authUser" class="text">
+          <h2 class="ng-binding">{{authUser[0].first_name}} {{authUser[0].last_name}}</h2>
+          <p class="ng-binding">{{authUser[0].local.email}}</p>
+          <a [routerLink]="['/profile/']" class="button">View Profile</a>
+        </div>
+      </div>
+
+      <md-divider></md-divider>
+      <md-list-item *ngFor="let folder of folders">
+        <md-icon md-list-avatar>assignment</md-icon>
+        <h4 md-line>{{folder.name}}</h4>
+        <!-- <p md-line> {{folder.updated | date}} </p> -->
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item>
+        <a [routerLink]="['/preferences']">
+          <h4 md-line>Preferences</h4>
+        </a>
+      </md-list-item>
+      <md-list-item>
+        <a [routerLink]="['/settings']">
+          <h4 md-line>Settings</h4>
+          <span class="new-tag">New</span>
+        </a>
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item>
+        <a [routerLink]="['/login']"  class="logout">
+          <h4 md-line>Log Out </h4>
+        </a>
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
+
+  <div class="main-sidenav-content">
+    <md-toolbar color="primary">
+      <div class="branding">
+        <a href="#" class="nav-link">
+          <md-icon class="clr-icon menu desktop-hidden"  (click)="sidenav.open()">menu</md-icon>
+          <span class="clr-icon clr-clarity-logo"></span>
+        </a>
+      </div>
+      <span class="header-spacer"></span>
+      <form class="search mobile-hidden">
+        <label for="search_input">
+          <input mdInput id="search_input" type="text" placeholder="Search.. (Coming soon)">
+        </label>
+      </form>
+      <!-- <md-icon class="header-icon">search</md-icon> -->
+      <span class="header-spacer mobile-hidden"></span>
+      <button class="header-icon mobile-hidden edge-icon" md-icon-button [mdMenuTriggerFor]="menu">
+        <md-icon>account_circle</md-icon>
+      </button>
+        <md-menu #menu="mdMenu">
+          <div class="dropdown-menu">
+            <div class="content">
+                <div *ngIf="authUser" class="av">
+                    <div id="user_dropdown_avatar_uploader_container" class="uploader">
+                        <div id="user_dropdown_avatar_uploader_button" style="z-index: 1;">
+                            <span class="ng-binding">Update Photo</span>
+                        </div>
+                    </div>
+                    <span class="m-avatar">
+                        <img src="{{authUser[0].profile_pic_url}}" height="74" width="74" alt="{{authUser[0].first_name}}">
+                    </span>
+                </div>
+                <div *ngIf="authUser" class="text">
+                    <h2 class="ng-binding">{{authUser[0].first_name}} {{authUser[0].last_name}}</h2>
+                    <p class="ng-binding">{{authUser[0].local.email}}</p>
+
+                    <a [routerLink]="['/profile/']" class="button">View Profile</a>
+
+                </div>
+                <ul class="links">
+                    <a [routerLink]="['/settings']" >
+                      <span class="account-settings"></span>
+                      Settings
+                        <span class="new-tag">New</span>
+                    </a>
+                    <a [routerLink]="['/preferences']" >
+                      <span class="account-notifications"></span>
+                      Preferences
+                    </a>
+                    <a [routerLink]="['/login']"  class="logout">
+                      <span class="account-logout"></span>
+                      Log out
+                    </a>
+                </ul>
+            </div>
+          </div>
+        </md-menu>
+        <md-toolbar-row color="white" class="subnav subnav-hidden">
+          <ul class="nav">
+            <li class="nav-item">
+                <a [routerLink]="['']">Home</a>
+            </li>
+            <li class="nav-item">
+                <a [routerLink]="['/about']">About</a>
+            </li>
+          </ul>
+        </md-toolbar-row>
+    </md-toolbar>
+    <button md-fab class="desktop-hidden">
+      <md-icon>add</md-icon>
+    </button>
+    <div class="container full-page">
+      <div *ngIf="allTasks">
+        <create-task [authUser]="authUser" ></create-task>
+        <div class="feed">
+          <md-card class="card list-unstyled" *ngFor="let task of allTasks">
+            <md-progress-bar
+              class="example-margin"
+              [color]="color"
+              [mode]="mode"
+              [value]="value"
+              [bufferValue]="bufferValue">
+            </md-progress-bar>
+            <div class="card-extra">
+              <md-card-header>
+                <div md-card-avatar class="example-header-image"></div>
+                <md-card-title>{{task.taskName}}</md-card-title>
+                <md-chip-list>
+                  <md-chip color="primary" selected="false">{{task.category}}</md-chip>
+                </md-chip-list>
+              </md-card-header>
+              <md-card-content>
+              <md-card-subtitle>{{task.description}}</md-card-subtitle>
+              </md-card-content>
+            </div>
+          </md-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</md-sidenav-container>
+

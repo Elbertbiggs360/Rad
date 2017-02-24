@@ -1,0 +1,79 @@
+<div class="create">
+		<div class ="container inner">
+	    <div class='showHide'>
+		    <input type="checkbox" id="toggle" />
+		    <label for="toggle">
+	        <span class='expand'>
+            Create Task
+            <span class="changeArrow arrow-up"></span>
+            <span class="changeArrow arrow-dn"></span>
+	        </span>
+		    </label>
+		    <div class="fieldsetContainer">
+		    <md-divider></md-divider>
+			    <form *ngIf="authUser" name="form" (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+						  <md-input-container>
+						    <input mdInput type="text" placeholder="Creator: {{authUser[0].first_name}} {{authUser[0].last_name}}" disabled name="created_by" [value]="authUser[0]._id"  id="create-created_by"  [(ngModel)]="model.created_by" #created_by="ngModel" >
+						  </md-input-container>
+						  <br>
+						  <md-input-container>
+						  	<input mdInput name="taskName" placeholder="Task Name" id="create-taskName" [(ngModel)]="model.taskName" #taskName="ngModel" required  size="45">
+							</md-input-container>
+							<br>
+							<md-input-container>
+                <textarea mdInput placeholder="Task Description" name="description" [(ngModel)]="model.description" #description="ngModel" id="create-description" rows="3">Go to the 3rd floor and pick some items</textarea>
+              </md-input-container>
+								<md-slide-toggle
+					          [color]="secondary"
+					          [checked]="checked"
+					          [disabled]="disabled">
+					        High Priority
+					      </md-slide-toggle>
+				      	<md-select placeholder="Assign to" id="create-assigned_to" [(ngModel)]="model.assigned_to" name="Assignee" #assigned_to="ngModel" required>
+                <md-option [value]="authUser[0]._id" selected>
+                  <span class="avatar"><img src="https://lh3.googleusercontent.com/Z9KBWPZkAfrafL_x8uA5Ugxvuz1AdxuvhTZO815a-vahgVzdmWkJm1GY5xTHSAeDQL1PVCkV1P7PAtK9UXvnxedvXWyA0FSOuyAUN-6H483Re6gMrxyHdiiGwDLF1G5y3goFKsEPwHZaV-ZM5cDFatdySXFCt3r-u1hQdLboBNA7toKItVq0ihs2sv47CnRYoWOHknWdHYex4tBTOoj8LQry_Ris5THNaeec3Cmq11frV8saMvEBUuGSzLRqyVhyjY2B3xLK34mMCMAxG_xe7m-5LfNJr92Qm5Cbk3WY4IMTOca_HRPtWB31Ombz2JmgaTkRy7v5HpRiTJNFZjSqj00EQtfzGZp8kpPJfaEgIWnkAcQI8BGE9VeP6S3tvSTuYygnXyMCLBdnqoGE4FEWZRSS5-4zhxXhRxKvivVtQi15zAoKBerTnLhRyPWKw0U9dZLONi_kZV6FInTocH5KU8r4JbbotLitNKiIoHUNNhUR7sVp72OBMVD54o9-yiW9XhFh-WqJKHUnzD3ATCfL__qmZB1NAsG5WgZTO4WHAmBFEBNjAYyPKe6NoedwRY2Uqmu9viyCTL27qe2YWEc3Al5S64BsmxAR1Y8BayFl5awz-kZ6K4FOjA=w491-h654-no" alt="Me"></span>
+                  <span>Me</span>
+                </md-option>
+                <span  *ngIf="authUser[0].subjects">
+                  <md-option *ngFor="let user of authUser" [value]="user.subjects._id">
+                      <span class="avatar"><img src="https://lh3.googleusercontent.com/Z9KBWPZkAfrafL_x8uA5Ugxvuz1AdxuvhTZO815a-vahgVzdmWkJm1GY5xTHSAeDQL1PVCkV1P7PAtK9UXvnxedvXWyA0FSOuyAUN-6H483Re6gMrxyHdiiGwDLF1G5y3goFKsEPwHZaV-ZM5cDFatdySXFCt3r-u1hQdLboBNA7toKItVq0ihs2sv47CnRYoWOHknWdHYex4tBTOoj8LQry_Ris5THNaeec3Cmq11frV8saMvEBUuGSzLRqyVhyjY2B3xLK34mMCMAxG_xe7m-5LfNJr92Qm5Cbk3WY4IMTOca_HRPtWB31Ombz2JmgaTkRy7v5HpRiTJNFZjSqj00EQtfzGZp8kpPJfaEgIWnkAcQI8BGE9VeP6S3tvSTuYygnXyMCLBdnqoGE4FEWZRSS5-4zhxXhRxKvivVtQi15zAoKBerTnLhRyPWKw0U9dZLONi_kZV6FInTocH5KU8r4JbbotLitNKiIoHUNNhUR7sVp72OBMVD54o9-yiW9XhFh-WqJKHUnzD3ATCfL__qmZB1NAsG5WgZTO4WHAmBFEBNjAYyPKe6NoedwRY2Uqmu9viyCTL27qe2YWEc3Al5S64BsmxAR1Y8BayFl5awz-kZ6K4FOjA=w491-h654-no" alt="{{user.subjects.first_name}}"></span>
+                      <span>{{user.subjects.first_name}} {{user.subjects.last_name}}</span>
+                  </md-option>
+                </span>
+              	</md-select>
+						  
+						  <table class="example-full-width" cellspacing="0">
+							  <tr>
+							    <td><md-input-container class="example-full-width">
+							      <input mdInput placeholder="First name">
+							    </md-input-container></td>
+							    <td>
+							  </tr>
+						  </table>
+
+					  <p>
+					    <md-input-container class="example-full-width">
+					      <textarea mdInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
+					    </md-input-container>
+					    <md-input-container class="example-full-width">
+					      <textarea mdInput placeholder="Address 2"></textarea>
+					    </md-input-container>
+					  </p>
+
+					  <table class="example-full-width" cellspacing="0"><tr>
+					    <td><md-input-container class="example-full-width">
+					      <input mdInput placeholder="City">
+					    </md-input-container></td>
+					    <td><md-input-container class="example-full-width">
+					      <input mdInput placeholder="State">
+					    </md-input-container></td>
+					    <td><md-input-container class="example-full-width">
+					      <input mdInput #postalCode maxlength="5" placeholder="Postal Code" value="94043">
+					      <md-hint align="end">{{postalCode.value.length}} / 5</md-hint>
+					    </md-input-container></td>
+					  </tr></table>
+					</form>
+		    </div>
+			</div>
+	  </div>
+</div>

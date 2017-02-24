@@ -1,0 +1,272 @@
+[
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004a6"
+        },
+        "role_name": "Civil Engineer",
+        "department_id": "5820b403fc13ae512e003207",
+        "permission": 1,
+        "role_description": "quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004a7"
+        },
+        "role_name": "Junior Executive",
+        "department_id": "5820b403fc13ae512e003207",
+        "permission": 1,
+        "role_description": "a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004a8"
+        },
+        "role_name": "Information Systems Manager",
+        "department_id": "5820b403fc13ae512e003205",
+        "permission": 2,
+        "role_description": "ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004a9"
+        },
+        "role_name": "Help Desk Operator",
+        "department_id": "5820b403fc13ae512e003207",
+        "permission": 1,
+        "role_description": "proin risus praesent lectus vestibulum quam sapien varius ut blandit"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004aa"
+        },
+        "role_name": "Cost Accountant",
+        "department_id": "5820b403fc13ae512e003206",
+        "permission": 3,
+        "role_description": "sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004ab"
+        },
+        "role_name": "Geological Engineer",
+        "department_id": "5820b403fc13ae512e003207",
+        "permission": 2,
+        "role_description": "sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004ac"
+        },
+        "role_name": "Biostatistician I",
+        "department_id": "5820b403fc13ae512e003208",
+        "permission": 1,
+        "role_description": "sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004ad"
+        },
+        "role_name": "Social Worker",
+        "department_id": "5820b403fc13ae512e003206",
+        "permission": 1,
+        "role_description": "venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004ae"
+        },
+        "role_name": "GIS Technical Architect",
+        "department_id": "5820b403fc13ae512e003206",
+        "permission": 1,
+        "role_description": "sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004af"
+        },
+        "role_name": "Mechanical Systems Engineer",
+        "department_id": "5820b403fc13ae512e003205",
+        "permission": 1,
+        "role_description": "ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004b0"
+        },
+        "role_name": "Associate Professor",
+        "department_id": "5820b403fc13ae512e003205",
+        "permission": 1,
+        "role_description": "consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004b1"
+        },
+        "role_name": "Electrical Engineer",
+        "department_id": "5820b403fc13ae512e003207",
+        "permission": 1,
+        "role_description": "phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004b2"
+        },
+        "role_name": "Help Desk Technician",
+        "department_id": "5820b403fc13ae512e003208",
+        "permission": 3,
+        "role_description": "in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004b3"
+        },
+        "role_name": "Statistician I",
+        "department_id": "5820b403fc13ae512e003206",
+        "permission": 1,
+        "role_description": "aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004b4"
+        },
+        "role_name": "Geological Engineer",
+        "department_id": "5820b403fc13ae512e003205",
+        "permission": 2,
+        "role_description": "ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004b5"
+        },
+        "role_name": "Analog Circuit Design manager",
+        "department_id": "5820b403fc13ae512e003205",
+        "permission": 1,
+        "role_description": "et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004b6"
+        },
+        "role_name": "Research Nurse",
+        "department_id": "5820b403fc13ae512e003208",
+        "permission": 1,
+        "role_description": "vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004b7"
+        },
+        "role_name": "Staff Accountant III",
+        "department_id": "5820b403fc13ae512e003206",
+        "permission": 1,
+        "role_description": "in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004b8"
+        },
+        "role_name": "Senior Developer",
+        "department_id": "5820b403fc13ae512e003207",
+        "permission": 3,
+        "role_description": "nec sem duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer non"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004b9"
+        },
+        "role_name": "Software Test Engineer II",
+        "department_id": "5820b403fc13ae512e003206",
+        "permission": 4,
+        "role_description": "integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004ba"
+        },
+        "role_name": "Dental Hygienist",
+        "department_id": "5820b403fc13ae512e003205",
+        "permission": 2,
+        "role_description": "ligula in lacus curabitur at ipsum ac tellus semper interdum"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004bb"
+        },
+        "role_name": "Senior Developer",
+        "department_id": "5820b403fc13ae512e003206",
+        "permission": 3,
+        "role_description": "etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004bc"
+        },
+        "role_name": "Associate Professor",
+        "department_id": "5820b403fc13ae512e003207",
+        "permission": 3,
+        "role_description": "quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004bd"
+        },
+        "role_name": "Teacher",
+        "department_id": "5820b403fc13ae512e003208",
+        "permission": 4,
+        "role_description": "est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004be"
+        },
+        "role_name": "Human Resources Assistant I",
+        "department_id": "5820b403fc13ae512e003205",
+        "permission": 2,
+        "role_description": "eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004bf"
+        },
+        "role_name": "Staff Accountant IV",
+        "department_id": "5820b403fc13ae512e003206",
+        "permission": 1,
+        "role_description": "lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004c0"
+        },
+        "role_name": "Dental Hygienist",
+        "department_id": "5820b403fc13ae512e003205",
+        "permission": 3,
+        "role_description": "lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004c1"
+        },
+        "role_name": "Account Coordinator",
+        "department_id": "5820b403fc13ae512e003207",
+        "permission": 6,
+        "role_description": "penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004c2"
+        },
+        "role_name": "Help Desk Technician",
+        "department_id": "5820b403fc13ae512e003208",
+        "permission": 1,
+        "role_description": "sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum"
+    },
+    {
+        "id": {
+            "$oid": "5824fefefc13ae6d130004c3"
+        },
+        "role_name": "Recruiter",
+        "department_id": "5820b403fc13ae512e003206",
+        "permission": 1,
+        "role_description": "eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst"
+    }
+]

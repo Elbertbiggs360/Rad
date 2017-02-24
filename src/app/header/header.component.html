@@ -1,0 +1,68 @@
+
+<md-toolbar color="primary">
+  <div class="branding">
+    <a href="#" class="nav-link">
+      <md-icon class="clr-icon menu" (click)="operateSideDraw()">menu</md-icon>
+      <span class="clr-icon clr-clarity-logo"></span>
+    </a>
+  </div>
+  <span class="header-spacer"></span>
+  <form class="search mobile-hidden">
+    <label for="search_input">
+      <input mdInput id="search_input" type="text" placeholder="Search.. (Coming soon)">
+    </label>
+  </form>
+  <!-- <md-icon class="header-icon">search</md-icon> -->
+  <span class="header-spacer mobile-hidden"></span>
+  <button class="header-icon mobile-hidden edge-icon" md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>account_circle</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <div class="dropdown-menu">
+                <div class="content">
+                    <div *ngIf="authUser" class="av">
+                        <div id="user_dropdown_avatar_uploader_container" class="uploader">
+                            <div id="user_dropdown_avatar_uploader_button" style="z-index: 1;">
+                                <span class="ng-binding">Update Photo</span>
+                            </div>
+                        </div>
+                        <span class="m-avatar">
+                            <img src="{{authUser[0].profile_pic_url}}" height="74" width="74" alt="{{authUser[0].first_name}}">
+                        </span>
+                    </div>
+                    <div *ngIf="authUser" class="text">
+                        <h2 class="ng-binding">{{authUser[0].first_name}} {{authUser[0].last_name}}</h2>
+                        <p class="ng-binding">{{authUser[0].local.email}}</p>
+
+                        <a [routerLink]="['/profile/']" class="button">View Profile</a>
+
+                    </div>
+                    <ul class="links">
+                        <a [routerLink]="['/settings']" clrDropdownItem>
+                          <span class="account-settings"></span>
+                          Settings
+                            <span class="new-tag">New</span>
+                        </a>
+                        <a [routerLink]="['/preferences']" clrDropdownItem>
+                          <span class="account-notifications"></span>
+                          Preferences
+                        </a>
+                        <a [routerLink]="['/login']" clrDropdownItem class="logout">
+                          <span class="account-logout"></span>
+                          Log out
+                        </a>
+                    </ul>
+                </div>
+            </div>
+  </md-menu>
+    <md-toolbar-row color="white" class="subnav subnav-hidden">
+      <ul class="nav">
+          <li class="nav-item">
+              <a [routerLink]="['']">Home</a>
+          </li>
+          <li class="nav-item">
+              <a [routerLink]="['/about']">About</a>
+          </li>
+      </ul>
+    </md-toolbar-row>
+</md-toolbar>

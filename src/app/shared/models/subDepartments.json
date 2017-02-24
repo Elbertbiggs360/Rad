@@ -1,0 +1,142 @@
+[
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ecd"
+        },
+        "subdepartment_name": "Right-sized logistical firmware",
+        "parent_department_id": "5820b403fc13ae512e003208"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ece"
+        },
+        "subdepartment_name": "Digitized global matrices",
+        "parent_department_id": "5820b403fc13ae512e003207"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ecf"
+        },
+        "subdepartment_name": "Quality-focused systematic strategy",
+        "parent_department_id": "5820b403fc13ae512e003206"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ed0"
+        },
+        "subdepartment_name": "Mandatory high-level throughput",
+        "parent_department_id": "5820b403fc13ae512e003205"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ed1"
+        },
+        "subdepartment_name": "User-friendly exuding alliance",
+        "parent_department_id": "5820b403fc13ae512e003206"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ed2"
+        },
+        "subdepartment_name": "Networked context-sensitive encoding",
+        "parent_department_id": "5820b403fc13ae512e003205"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ed3"
+        },
+        "subdepartment_name": "Reverse-engineered 4th generation middleware",
+        "parent_department_id": "5820b403fc13ae512e003208"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ed4"
+        },
+        "subdepartment_name": "Future-proofed discrete superstructure",
+        "parent_department_id": "5820b403fc13ae512e003205"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ed5"
+        },
+        "subdepartment_name": "Triple-buffered methodical info-mediaries",
+        "parent_department_id": "5820b403fc13ae512e003207"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ed6"
+        },
+        "subdepartment_name": "Balanced zero administration attitude",
+        "parent_department_id": "5820b403fc13ae512e003207"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ed7"
+        },
+        "subdepartment_name": "Horizontal regional neural-net",
+        "parent_department_id": "5820b403fc13ae512e003206"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ed8"
+        },
+        "subdepartment_name": "Adaptive national capability",
+        "parent_department_id": "5820b403fc13ae512e003206"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ed9"
+        },
+        "subdepartment_name": "Synchronised dynamic encryption",
+        "parent_department_id": "5820b403fc13ae512e003208"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004eda"
+        },
+        "subdepartment_name": "Virtual tertiary customer loyalty",
+        "parent_department_id": "5820b403fc13ae512e003208"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004edb"
+        },
+        "subdepartment_name": "Configurable human-resource conglomeration",
+        "parent_department_id": "5820b403fc13ae512e003205"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004edc"
+        },
+        "subdepartment_name": "Triple-buffered bottom-line architecture",
+        "parent_department_id": "5820b403fc13ae512e003207"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004edd"
+        },
+        "subdepartment_name": "Future-proofed radical solution",
+        "parent_department_id": "5820b403fc13ae512e003205"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ede"
+        },
+        "subdepartment_name": "Integrated bifurcated portal",
+        "parent_department_id": "5820b403fc13ae512e003205"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004edf"
+        },
+        "subdepartment_name": "Decentralized grid-enabled forecast",
+        "parent_department_id": "5820b403fc13ae512e003206"
+    },
+    {
+        "_id": {
+            "$oid": "5824feeafc13ae31b0004ee0"
+        },
+        "subdepartment_name": "Digitized 5th generation collaboration",
+        "parent_department_id": "5820b403fc13ae512e003208"
+    }
+]

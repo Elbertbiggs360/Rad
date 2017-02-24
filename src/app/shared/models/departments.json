@@ -1,0 +1,26 @@
+[
+    {
+        "_id": {
+            "$oid": "5824fed6fc13ae31b0004ec9"
+        },
+        "department_name": "Function-based"
+    },
+    {
+        "_id": {
+            "$oid": "5824fed6fc13ae31b0004eca"
+        },
+        "department_name": "success"
+    },
+    {
+        "_id": {
+            "$oid": "5824fed6fc13ae31b0004ecb"
+        },
+        "department_name": "Enhanced"
+    },
+    {
+        "_id": {
+            "$oid": "5824fed6fc13ae31b0004ecc"
+        },
+        "department_name": "Re-contextualized"
+    }
+]

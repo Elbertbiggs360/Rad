@@ -1,1 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+
+*{
+  box-sizing: inherit;
+}
+html{
+  -webkit-tap-highlight-color: transparent;
+}
+a{
+  text-decoration: none;
+  -webkit-transition: color .2s ease,background-color .2s ease,border-color .2s ease;
+  transition: color .2s ease,background-color .2s ease,border-color .2s ease;
+}
+
+header {
+  height: 60px;
+  white-space: nowrap;
+  display: -webkit-box;
+  color: #fafafa;
+}
+.header .branding {
+  display: flex;
+  -webkit-box-flex: 0;
+  flex: 0 0 auto;
+  min-width: 204px;
+  padding: 0 24px;
+}
+header .branding>a, header .branding>.nav-link, .header .branding>a, .header .branding>.nav-link {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 60px;
+}
+header .branding+.search, header .branding+.search-box, .header .branding+.search, .header .branding+.search-box {
+  position: relative;
+}
+.clr-icon.clr-clarity-logo{
+  background-image: url(./assets/ucclogo.png);
+}
+header .branding .logo, header .branding .clr-icon, header .branding clr-icon, .header .branding .logo, .header .branding .clr-icon, .header .branding clr-icon {
+  -webkit-box-flex: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  height: 36px;
+  width: 36px;
+  margin-right: 9px;
+}
+header .branding .title, .header .branding .title {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Metropolis,"Avenir Next","Helvetica Neue",Arial,sans-serif;
+  letter-spacing: .01em;
+  color: #fafafa;
+  line-height: 60px;
+  text-decoration: none;
+}
+.alert-icon, .clr-icon, .alert .alert-item span::before, .alert .alert-item .alert-text::before {
+  display: inline-block;
+  height: 36px;
+  width: 36px;
+  padding: 0;
+  margin-right: 6px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+
+html, body {
+  margin: 0;
+}
+body {
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: normal;
+  line-height: 24px;
+  margin-bottom: 0;
+  font-family: Metropolis,"Avenir Next","Helvetica Neue",Arial,sans-serif;
+}
