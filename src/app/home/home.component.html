@@ -113,8 +113,8 @@
       <md-icon>add</md-icon>
     </button>
     <div class="container full-page">
+      <create-task [authUser]="authUser" ></create-task>
       <div *ngIf="allTasks">
-        <create-task [authUser]="authUser" ></create-task>
         <div class="feed">
           <md-card class="card list-unstyled" *ngFor="let task of allTasks">
             <md-progress-bar
