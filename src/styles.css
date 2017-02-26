@@ -13,7 +13,28 @@ a{
   -webkit-transition: color .2s ease,background-color .2s ease,border-color .2s ease;
   transition: color .2s ease,background-color .2s ease,border-color .2s ease;
 }
-
+.help-block {
+  color:#d50000;
+}
+.full-container{
+  background: url(./assets/loginwallpaper.png) bottom right;
+  background-color: #546e7a;
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-height: 100vh;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
+@media screen and (min-width: 720px) {
+  .full-container{
+    background-color: none;
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-height: 100vh;
+  }
+}
 header {
   height: 60px;
   white-space: nowrap;

@@ -1,33 +1,46 @@
-<div class="login-wrapper">
-    <form class="login" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-    <img class="image" src="../img/ucc.png" width=150px height=150px>
-      <label class="title">
-          ERAD<span class="trademark">&#174;</span> Task Manager
-      </label>
-      <div class="login-group">
+<div class="spinner">
+  <md-progress-bar
+      class="spinner-md" 
+      *ngIf="loading===true"
+      mode="indeterminate">
+      Loading...
+  </md-progress-bar>
+</div>
+<div class="full-container">
+  <div class="login-wrapper">
+      <form class="login" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <img class="logo" src="../assets/ucclogo.png" width=85px height=85px>
+        <label class="title">
+            ERAD<span class="trademark">&#174;</span> Task Manager
+        </label>
+        <div class="login-group">
           <div [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-            <input type="text" class="form-control" id="login_username" name="username" placeholder="Username" [(ngModel)]="model.username" #username="ngModel" required />
+            <md-input-container>
+              <input mdInput placeholder="Email Address" type="text" class="form-control" id="login_username" name="username" placeholder="Username" [(ngModel)]="model.username" #username="ngModel" required />
+            </md-input-container>
             <div *ngIf="f.submitted && !username.valid" class="help-block">
                 Username is required
             </div>
           </div>
           <div [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-            <input type="password" class="password" id="login_password" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="Password" />
+            <md-input-container>
+              <input mdInput placeholder="Password" type="password" class="password" id="login_password" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="Password" />
+            </md-input-container>
             <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
           </div>
           <div class="checkbox">
               <input type="checkbox" id="rememberme">
-              <label for="rememberme">
+              <label for="rememberme" class="rememberme">
                   Remember me
               </label>
           </div>
-          <div *ngIf="loading===true" class="spinner spinner-md">Loading...</div>
+          <button md-raised-button [disabled]="loading" type="submit" class="btn btn-primary">LOG IN</button>
           <div *ngIf="error" class="error active">
               {{error}}
           </div>
-          <button [disabled]="loading" type="submit" class="btn btn-primary">LOG IN</button>
-          <a href="mailto:brucebigirwenkya@gmail.com" target="_blank" class="signup">Contact admin for registration</a>
-      </div>
-    </form>
+        </div>
+        <a href="mailto:brucebigirwenkya@gmail.com" target="_blank" class="signup">Contact admin for registration</a>
+      </form>
+  </div>
 </div>
 

@@ -5,3 +5,70 @@ svg path,
 svg rect{
   fill: #0288d1;
 }
+* {
+  color:#fafafa;
+}
+a {
+  color:#cfd8dc;
+}
+.help-block {
+  color:#d50000;
+}
+.mat-fab, .mat-mini-fab, .mat-raised-button {
+  color:#424242;
+}
+.login-wrapper {
+  margin-top: 2rem;
+  text-align: -webkit-center;
+  display: block;
+  width:100%;
+}
+.login-wrapper .logo {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  display: block;
+}
+.mat-raised-button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: .2rem;
+  display: block;
+  width:80%;
+}
+.title {
+  font-weight: lighter;
+  font-size: 1.2em;
+  letter-spacing: normal;
+  margin-bottom: 1rem;
+  padding:1rem;
+}
+.login-group {
+  margin: 2rem 0 2rem 0;
+}
+.mat-input-container {
+  width:80%;
+  line-height: none;
+}
+#rememberme, .rememberme {
+  display: none
+}
+.signup {
+  margin:5% auto;
+}
+.spinner {
+  display: block;
+  width:100%;
+}
+@media screen and (min-width: 720px) {
+  #rememberme, .rememberme {
+    display: block;
+  }
+  .login-wrapper {
+    text-align: -webkit-center;
+    display: block;
+    width:35%;
+    margin: 2rem auto 0 auto;
+  }
+
+}
