@@ -11,9 +11,9 @@ import { Task } from '../task';
 export class TaskService {
 
 
-  public tasksUrl = 'https://eradapi.herokuapp.com/viewTasks';
-  public addTasksUrl = 'https://eradapi.herokuapp.com/createTask';
-  public searchTasksUrl = 'https://eradapi.herokuapp.com/searchTask';
+  public tasksUrl = 'https://eradapi.herokuapp.comviewTasks';
+  public addTasksUrl = 'https://eradapi.herokuapp.comcreateTask';
+  public searchTasksUrl = 'https://eradapi.herokuapp.comsearchTask';
   private token: string;
   private id: string;
 

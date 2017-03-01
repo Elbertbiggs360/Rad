@@ -60,6 +60,9 @@ a {
   display: block;
   width:100%;
 }
+.mat-input-placeholder, .mat-empty {
+  color:#fafafa;
+}
 @media screen and (min-width: 720px) {
   #rememberme, .rememberme {
     display: block;

@@ -332,6 +332,17 @@ input[type=text] {
 .mat-card-header {
   max-height: 48px;
 }
+.main-sidenav-content{
+  min-height: 100%;
+}
+.mat-sidenav {
+  padding: 1rem 3rem;
+  /*background: linear-gradient(to right, #0288d1, #29b6f6);*/
+}
+.wrapper:after {
+  content: "";
+  display: block;
+}
 @media screen and (min-width: 720px) {
   .sub-nav, .subnav {
     display: flex;
