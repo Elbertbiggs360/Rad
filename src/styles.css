@@ -28,7 +28,7 @@ a{
     display: none; 
 }
 .extravagant {
-  box-shadow: 0 160px 480px -15px rgba(4, 4, 4, 0.35);
+  box-shadow: 0 160px 480px -15px rgba(4, 4, 4, 0.45);
 }
 @media screen and (min-width: 720px) {
   .full-container{
