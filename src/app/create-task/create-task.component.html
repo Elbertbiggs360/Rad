@@ -41,6 +41,24 @@
                     </md-option>
                   </span>
               	</md-select>
+                <div class="form-group">
+                        <label for="create-duration">Duration</label>
+                        <md-slider
+                      [disabled]="disabled"
+                      [invert]="invert"
+                      [max]="max"
+                      [min]="min"
+                      [step]="step"
+                      [thumb-label]="thumbLabel"
+                      [tick-interval]="tickInterval"
+                      [value]="value"
+                      [vertical]="vertical"
+                      [(ngModel)]="model.duration"
+                      #duration = "ngModel"
+                      name="duration"
+                      id="create-duration">
+                  </md-slider>
+                    </div>
 						  
 						  <table class="example-full-width" cellspacing="0">
 							  <tr>
