@@ -112,3 +112,6 @@ body {
 .main-container, .mat-sidenav-container {
   min-height: 100%;
 }
+.mat-sidenav-content {
+  min-height: 100vh;
+}
