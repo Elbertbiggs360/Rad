@@ -59,37 +59,22 @@
                       id="create-duration">
                   </md-slider>
                     </div>
-						  
-						  <table class="example-full-width" cellspacing="0">
-							  <tr>
-							    <td><md-input-container class="example-full-width">
-							      <input mdInput placeholder="First name">
-							    </md-input-container></td>
-							    <td>
-							  </tr>
-						  </table>
 
 					  <p>
 					    <md-input-container class="example-full-width">
 					      <textarea mdInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
 					    </md-input-container>
-					    <md-input-container class="example-full-width">
-					      <textarea mdInput placeholder="Address 2"></textarea>
-					    </md-input-container>
 					  </p>
-
-					  <table class="example-full-width" cellspacing="0"><tr>
-					    <td><md-input-container class="example-full-width">
-					      <input mdInput placeholder="City">
-					    </md-input-container></td>
-					    <td><md-input-container class="example-full-width">
-					      <input mdInput placeholder="State">
-					    </md-input-container></td>
-					    <td><md-input-container class="example-full-width">
-					      <input mdInput #postalCode maxlength="5" placeholder="Postal Code" value="94043">
-					      <md-hint align="end">{{postalCode.value.length}} / 5</md-hint>
-					    </md-input-container></td>
-					  </tr></table>
+            <div class="form-group">
+              <label for="create-start-date">Start Date</label>
+              <input type="date" name="start_date" id="create-start-date"  [(ngModel)]="model.start_date" #start_date="ngModel">
+              <label for="create-finish-date">Finish Date</label>
+              <input type="date" name="finish_date" id="create-finish-date"  [(ngModel)]="model.finish_date" #finish_date="ngModel">
+            </div>
+            <input type="text" name="created_by" [value]="authUser[0]._id"  id="create-created_by"  [(ngModel)]="model.created_by" #created_by="ngModel" hidden="hidden" >
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary" >Create Task</button>
+        </div>
 					</form>
 		    </div>
 			</div>
