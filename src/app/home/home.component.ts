@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   allTasks: Task[];
   public authUser: User[];
   priority: String;
+  loading: boolean = false;
   errorMessage: any;
     folders = [
     {
@@ -50,6 +51,7 @@ export class HomeComponent implements OnInit {
   }
   
   getUserDetails() {
+    this.loading = !this.loading;
     this.userService.getUser()
     .subscribe(result => {
             if (result === true) {
@@ -61,6 +63,7 @@ export class HomeComponent implements OnInit {
   }
 
   getAllTasks(): void {
+    this.loading = !this.loading;
     this.taskService.getTasks().subscribe(
       tasks => this.allTasks = tasks,
       error => this.errorMessage = error);

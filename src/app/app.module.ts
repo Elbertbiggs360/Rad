@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
+
+import { CoreModule } from './shared/core/core.module';
 
 import { rootRouterConfig } from './app.routing';
 import { AppComponent } from './app.component';
@@ -28,7 +30,8 @@ import { AuthGuard } from './shared/auth.guard';
     ReactiveFormsModule,
     HttpModule,
     rootRouterConfig,
-    MaterialModule
+    MaterialModule,
+    CoreModule
   ],
   declarations: [
     AppComponent,
