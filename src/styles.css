@@ -41,22 +41,17 @@ a{
 header {
   height: 60px;
   white-space: nowrap;
-  display: -webkit-box;
   color: #fafafa;
 }
 .header .branding {
   display: flex;
-  -webkit-box-flex: 0;
   flex: 0 0 auto;
   min-width: 204px;
   padding: 0 24px;
 }
 header .branding>a, header .branding>.nav-link, .header .branding>a, .header .branding>.nav-link {
   display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   height: 60px;
 }
@@ -67,10 +62,7 @@ header .branding+.search, header .branding+.search-box, .header .branding+.searc
   background-image: url(./assets/images/ucclogo.png);
 }
 header .branding .logo, header .branding .clr-icon, header .branding clr-icon, .header .branding .logo, .header .branding .clr-icon, .header .branding clr-icon {
-  -webkit-box-flex: 0;
-  -ms-flex-positive: 0;
   flex-grow: 0;
-  -ms-flex-negative: 0;
   flex-shrink: 0;
   height: 36px;
   width: 36px;
