@@ -245,10 +245,10 @@ input[type=text] {
 .sub-nav, .subnav {
   display: hidden;
   box-shadow: 0 -1px 0 #ccc inset;
-  -webkit-box-pack: justify;
+  -webkit-flex-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
+  -webkit-flex-align: center;
   -ms-flex-align: center;
   align-items: center;
   background-color: #fff;

@@ -1,0 +1,6 @@
+@import '~@angular/material/core/theming/all-theme';
+
+@include mat-core();
+
+// Define a theme.
+$primary: #ef6c00;

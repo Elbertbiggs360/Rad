@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core'
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BrowserModule }  from '@angular/platform-browser';
 
-import { LoaderComponent } from './loader';
+import { LoaderComponent } from './loader.component';
+import { NoTasksComponent } from './notasks.component';
 
 @NgModule({
   imports: [
-    FormsModule,
-    HttpModule
+    BrowserModule
   ],
   declarations: [
-    LoaderComponent
+    LoaderComponent,
+    NoTasksComponent
+  ],
+  exports: [
+    LoaderComponent,
+    NoTasksComponent
   ],
   providers: [
 

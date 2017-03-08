@@ -1,82 +1,79 @@
-<div class="create">
-		<div class ="container inner">
-	    <div class='showHide'>
-		    <input type="checkbox" id="toggle" />
-		    <label for="toggle">
-	        <span class='expand'>
-            Create Task
-            <span class="changeArrow arrow-up"></span>
-            <span class="changeArrow arrow-dn"></span>
-	        </span>
-		    </label>
-		    <div class="fieldsetContainer">
-		    <md-divider></md-divider>
-			    <form *ngIf="authUser" name="form" (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
-						  <md-input-container>
-						    <input mdInput type="text" placeholder="Creator: {{authUser[0].first_name}} {{authUser[0].last_name}}" disabled name="created_by" [value]="authUser[0]._id"  id="create-created_by"  [(ngModel)]="model.created_by" #created_by="ngModel" >
-						  </md-input-container>
-						  <br>
-						  <md-input-container>
-						  	<input mdInput name="taskName" placeholder="Task Name" id="create-taskName" [(ngModel)]="model.taskName" #taskName="ngModel" required  size="45">
-							</md-input-container>
-							<br>
-							<md-input-container>
-                <textarea mdInput placeholder="Task Description" name="description" [(ngModel)]="model.description" #description="ngModel" id="create-description" rows="3" class="create-description">Go to the 3rd floor and pick some items</textarea>
-              </md-input-container>
-								<md-slide-toggle
-					          [color]="secondary"
-					          [checked]="checked"
-					          [disabled]="disabled">
-					        High Priority
-					      </md-slide-toggle>
-				      	<md-select placeholder="Assign to" id="create-assigned_to" [(ngModel)]="model.assigned_to" name="Assignee" #assigned_to="ngModel" required>
-                  <md-option [value]="authUser[0]._id" selected>
-                    <span class="avatar"><img src="https://lh3.googleusercontent.com/Z9KBWPZkAfrafL_x8uA5Ugxvuz1AdxuvhTZO815a-vahgVzdmWkJm1GY5xTHSAeDQL1PVCkV1P7PAtK9UXvnxedvXWyA0FSOuyAUN-6H483Re6gMrxyHdiiGwDLF1G5y3goFKsEPwHZaV-ZM5cDFatdySXFCt3r-u1hQdLboBNA7toKItVq0ihs2sv47CnRYoWOHknWdHYex4tBTOoj8LQry_Ris5THNaeec3Cmq11frV8saMvEBUuGSzLRqyVhyjY2B3xLK34mMCMAxG_xe7m-5LfNJr92Qm5Cbk3WY4IMTOca_HRPtWB31Ombz2JmgaTkRy7v5HpRiTJNFZjSqj00EQtfzGZp8kpPJfaEgIWnkAcQI8BGE9VeP6S3tvSTuYygnXyMCLBdnqoGE4FEWZRSS5-4zhxXhRxKvivVtQi15zAoKBerTnLhRyPWKw0U9dZLONi_kZV6FInTocH5KU8r4JbbotLitNKiIoHUNNhUR7sVp72OBMVD54o9-yiW9XhFh-WqJKHUnzD3ATCfL__qmZB1NAsG5WgZTO4WHAmBFEBNjAYyPKe6NoedwRY2Uqmu9viyCTL27qe2YWEc3Al5S64BsmxAR1Y8BayFl5awz-kZ6K4FOjA=w491-h654-no" alt="Me"></span>
-                    <span>Me</span>
-                  </md-option>
-                  <span  *ngIf="authUser[0].subjects">
-                    <md-option *ngFor="let user of authUser" [value]="user.subjects._id">
-                        <span class="avatar"><img src="https://lh3.googleusercontent.com/Z9KBWPZkAfrafL_x8uA5Ugxvuz1AdxuvhTZO815a-vahgVzdmWkJm1GY5xTHSAeDQL1PVCkV1P7PAtK9UXvnxedvXWyA0FSOuyAUN-6H483Re6gMrxyHdiiGwDLF1G5y3goFKsEPwHZaV-ZM5cDFatdySXFCt3r-u1hQdLboBNA7toKItVq0ihs2sv47CnRYoWOHknWdHYex4tBTOoj8LQry_Ris5THNaeec3Cmq11frV8saMvEBUuGSzLRqyVhyjY2B3xLK34mMCMAxG_xe7m-5LfNJr92Qm5Cbk3WY4IMTOca_HRPtWB31Ombz2JmgaTkRy7v5HpRiTJNFZjSqj00EQtfzGZp8kpPJfaEgIWnkAcQI8BGE9VeP6S3tvSTuYygnXyMCLBdnqoGE4FEWZRSS5-4zhxXhRxKvivVtQi15zAoKBerTnLhRyPWKw0U9dZLONi_kZV6FInTocH5KU8r4JbbotLitNKiIoHUNNhUR7sVp72OBMVD54o9-yiW9XhFh-WqJKHUnzD3ATCfL__qmZB1NAsG5WgZTO4WHAmBFEBNjAYyPKe6NoedwRY2Uqmu9viyCTL27qe2YWEc3Al5S64BsmxAR1Y8BayFl5awz-kZ6K4FOjA=w491-h654-no" alt="{{user.subjects.first_name}}"></span>
-                        <span>{{user.subjects.first_name}} {{user.subjects.last_name}}</span>
-                    </md-option>
-                  </span>
-              	</md-select>
-                <div class="form-group">
-                        <label for="create-duration">Duration</label>
-                        <md-slider
-                      [disabled]="disabled"
-                      [invert]="invert"
-                      [max]="max"
-                      [min]="min"
-                      [step]="step"
-                      [thumb-label]="thumbLabel"
-                      [tick-interval]="tickInterval"
-                      [value]="value"
-                      [vertical]="vertical"
-                      [(ngModel)]="model.duration"
-                      #duration = "ngModel"
-                      name="duration"
-                      id="create-duration">
-                  </md-slider>
-                    </div>
-
-					  <p>
-					    <md-input-container class="example-full-width">
-					      <textarea mdInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
-					    </md-input-container>
-					  </p>
-            <div class="form-group">
-              <label for="create-start-date">Start Date</label>
-              <input type="date" name="start_date" id="create-start-date"  [(ngModel)]="model.start_date" #start_date="ngModel">
-              <label for="create-finish-date">Finish Date</label>
-              <input type="date" name="finish_date" id="create-finish-date"  [(ngModel)]="model.finish_date" #finish_date="ngModel">
-            </div>
-            <input type="text" name="created_by" [value]="authUser[0]._id"  id="create-created_by"  [(ngModel)]="model.created_by" #created_by="ngModel" hidden="hidden" >
-        <div class="card-footer">
-            <button type="submit" class="btn btn-primary" >Create Task</button>
+<div class="u-overflowY u-padding10">
+  <form *ngIf="authUser" name="form" (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+    <div class="postMetaInline u-floatRight">
+      <div class="u-flexTop">
+        <div class="postMetaInline-avatar u-flex0">
+          <a class="link avatar u-baseColor--link" href="https://medium.com/@danielhoek" data-action="show-user-card" data-action-value="63031a64c2da" data-action-type="hover" data-user-id="63031a64c2da" dir="auto">
+            <img src="././assets/images/0-vh_oAbnRXYzUGkDD.jpeg" class="avatar-image u-size36x36 u-xs-size32x32" alt="Go to the profile of Daniel Hošek">
+          </a>
         </div>
-					</form>
-		    </div>
-			</div>
-	  </div>
+        <div class="u-paddingLeft5">
+          <md-input-container>
+          <input class="link--accent u-accentColor--textNormal" mdInput type="text" placeholder=" {{authUser[0].first_name}} {{authUser[0].last_name}}" disabled name="created_by" [value]="authUser[0]._id"  id="create-created_by"  [(ngModel)]="model.created_by" #created_by="ngModel" ></md-input-container>
+          <div class="u-fontSize12">
+            <time datetime="2016-10-13T20:57:01.649Z">March 09, 2017</time>
+            <span class="middotDivider u-fontSize12"></span>
+            <span class="readingTime" title="1 min read">Supervisor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="u-marginTop20">
+  	  <br>
+  	  <md-input-container>
+  	  	<input mdInput name="taskName" placeholder="Task Name" id="create-taskName" [(ngModel)]="model.taskName" #taskName="ngModel" required  size="85">
+  		</md-input-container>
+  		<br>
+  		<md-input-container>
+        <textarea mdInput placeholder="Task Description" name="description" [(ngModel)]="model.description" #description="ngModel" id="create-description" rows="3" class="create-description">Go to the 3rd floor and pick some items</textarea>
+      </md-input-container>
+  		<md-slide-toggle
+          [color]="secondary"
+          [checked]="checked"
+          [disabled]="disabled">
+        High Priority
+      </md-slide-toggle>
+    	<md-select placeholder="Assign to" id="create-assigned_to" [(ngModel)]="model.assigned_to" name="Assignee" #assigned_to="ngModel" required>
+        <md-option [value]="authUser[0]._id" selected>
+          <span class="avatar"><img src="https://lh3.googleusercontent.com/Z9KBWPZkAfrafL_x8uA5Ugxvuz1AdxuvhTZO815a-vahgVzdmWkJm1GY5xTHSAeDQL1PVCkV1P7PAtK9UXvnxedvXWyA0FSOuyAUN-6H483Re6gMrxyHdiiGwDLF1G5y3goFKsEPwHZaV-ZM5cDFatdySXFCt3r-u1hQdLboBNA7toKItVq0ihs2sv47CnRYoWOHknWdHYex4tBTOoj8LQry_Ris5THNaeec3Cmq11frV8saMvEBUuGSzLRqyVhyjY2B3xLK34mMCMAxG_xe7m-5LfNJr92Qm5Cbk3WY4IMTOca_HRPtWB31Ombz2JmgaTkRy7v5HpRiTJNFZjSqj00EQtfzGZp8kpPJfaEgIWnkAcQI8BGE9VeP6S3tvSTuYygnXyMCLBdnqoGE4FEWZRSS5-4zhxXhRxKvivVtQi15zAoKBerTnLhRyPWKw0U9dZLONi_kZV6FInTocH5KU8r4JbbotLitNKiIoHUNNhUR7sVp72OBMVD54o9-yiW9XhFh-WqJKHUnzD3ATCfL__qmZB1NAsG5WgZTO4WHAmBFEBNjAYyPKe6NoedwRY2Uqmu9viyCTL27qe2YWEc3Al5S64BsmxAR1Y8BayFl5awz-kZ6K4FOjA=w491-h654-no" alt="Me"></span>
+          <span>Me</span>
+        </md-option>
+        <span  *ngIf="authUser[0].subjects">
+          <md-option *ngFor="let user of authUser" [value]="user.subjects._id">
+            <span class="avatar"><img src="https://lh3.googleusercontent.com/Z9KBWPZkAfrafL_x8uA5Ugxvuz1AdxuvhTZO815a-vahgVzdmWkJm1GY5xTHSAeDQL1PVCkV1P7PAtK9UXvnxedvXWyA0FSOuyAUN-6H483Re6gMrxyHdiiGwDLF1G5y3goFKsEPwHZaV-ZM5cDFatdySXFCt3r-u1hQdLboBNA7toKItVq0ihs2sv47CnRYoWOHknWdHYex4tBTOoj8LQry_Ris5THNaeec3Cmq11frV8saMvEBUuGSzLRqyVhyjY2B3xLK34mMCMAxG_xe7m-5LfNJr92Qm5Cbk3WY4IMTOca_HRPtWB31Ombz2JmgaTkRy7v5HpRiTJNFZjSqj00EQtfzGZp8kpPJfaEgIWnkAcQI8BGE9VeP6S3tvSTuYygnXyMCLBdnqoGE4FEWZRSS5-4zhxXhRxKvivVtQi15zAoKBerTnLhRyPWKw0U9dZLONi_kZV6FInTocH5KU8r4JbbotLitNKiIoHUNNhUR7sVp72OBMVD54o9-yiW9XhFh-WqJKHUnzD3ATCfL__qmZB1NAsG5WgZTO4WHAmBFEBNjAYyPKe6NoedwRY2Uqmu9viyCTL27qe2YWEc3Al5S64BsmxAR1Y8BayFl5awz-kZ6K4FOjA=w491-h654-no" alt="{{user.subjects.first_name}}"></span>
+            <span>{{user.subjects.first_name}} {{user.subjects.last_name}}</span>
+          </md-option>
+        </span>
+    	</md-select>
+      <div class="form-group">
+        <label for="create-duration" class="u-block">Duration</label>
+        <md-slider
+          [disabled]="disabled"
+          [invert]="invert"
+          [max]="max"
+          [min]="min"
+          [step]="step"
+          [thumb-label]="thumbLabel"
+          [tick-interval]="tickInterval"
+          [value]="value"
+          [vertical]="vertical"
+          [(ngModel)]="model.duration"
+          #duration = "ngModel"
+          name="duration"
+          id="create-duration"
+          class="u-block">
+        </md-slider>
+      </div>
+      <div class="form-group">
+        <label for="create-start-date">Start Date</label>
+        <input type="date" name="start_date" id="create-start-date"  [(ngModel)]="model.start_date" #start_date="ngModel">
+        <label for="create-finish-date">Finish Date</label>
+        <input type="date" name="finish_date" id="create-finish-date"  [(ngModel)]="model.finish_date" #finish_date="ngModel">
+      </div>
+      <input type="text" name="created_by" [value]="authUser[0]._id"  id="create-created_by"  [(ngModel)]="model.created_by" #created_by="ngModel" hidden="hidden" >
+    </div>
+    <div class="card-footer">
+      <button type="submit" md-raised-button routerLink=".">Create Task</button>
+    </div>
+	</form>
 </div>

@@ -41,6 +41,9 @@ import { AuthGuard } from './shared/auth.guard';
     HeaderComponent,
     CreateTaskComponent
   ],
+  entryComponents:[
+    CreateTaskComponent
+  ],
   providers: [
     TaskSearchService,
     TaskService,

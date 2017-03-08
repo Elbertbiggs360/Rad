@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {MdDialog} from '@angular/material';
+
+import { CreateTaskComponent } from '../create-task';
 
 import { Task } from '../shared/task';
 import { TaskService } from '../shared/task.service';
@@ -18,6 +21,7 @@ export class HomeComponent implements OnInit {
   public authUser: User[];
   priority: String;
   loading: boolean = false;
+  someTasks: boolean = false;
   errorMessage: any;
     folders = [
     {
@@ -40,7 +44,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private taskService: TaskService, 
-    private userService: UserService
+    private userService: UserService,
+    public dialog: MdDialog
     ) {}
 
 
@@ -51,7 +56,6 @@ export class HomeComponent implements OnInit {
   }
   
   getUserDetails() {
-    this.loading = !this.loading;
     this.userService.getUser()
     .subscribe(result => {
             if (result === true) {
@@ -62,11 +66,21 @@ export class HomeComponent implements OnInit {
         });
   }
 
+  openDialog() {
+    this.dialog.open(CreateTaskComponent);
+    //test
+  }
+
   getAllTasks(): void {
     this.loading = !this.loading;
     this.taskService.getTasks().subscribe(
-      tasks => this.allTasks = tasks,
-      error => this.errorMessage = error);
+      tasks => {
+        this.loading = !this.loading;
+        this.allTasks = tasks;
+      },
+      error => {
+        this.errorMessage = error;
+      });
   }
 
   getPriority() {

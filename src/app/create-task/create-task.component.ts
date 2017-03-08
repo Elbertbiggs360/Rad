@@ -1,25 +1,27 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {MdDialogRef} from '@angular/material';
 
 import { Task } from '../shared/task';
 import { TaskService } from '../shared/task.service';
 
 import { User } from '../shared/user';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'create-task',
   templateUrl: './create-task.component.html',
   styleUrls: ['./create-task.component.scss'],
-  providers: [TaskService]
+  providers: [TaskService, UserService]
 })
 export class CreateTaskComponent implements OnInit {
 
-  @Input() authUser: User[];
   model: any = {};
   category: any = {};
   start_date: any;
   loading = false;
   confirmation = 'Task Created';
   action = 'Undo';
+  public authUser: User[];
 
   private today: number;
 
@@ -40,15 +42,29 @@ export class CreateTaskComponent implements OnInit {
   success = false;
 
   constructor(
-  	private taskService: TaskService
+  	private taskService: TaskService,
+    public dialogRef: MdDialogRef<CreateTaskComponent>,
+    private userService: UserService
   ){
   }
 
   ngOnInit(): void {
+    this.getUserDetails();
   	this.today = Date.now();
     setInterval(() => {
       this.today = Date.now();
     }, 100);
+  }
+
+  getUserDetails() {
+    this.userService.getUser()
+    .subscribe(result => {
+            if (result === true) {
+                this.authUser = this.userService.authUser;
+            } else {
+                this.getUserDetails();
+            }
+        });
   }
 
   stringAsDate(dateStr) {
