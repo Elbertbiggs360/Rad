@@ -2271,7 +2271,7 @@ main {
 }
 @media screen and (min-width: 720px) {
   .streamItemConversation-inner {
-    margin-top: 20px
+    margin-top: 10px
   }
 }
 .streamItemConversationItem {
