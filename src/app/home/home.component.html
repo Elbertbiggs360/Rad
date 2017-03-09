@@ -22,11 +22,11 @@
                     <svg class="svgIcon-use" width="25" height="25" viewBox="-293 409 25 25"><path d="M-273.327 423.67l-1.673-1.52v-3.646a5.5 5.5 0 0 0-6.04-5.474c-2.86.273-4.96 2.838-4.96 5.71v3.41l-1.68 1.553c-.204.19-.32.456-.32.734V427a1 1 0 0 0 1 1h3.49a3.079 3.079 0 0 0 3.01 2.45 3.08 3.08 0 0 0 3.01-2.45h3.49a1 1 0 0 0 1-1v-2.59c0-.28-.12-.55-.327-.74zm-7.173 5.63c-.842 0-1.55-.546-1.812-1.3h3.624a1.92 1.92 0 0 1-1.812 1.3zm6.35-2.45h-12.7v-2.347l1.63-1.51c.236-.216.37-.522.37-.843v-3.41c0-2.35 1.72-4.356 3.92-4.565a4.353 4.353 0 0 1 4.78 4.33v3.645c0 .324.137.633.376.85l1.624 1.477v2.373z"></path></svg>
                   </span>
                 </button>
-                <button class="button button--chromeless u-baseColor--buttonNormal " aria-haspopup="true">
+                <a *ngIf="authUser" [routerLink]="['/profile']" class="button button--chromeless u-baseColor--buttonNormal " aria-haspopup="true" title="{{authUser[0].local.email}}">
                   <div class="avatar">
                   <img src="{{authUser[0].profile_pic_url}}" srcset="././assets/images/avatar.png" alt="{{authUser[0].first_name}}"  class="avatar-image avatar-image--icon">
                   </div>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -40,7 +40,7 @@
               <app-loader [loading]="loading"></app-loader>
               <notasks [tasks]="someTasks"></notasks>
 
-              <div class="responsesStreamWrapper u-maxWidth640">
+              <div class="responsesStreamWrapper u-maxWidth640"  *ngFor="let task of allTasks">
                 <div class="row streamItemConversation-inner cardChromeless">
                   <md-progress-bar
                     [color]="primary"
@@ -52,12 +52,12 @@
                       <div class="postMetaInline u-floatLeft">
                         <div class="u-flexTop">
                           <div class="u-paddingLeft5">
-                            <a class="link--accent u-accentColor--textNormal" href="#url#">Go to the mosque</a>
+                            <a class="link--accent u-accentColor--textNormal"  [routerLink]="['/tasks/task._id']">{{task.taskName}}</a>
                             <div class="u-fontSize12">
                               <div class="u-marginTop">
                                 <md-chip-list>
-                                  <a href="#url#">
-                                    <md-chip color="primary" selected="false">test</md-chip>
+                                  <a  [routerLink]="['/tasks/all']">
+                                    <md-chip color="primary" selected="false">{{task.category || Uncategorized}}</md-chip>
                                   </a>
                                 </md-chip-list>
                               </div>
@@ -75,7 +75,7 @@
                           <div class="u-paddingLeft5">
                             <a class="link--accent u-accentColor--textNormal" href="#url#">Bruce Bigirwenkya</a>
                             <div class="u-fontSize12">
-                              <time datetime="2016-10-13T20:57:01.649Z">Oct 13, 2016</time>
+                              <time >{{task.created_at | date:'HH:mm, dd/MM/yy'}}</time>
                               <span class="middotDivider u-fontSize12"></span>
                               <span class="readingTime" title="1 min read">Supervisor</span>
                             </div>
@@ -84,8 +84,9 @@
                       </div>
                     </div>
                     <div class="u-paddingRight20 u-paddingLeft20 u-marginTop20">
-                      <a href="#">
-                        <ul class="u-margin0 u-padding0">
+                      <a [routerLink]="['/tasks/test']">
+                        {{task.description}}
+                        <ul class="u-margin0 u-padding0" *ngIf="task.attachments">
                           <li  class="u-inline u-margin0 u-padding0">
                             <a class="u-fontSize12 attachment--link" href="#">Attachment 1</a>, 
                           </li>
@@ -143,7 +144,7 @@
               <div class="u-height65 actionbar">
                 <div class=" u-maxWidth360 u-paddingLeft20 u-paddingRight20 u-paddingTop10 u-marginAuto u-relative">
                   <div class="u-inline u-floatLeft">
-                    <a href="#url#" class="nav--accent">
+                    <a [routerLink]="['/tasks/all']" routerLinkActive="active" class="nav--accent">
                       <div class="u-inline u-marginRight30">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">
@@ -157,7 +158,7 @@
                         </div>
                       </div>
                     </a>
-                    <a href="#url#" class="nav--accent">
+                    <a [routerLink]="['/tasks/late']" routerLinkActive="active" class="nav--accent">
                       <div class="u-inline u-marginRight30">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">
@@ -173,7 +174,7 @@
                     </a>
                   </div>
                   <div class="u u-inline u-floatCenter">
-                    <a href="#url#" class="nav--accent">
+                    <a [routerLink]="['/']" routerLinkActive="active" class="nav--accent">
                       <div class="u-inline u-marginRight5pct">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">
@@ -203,7 +204,7 @@
                         </div>
                       </div>
                     </a>
-                    <a [routerLink]="['/login']" class="nav--accent">
+                    <a [routerLink]="['/login']" routerLinkActive="active" class="nav--accent">
                       <div class="u-inline">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">

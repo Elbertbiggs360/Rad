@@ -1900,7 +1900,9 @@ main {
 .nav--accent {
   color: #626364;
 }
-
+.active {
+  color: #e91e63
+}
 .link--accent:active,.link--accent:focus,.link--accent:hover, .nav--accent:hover {
     color: #1565c0
 }
