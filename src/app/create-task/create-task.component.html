@@ -1,3 +1,9 @@
+<md-progress-bar
+  [color]="primary"
+   mode="indeterminate"
+   *ngIf="loading"
+  >
+</md-progress-bar>
 <div class="u-overflowY u-padding10">
   <form *ngIf="authUser" name="form" (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
     <div class="postMetaInline u-floatRight">
@@ -11,7 +17,7 @@
           <md-input-container>
           <input class="link--accent u-accentColor--textNormal" mdInput type="text" placeholder=" {{authUser[0].first_name}} {{authUser[0].last_name}}" disabled name="created_by" [value]="authUser[0]._id"  id="create-created_by"  [(ngModel)]="model.created_by" #created_by="ngModel" ></md-input-container>
           <div class="u-fontSize12">
-            <time datetime="2016-10-13T20:57:01.649Z">March 09, 2017</time>
+            <time >{{today | date:'HH:mm, dd/MM/yy'}}</time>
             <span class="middotDivider u-fontSize12"></span>
             <span class="readingTime" title="1 min read">Supervisor</span>
           </div>
@@ -35,13 +41,13 @@
       </md-slide-toggle>
     	<md-select placeholder="Assign to" id="create-assigned_to" [(ngModel)]="model.assigned_to" name="Assignee" #assigned_to="ngModel" required>
         <md-option [value]="authUser[0]._id" selected>
-          <span class="avatar"><img src="https://lh3.googleusercontent.com/Z9KBWPZkAfrafL_x8uA5Ugxvuz1AdxuvhTZO815a-vahgVzdmWkJm1GY5xTHSAeDQL1PVCkV1P7PAtK9UXvnxedvXWyA0FSOuyAUN-6H483Re6gMrxyHdiiGwDLF1G5y3goFKsEPwHZaV-ZM5cDFatdySXFCt3r-u1hQdLboBNA7toKItVq0ihs2sv47CnRYoWOHknWdHYex4tBTOoj8LQry_Ris5THNaeec3Cmq11frV8saMvEBUuGSzLRqyVhyjY2B3xLK34mMCMAxG_xe7m-5LfNJr92Qm5Cbk3WY4IMTOca_HRPtWB31Ombz2JmgaTkRy7v5HpRiTJNFZjSqj00EQtfzGZp8kpPJfaEgIWnkAcQI8BGE9VeP6S3tvSTuYygnXyMCLBdnqoGE4FEWZRSS5-4zhxXhRxKvivVtQi15zAoKBerTnLhRyPWKw0U9dZLONi_kZV6FInTocH5KU8r4JbbotLitNKiIoHUNNhUR7sVp72OBMVD54o9-yiW9XhFh-WqJKHUnzD3ATCfL__qmZB1NAsG5WgZTO4WHAmBFEBNjAYyPKe6NoedwRY2Uqmu9viyCTL27qe2YWEc3Al5S64BsmxAR1Y8BayFl5awz-kZ6K4FOjA=w491-h654-no" alt="Me"></span>
-          <span>Me</span>
+          <span class=" avatar u-assignee"><img src="./assets/images/0-vh_oAbnRXYzUGkDD.jpeg" alt="Me"></span>
+          Me
         </md-option>
         <span  *ngIf="authUser[0].subjects">
           <md-option *ngFor="let user of authUser" [value]="user.subjects._id">
-            <span class="avatar"><img src="https://lh3.googleusercontent.com/Z9KBWPZkAfrafL_x8uA5Ugxvuz1AdxuvhTZO815a-vahgVzdmWkJm1GY5xTHSAeDQL1PVCkV1P7PAtK9UXvnxedvXWyA0FSOuyAUN-6H483Re6gMrxyHdiiGwDLF1G5y3goFKsEPwHZaV-ZM5cDFatdySXFCt3r-u1hQdLboBNA7toKItVq0ihs2sv47CnRYoWOHknWdHYex4tBTOoj8LQry_Ris5THNaeec3Cmq11frV8saMvEBUuGSzLRqyVhyjY2B3xLK34mMCMAxG_xe7m-5LfNJr92Qm5Cbk3WY4IMTOca_HRPtWB31Ombz2JmgaTkRy7v5HpRiTJNFZjSqj00EQtfzGZp8kpPJfaEgIWnkAcQI8BGE9VeP6S3tvSTuYygnXyMCLBdnqoGE4FEWZRSS5-4zhxXhRxKvivVtQi15zAoKBerTnLhRyPWKw0U9dZLONi_kZV6FInTocH5KU8r4JbbotLitNKiIoHUNNhUR7sVp72OBMVD54o9-yiW9XhFh-WqJKHUnzD3ATCfL__qmZB1NAsG5WgZTO4WHAmBFEBNjAYyPKe6NoedwRY2Uqmu9viyCTL27qe2YWEc3Al5S64BsmxAR1Y8BayFl5awz-kZ6K4FOjA=w491-h654-no" alt="{{user.subjects.first_name}}"></span>
-            <span>{{user.subjects.first_name}} {{user.subjects.last_name}}</span>
+            <span class=" avatar u-assignee"><img src="./assets/images/0-vh_oAbnRXYzUGkDD.jpeg" alt="{{user.subjects.first_name}}"></span>
+            <span class="u-inline">{{user.subjects.first_name}} {{user.subjects.last_name}}</span>
           </md-option>
         </span>
     	</md-select>
@@ -67,13 +73,12 @@
       <div class="form-group">
         <label for="create-start-date">Start Date</label>
         <input type="date" name="start_date" id="create-start-date"  [(ngModel)]="model.start_date" #start_date="ngModel">
-        <label for="create-finish-date">Finish Date</label>
-        <input type="date" name="finish_date" id="create-finish-date"  [(ngModel)]="model.finish_date" #finish_date="ngModel">
       </div>
       <input type="text" name="created_by" [value]="authUser[0]._id"  id="create-created_by"  [(ngModel)]="model.created_by" #created_by="ngModel" hidden="hidden" >
     </div>
-    <div class="card-footer">
-      <button type="submit" md-raised-button routerLink=".">Create Task</button>
+    <br class="u-block u-marginTop20">
+    <div class="card-footer u-marginTop10">
+      <button type="submit" md-raised-button >Create Task</button>
     </div>
 	</form>
 </div>

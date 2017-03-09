@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {MdDialogRef} from '@angular/material';
+import { MdDialogRef, MdSnackBar } from '@angular/material';
 
 import { Task } from '../shared/task';
 import { TaskService } from '../shared/task.service';
@@ -44,6 +44,7 @@ export class CreateTaskComponent implements OnInit {
   constructor(
   	private taskService: TaskService,
     public dialogRef: MdDialogRef<CreateTaskComponent>,
+    public snackBar: MdSnackBar,
     private userService: UserService
   ){
   }
@@ -93,8 +94,10 @@ export class CreateTaskComponent implements OnInit {
     	this.loading = !this.loading;
     	if(this.error){
     		this.success = false;
+        this.openSnackBar("Failed", "RETRY");
     	} else {
     		this.success = true;
+        this.openSnackBar("Task Created", "UNDO");
     	}
 	}
 
@@ -102,5 +105,11 @@ export class CreateTaskComponent implements OnInit {
       if (this.timer) {
           clearTimeout(this.timer);
       }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, "UNDO", {
+      duration: 2000,
+    });
   }
 }

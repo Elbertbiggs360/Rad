@@ -1,3 +1,28 @@
 .u-marginLeft38pct {
   margin-left:38%
 }
+.u-marginTop30pct {
+  margin-top:30%
+} 
+.u-width250 {
+  width: 60%;
+}
+.u-marginAuto {
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.u-marginLeft20 {
+  margin-left:20px;
+}
+@media screen and (min-width: 720px) {
+  .u-marginTop30pct {
+    margin-top:10%
+  } 
+  .u-width250 {
+    width: 50%;
+  }
+  .u-marginAuto {
+    margin-left: 30%;
+    margin-right: 20%;
+  }
+}

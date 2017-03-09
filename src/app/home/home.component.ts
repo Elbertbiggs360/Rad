@@ -20,23 +20,10 @@ export class HomeComponent implements OnInit {
   allTasks: Task[];
   public authUser: User[];
   priority: String;
+  private moreTasks: boolean = false;
   loading: boolean = false;
   someTasks: boolean = false;
   errorMessage: any;
-    folders = [
-    {
-      name: 'New',
-      updated: new Date('1/1/16'),
-    },
-    {
-      name: 'Unfinished',
-      updated: new Date('1/17/16'),
-    },
-    {
-      name: 'Failed',
-      updated: new Date('1/28/16'),
-    }
-  ];
   color = 'primary';
   mode = 'determinate';
   value = 50;
@@ -46,7 +33,7 @@ export class HomeComponent implements OnInit {
     private taskService: TaskService, 
     private userService: UserService,
     public dialog: MdDialog
-    ) {}
+  ) {}
 
 
   ngOnInit(): void {
@@ -66,6 +53,14 @@ export class HomeComponent implements OnInit {
         });
   }
 
+  checkNumberOfTasks(){
+    if(this.allTasks.length<1){
+      this.someTasks = true;
+    } else if (this.allTasks.length > 5){
+      this.moreTasks = true;
+    }
+  }
+
   openDialog() {
     this.dialog.open(CreateTaskComponent);
     //test
@@ -77,6 +72,7 @@ export class HomeComponent implements OnInit {
       tasks => {
         this.loading = !this.loading;
         this.allTasks = tasks;
+        this.checkNumberOfTasks();
       },
       error => {
         this.errorMessage = error;
