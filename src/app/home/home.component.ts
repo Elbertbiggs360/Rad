@@ -16,8 +16,7 @@ import { UserService } from '../shared/user.service';
   selector: 'my-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [TaskService, UserService],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  providers: [TaskService, UserService]
 })
 export class HomeComponent implements OnInit {
 
