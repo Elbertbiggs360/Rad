@@ -39,7 +39,7 @@
             <div class="container u-maxWidth740">
               <app-loader [loading]="loading"></app-loader>
               <notasks [tasks]="someTasks"></notasks>
-              <span *ngIf="allTasks">
+              <span *ngIf="checkItem(allTasks)">
 
                 <div class="responsesStreamWrapper u-maxWidth640"  *ngFor="let task of allTasks">
                   <div class="row streamItemConversation-inner cardChromeless">
@@ -85,7 +85,7 @@
                       <div class="u-paddingRight20 u-paddingLeft20 u-marginTop20 u-description">
                         <a [routerLink]="['/tasks/test']">
                           {{task.description}}
-                          <ul class="u-margin0 u-padding0" *ngIf="task.attachments">
+                          <ul class="u-margin0 u-padding0" *ngIf="checkItem(task.attachments)">
                             <li  class="u-inline u-margin0 u-padding0">
                               <a class="u-fontSize12 attachment--link" href="#">Attachment 1</a>, 
                             </li>
@@ -117,9 +117,9 @@
                             <button class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon" title="Delete Task">
                               <md-icon>delete</md-icon>
                             </button>
-                            <button class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon "  title="Mark as Complete">
+                            <button (click)="openDialog('Confirm')" class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon "  title="Mark as Complete">
                               <span class="svgIcon svgIcon--arrowDown svgIcon--19px is-flushRight">
-                                <md-icon>done_all</md-icon>
+                                <md-icon>done</md-icon>
                               </span>
                             </button>
                           </div>
@@ -129,9 +129,9 @@
                   </div>
                 </div>
 
-                <div class="container u-maxWidth640" *ngIf="moreTasks">
+                <div class="container u-maxWidth640 u-marginTop20" *ngIf="checkItem(moreTasks)">
                   <div class="row u-marginBottom20">
-                    <button [routerLink]="['/tasks/all']" class="button button--primary button--withChrome u-accentColor--buttonNormal responsesStream-showOtherResponses cardChromeless u-sizeFullWidth" data-action="show-other-responses">Show all Tasks</button>
+                    <button  md-button [routerLink]="['/tasks/all']" class="button button--primary button--withChrome u-accentColor--buttonNormal responsesStream-showOtherResponses cardChromeless u-sizeFullWidth" data-action="show-other-responses">Show all Tasks</button>
                   </div>
                 </div>
                 <div class="metabar--spacer js-metabarSpacer u-height65 u-xs-height56 metabar-sibling"></div>
@@ -139,28 +139,29 @@
             </div>
           </article>
         </main>
+        
         <div class="postActionsBar">
           <div class="postActionsBar-container container">
             <div class="postActionsBar-content row">
               <div class="u-height65 actionbar">
-                <div class=" u-maxWidth360 u-paddingLeft20 u-paddingRight20 u-paddingTop10 u-marginAuto u-relative">
+                <div class=" u-maxWidth360 u-marginAuto u-relative">
                   <div class="u-inline u-floatLeft">
-                    <a [routerLink]="['/tasks/all']" routerLinkActive="active" class="nav--accent">
-                      <div class="u-inline u-marginRight30">
+                    <a  md-button (click)="openDialog('CreateTaskComponent')" class="nav--accent u-paddingTop10 u-paddingBottom10">
+                      <div class="u-inline">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">
                             <span class="svgIcon svgIcon--twitter svgIcon--29px">
-                              <md-icon>assignment</md-icon>
+                              <md-icon>create</md-icon>
                             </span>
                             <div class="postMetaInline-authorLockupNav u-flex1">
-                              <p class="link--accent">All</p>
+                              <p class="link--accent">Create</p>
                             </div>
                           </div>
                         </div>
                       </div>
                     </a>
-                    <a [routerLink]="['/tasks/late']" routerLinkActive="active" class="nav--accent">
-                      <div class="u-inline u-marginRight30">
+                    <a  md-button [routerLink]="['/tasks/late']" routerLinkActive="active" class="nav--accent u-paddingTop10 u-paddingBottom10">
+                      <div class="u-inline">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">
                             <span class="svgIcon svgIcon--twitter svgIcon--29px">
@@ -175,7 +176,7 @@
                     </a>
                   </div>
                   <div class="u u-inline u-floatCenter">
-                    <a [routerLink]="['/tasks/new']" routerLinkActive="active" class="nav--accent">
+                    <a  md-button [routerLink]="['/tasks/new']" routerLinkActive="active" class="nav--accent u-paddingTop10 u-paddingBottom10">
                       <div class="u-inline u-marginRight5pct">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">
@@ -191,29 +192,15 @@
                     </a>
                   </div>
                   <div class="u-inline u-floatRight">
-                    <a (click)="openDialog()" class="nav--accent cursor">
-                      <div class="u-inline u-marginRight30">
-                        <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
-                          <div class="buttonSet-inner">
-                            <span class="svgIcon svgIcon--twitter svgIcon--29px">
-                              <md-icon>create</md-icon>
-                            </span>
-                            <div class="postMetaInline-authorLockupNav u-flex1">
-                              <p class="link--accent">Create</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                    <a [routerLink]="['/login']" routerLinkActive="active" class="nav--accent">
+                    <a  md-button (click)="openDialog('UpdateTaskComponent')" class="nav--accent cursor u-paddingTop10 u-paddingBottom10">
                       <div class="u-inline">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">
-                            <span class="svgIcon svgIcon--twitter svgIcon--29px logOut--svg">
-                              <md-icon>settings_power</md-icon>
+                            <span class="svgIcon svgIcon--twitter svgIcon--29px">
+                              <md-icon>menu</md-icon>
                             </span>
                             <div class="postMetaInline-authorLockupNav u-flex1">
-                              <a class="link--accent">Log Out</a>
+                              <p class="link--accent">Menu</p>
                             </div>
                           </div>
                         </div>

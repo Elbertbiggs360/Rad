@@ -16,6 +16,7 @@ import { AboutComponent } from './about';
 import {HeaderComponent} from './header';
 import { LoginComponent } from './login';
 import { CreateTaskComponent } from './create-task';
+import { UpdateTaskComponent } from './update-task';
 
 
 import { TaskSearchService } from './shared/task-search.service';
@@ -39,10 +40,12 @@ import { AuthGuard } from './shared/auth.guard';
     AboutComponent,
     LoginComponent,
     HeaderComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    UpdateTaskComponent
   ],
   entryComponents:[
-    CreateTaskComponent
+    CreateTaskComponent,
+    UpdateTaskComponent
   ],
   providers: [
     TaskSearchService,

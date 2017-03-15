@@ -1,28 +1,25 @@
-.u-marginLeft38pct {
-  margin-left:38%
-}
 .u-marginTop30pct {
   margin-top:30%
 } 
-.u-width250 {
-  width: 60%;
-}
-.u-marginAuto {
-  margin-left: 20%;
-  margin-right: 20%;
-}
-.u-marginLeft20 {
-  margin-left:20px;
+.u-width250{
+  width: 250px;
 }
 @media screen and (min-width: 720px) {
   .u-marginTop30pct {
     margin-top:10%
   } 
-  .u-width250 {
-    width: 50%;
-  }
-  .u-marginAuto {
-    margin-left: 30%;
-    margin-right: 20%;
-  }
+}
+.alert--noTasks {
+  width: 40%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.noTasks--imageWidth {
+  width:50%;
+} 
+.u-marginLeft25pct {
+  margin-left: 25%!important;
+}
+.u-marginRight25pct {
+  margin-right: 25%!important;
 }

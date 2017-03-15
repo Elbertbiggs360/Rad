@@ -8,10 +8,16 @@
 html{
   -webkit-tap-highlight-color: transparent;
 }
+.mat-button {
+  min-width:none;
+}
 a{
   text-decoration: none;
   -webkit-transition: color .2s ease,background-color .2s ease,border-color .2s ease;
   transition: color .2s ease,background-color .2s ease,border-color .2s ease;
+}
+md-input-container {
+  width:100%;
 }
 .attachment--avatar {
   width:40px;
@@ -435,6 +441,9 @@ main {
 }
 .u-paddingTop10 {
   padding-top: 10px!important;
+}
+.u-paddingBottom10 {
+  padding-bottom: 10px!important;
 }
 .u-relative {
     position: relative!important

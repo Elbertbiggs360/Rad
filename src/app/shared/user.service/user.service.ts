@@ -15,27 +15,30 @@ export class UserService {
     public authUser: User[];
     private id: any;
     public token: string;
+    headers;
+    requestoptions;
 
     constructor(private http: Http) {
-        // set token if saved in local storage
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.token = currentUser && currentUser.token;
-        this.id = currentUser && currentUser.id;
+      let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      this.token = currentUser && currentUser.token;
+      this.id = currentUser && currentUser.id;
+
+      this.headers = new Headers();
+
+      this.headers.append('Content-Type', 'application/json');
+      this.headers.append('Accept', 'application/json');
+      this.headers.append('x-access-token', `${this.token}`);
+      this.requestoptions = new RequestOptions({
+          headers: this.headers
+      });
     }
 
     getUser(): Observable <Boolean> {
-      let headers = new Headers();
       let bodyData = {
         'id': `${this.id}`
-      }
-      headers.append('Content-Type', 'application/json');
-      headers.append('Accept', 'application/json');
-      headers.append('x-access-token', `${this.token}`)
-      let requestoptions = new RequestOptions({
-          headers: headers
-      });
+      };
       return this.http
-           .post(this.getUserUrl, JSON.stringify(bodyData), requestoptions)
+           .post(this.getUserUrl, JSON.stringify(bodyData), this.requestoptions)
            .map((res: Response) => {
                 this.authUser = res.json();
                 return true; })

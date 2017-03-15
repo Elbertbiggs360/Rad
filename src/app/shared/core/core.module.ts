@@ -1,8 +1,11 @@
-import { NgModule } from '@angular/core'
+import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 
 import { LoaderComponent } from './loader.component';
 import { NoTasksComponent } from './notasks.component';
+import { ConfirmDialog }   from './confirm-dialog';
+
+import { DialogsService } from './confirm-dialog';
 
 @NgModule({
   imports: [
@@ -10,14 +13,16 @@ import { NoTasksComponent } from './notasks.component';
   ],
   declarations: [
     LoaderComponent,
-    NoTasksComponent
+    NoTasksComponent,
+    ConfirmDialog
   ],
   exports: [
     LoaderComponent,
-    NoTasksComponent
+    NoTasksComponent,
+    ConfirmDialog
   ],
   providers: [
-
+    DialogsService
   ]
 })
 
