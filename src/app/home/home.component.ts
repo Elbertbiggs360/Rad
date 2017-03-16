@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   private moreTasks: boolean = false;
   public result: any;
   loading: boolean = false;
+  test: boolean = true;
   someTasks: boolean = false;
   errorMessage: any;
   color = 'primary';
@@ -115,7 +116,7 @@ export class HomeComponent implements OnInit {
   }
 
   checkItem(item: any) {
-    return (item === undefined || item.length == 0)?true:false;
+    return (item === undefined || item.length == 0)?false:true;
   }
 
 }
