@@ -37,6 +37,7 @@ export class UpdateTaskComponent implements OnInit {
     public snackBar: MdSnackBar,
     private userService: UserService
   ){
+    this.model.attachments = [];
   }
 
   ngOnInit(): void {
@@ -45,6 +46,7 @@ export class UpdateTaskComponent implements OnInit {
 
   public fileOverBase(e:any):void {
     this.hasBaseDropZoneOver = e;
+    this.uploader.uploadAll();
   }
 
   getUserDetails() {
@@ -68,6 +70,8 @@ export class UpdateTaskComponent implements OnInit {
     let today = Date.now();
     this.model.completed_at = today => today = Date.now();
 
+    this.fileRename(today);
+
     this.taskService.updateTask(this.model.id, this.model.completed_at)
         .subscribe(
           result => {
@@ -83,15 +87,24 @@ export class UpdateTaskComponent implements OnInit {
     return this.stopTimer();
   }
 
+  fileRename(today: number){
+    let fileName: String = '';
+    for ( let i=0;i<this.uploader.queue.length;i++){
+      let doc_ext =  this.uploader.queue[i].file.name.split('.').pop();
+      this.uploader.queue[i].file.name = fileName.concat(today.toString(), '-', this.authUser[0].first_name,'-',(i+1).toString(), '.', doc_ext);
+      this.model.attachments[i] = this.uploader.queue[i].file.name;
+    }
+  }
+
 	onLoad () {
-    	this.loading = !this.loading;
-    	if(this.error){
-    		this.success = false;
-        this.openSnackBar("Failed", "RETRY");
-    	} else {
-    		this.success = true;
-        this.openSnackBar("Task updated", "UNDO");
-    	}
+  	this.loading = !this.loading;
+  	if(this.error){
+  		this.success = false;
+      this.openSnackBar("Failed", "RETRY");
+  	} else {
+  		this.success = true;
+      this.openSnackBar("Task updated", "UNDO");
+  	}
 	}
 
   stopTimer() {

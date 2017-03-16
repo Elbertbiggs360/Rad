@@ -59,7 +59,7 @@
                                 <div class="u-marginTop">
                                   <md-chip-list>
                                     <a  [routerLink]="['/tasks/all']">
-                                      <md-chip color="primary" selected="false">{{task.category || Uncategorized}}</md-chip>
+                                      <md-chip color="primary" selected="false">{{task.category?task.category:uncategorized}}</md-chip>
                                     </a>
                                   </md-chip-list>
                                 </div>
@@ -207,7 +207,21 @@
                     </a>
                   </div>
                   <div class="u-inline u-floatRight">
-                    <a  md-button (click)="openDialog('UpdateTaskComponent')" class="nav--accent cursor u-paddingTop10 u-paddingBottom10">
+                    <a  md-button (click)="openDialog('LogOut')" class="nav--accent cursor u-paddingTop10 u-paddingBottom10 mobile-hidden">
+                      <div class="u-inline">
+                        <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
+                          <div class="buttonSet-inner">
+                            <span class="svgIcon svgIcon--twitter svgIcon--29px">
+                              <md-icon>settings_power</md-icon>
+                            </span>
+                            <div class="postMetaInline-authorLockupNav u-flex1">
+                              <p class="link--accent">Log Out</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <a  md-button (click)="openDialog('CreateTaskComponent')" class="nav--accent u-paddingTop10 u-paddingBottom10 desktop-hidden">
                       <div class="u-inline">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">

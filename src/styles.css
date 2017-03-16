@@ -11,6 +11,9 @@ html{
 .mat-button {
   min-width:none;
 }
+.mat-raised-button.mat-primary {
+  background-color: #1565c0!important;
+}
 .mat-dialog-container {
   padding: 0;
 }

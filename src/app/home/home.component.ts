@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {MdDialog} from '@angular/material';
+import { Router } from '@angular/router';
 
 
 import { CreateTaskComponent } from '../create-task';
@@ -33,6 +34,7 @@ export class HomeComponent implements OnInit {
   errorMessage: any;
   color = 'primary';
   mode = 'determinate';
+  uncategorized = 'Uncategorized'
   value = 50;
   bufferValue = 75;
 
@@ -41,7 +43,8 @@ export class HomeComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     public dialog: MdDialog,
-    private dialogsService: DialogsService
+    private dialogsService: DialogsService,
+    private router: Router
   ) {}
 
 
@@ -87,7 +90,14 @@ export class HomeComponent implements OnInit {
             .confirm('Confirm Dialog', 'Are you sure you want to do this?')
             .subscribe(res => {
               this.result = res;
-              console.log(this.result);
+            });
+        break;
+
+      case "LogOut":
+        this.dialogsService
+            .confirm('Confirm Dialog', 'Are you sure you want to log out?')
+            .subscribe(res => {
+              res===true?this.logout():res=this.result;
             });
         break;
       
@@ -117,6 +127,11 @@ export class HomeComponent implements OnInit {
 
   checkItem(item: any) {
     return (item === undefined || item.length == 0)?false:true;
+  }
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

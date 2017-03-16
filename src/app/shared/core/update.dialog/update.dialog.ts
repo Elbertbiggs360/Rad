@@ -5,9 +5,9 @@ import { MdDialogRef } from '@angular/material';
     selector: 'confirm-dialog',
     template: `
     <update-task></update-task>
-    <div class="u-padding-24">
-      <button (click)=dialogRef.close(true) md-raised-button><md-icon>done</md-icon></button>
-      <button (click)=dialogRef.close(false) md-raised-button><md-icon>cancel</md-icon></button>
+    <div class="u-padding-24 u-marginTop10 u-floatRight">
+      <button (click)=dialogRef.close(false) md-button color="primary">Cancel</button>
+      <button (click)=dialogRef.close(true) md-raised-button color="primary"><md-icon>done</md-icon></button>
     </div>
     `,
 })
