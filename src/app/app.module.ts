@@ -17,6 +17,7 @@ import {HeaderComponent} from './header';
 import { LoginComponent } from './login';
 import { CreateTaskComponent } from './create-task';
 import { UpdateTaskComponent } from './update-task';
+import { ConfirmDialogComponent }   from './shared/core/confirm-dialog';
 
 
 import { TaskSearchService } from './shared/task-search.service';
@@ -41,11 +42,13 @@ import { AuthGuard } from './shared/auth.guard';
     LoginComponent,
     HeaderComponent,
     CreateTaskComponent,
-    UpdateTaskComponent
+    UpdateTaskComponent,
+    ConfirmDialogComponent
   ],
   entryComponents:[
     CreateTaskComponent,
-    UpdateTaskComponent
+    UpdateTaskComponent,
+    ConfirmDialogComponent
   ],
   providers: [
     TaskSearchService,

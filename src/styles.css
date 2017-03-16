@@ -19,6 +19,12 @@ a{
 md-input-container {
   width:100%;
 }
+.mobile-hidden {
+  display: none!important;
+}
+.desktop-hidden {
+  display: inline-block!important;
+}
 .attachment--avatar {
   width:40px;
 }
@@ -43,6 +49,12 @@ md-input-container {
   }
   .streamItemConversation-inner {
     margin-top: 20px
+  }
+  .mobile-hidden {
+    display: inline-block!important;
+  }
+  .desktop-hidden {
+    display: none!important;
   }
 }
 header {

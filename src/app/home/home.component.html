@@ -34,10 +34,10 @@
 
         <div class="metabar metabar--spacer js-metabarSpacer u-height65 u-xs-height56 metabar-sibling"></div>
 
-        <main role="main" class="main">
+        <main role="main" class="main u-marginTop20">
           <article class=" postArticle " lang="en">
             <div class="container u-maxWidth740">
-              <app-loader [loading]="loading"></app-loader>
+              <feed-loader [loading]="loading"></feed-loader>
               <notasks [tasks]="someTasks"></notasks>
               <span *ngIf="checkItem(allTasks)">
 
@@ -117,7 +117,7 @@
                             <button class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon" title="Delete Task">
                               <md-icon>delete</md-icon>
                             </button>
-                            <button (click)="openDialog('Confirm')" class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon "  title="Mark as Complete">
+                            <button (click)="openDialog('UpdateTaskComponent')" class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon "  title="Mark as Complete">
                               <span class="svgIcon svgIcon--arrowDown svgIcon--19px is-flushRight">
                                 <md-icon>done</md-icon>
                               </span>
@@ -146,7 +146,21 @@
               <div class="u-height65 actionbar">
                 <div class=" u-maxWidth360 u-marginAuto u-relative">
                   <div class="u-inline u-floatLeft">
-                    <a  md-button (click)="openDialog('CreateTaskComponent')" class="nav--accent u-paddingTop10 u-paddingBottom10">
+                    <a  md-button [routerLink]="['/create']" class="nav--accent u-paddingTop10 u-paddingBottom10 desktop-hidden" >
+                      <div class="u-inline">
+                        <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
+                          <div class="buttonSet-inner">
+                            <span class="svgIcon svgIcon--twitter svgIcon--29px">
+                              <md-icon>create</md-icon>
+                            </span>
+                            <div class="postMetaInline-authorLockupNav u-flex1">
+                              <p class="link--accent">Create</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <a  md-button (click)="openDialog('CreateTaskComponent')" class="nav--accent u-paddingTop10 u-paddingBottom10 mobile-hidden">
                       <div class="u-inline">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">

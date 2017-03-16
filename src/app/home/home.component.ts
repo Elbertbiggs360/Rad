@@ -11,6 +11,7 @@ import { TaskService } from '../shared/task.service';
 
 import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'my-home',
@@ -38,6 +39,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private taskService: TaskService, 
     private userService: UserService,
+    private authService: AuthService,
     public dialog: MdDialog,
     private dialogsService: DialogsService
   ) {}
@@ -83,7 +85,10 @@ export class HomeComponent implements OnInit {
       case "Confirm":
         this.dialogsService
             .confirm('Confirm Dialog', 'Are you sure you want to do this?')
-            .subscribe(res => this.result = res);
+            .subscribe(res => {
+              this.result = res;
+              console.log(this.result);
+            });
         break;
       
       default:
@@ -108,11 +113,6 @@ export class HomeComponent implements OnInit {
 
   getPriority() {
     this.priority = 'high';
-  }
-
-  SetDrawer(instruction: any) {
-    console.log(instruction)
-    return instruction;
   }
 
   checkItem(item: any) {

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 
 import { LoaderComponent } from './loader.component';
+import { FeedLoaderComponent } from './feed-loader.component';
 import { NoTasksComponent } from './notasks.component';
-import { ConfirmDialog }   from './confirm-dialog';
 
 import { DialogsService } from './confirm-dialog';
 
@@ -13,13 +13,13 @@ import { DialogsService } from './confirm-dialog';
   ],
   declarations: [
     LoaderComponent,
-    NoTasksComponent,
-    ConfirmDialog
+    FeedLoaderComponent,
+    NoTasksComponent
   ],
   exports: [
     LoaderComponent,
-    NoTasksComponent,
-    ConfirmDialog
+    FeedLoaderComponent,
+    NoTasksComponent
   ],
   providers: [
     DialogsService

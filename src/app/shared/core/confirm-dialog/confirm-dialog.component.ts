@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { MdDialogRef, MdSnackBar } from '@angular/material';
 
 @Component({
     selector: 'confirm-dialog',
@@ -12,12 +12,14 @@ import { MdDialogRef } from '@angular/material';
             (click)="dialogRef.close()">Cancel</button>
     `,
 })
-export class ConfirmDialog {
+export class ConfirmDialogComponent {
 
     public title: string;
     public message: string;
 
-    constructor(public dialogRef: MdDialogRef<ConfirmDialog>) {
+    constructor(
+        public dialogRef: MdDialogRef<ConfirmDialogComponent>,
+        public snackBar: MdSnackBar
+        ) {}
 
-    }
 }
