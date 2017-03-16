@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MdDialogRef, MdSnackBar } from '@angular/material';
+import { MdSnackBar } from '@angular/material';
 
 import { Task } from '../shared/task';
 import { TaskService } from '../shared/task.service';
@@ -18,7 +18,7 @@ export class CreateTaskComponent implements OnInit {
   model: any = {};
   category: any = {};
   start_date: any;
-  loading = false;
+  loading = true;
   confirmation = 'Task Created';
   action = 'Undo';
   public authUser: User[];
@@ -43,7 +43,6 @@ export class CreateTaskComponent implements OnInit {
 
   constructor(
   	private taskService: TaskService,
-    public dialogRef: MdDialogRef<CreateTaskComponent>,
     public snackBar: MdSnackBar,
     private userService: UserService
   ){
@@ -62,6 +61,7 @@ export class CreateTaskComponent implements OnInit {
     .subscribe(result => {
             if (result === true) {
                 this.authUser = this.userService.authUser;
+                this.loading = false;
             } else {
                 this.getUserDetails();
             }

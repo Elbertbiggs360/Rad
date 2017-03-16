@@ -12,13 +12,13 @@ import { MdDialogRef, MdSnackBar } from '@angular/material';
             (click)="dialogRef.close()">Cancel</button>
     `,
 })
-export class ConfirmDialogComponent {
+export class ConfirmDialog {
 
     public title: string;
     public message: string;
 
     constructor(
-        public dialogRef: MdDialogRef<ConfirmDialogComponent>,
+        public dialogRef: MdDialogRef<ConfirmDialog>,
         public snackBar: MdSnackBar
         ) {}
 

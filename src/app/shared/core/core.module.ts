@@ -5,8 +5,6 @@ import { LoaderComponent } from './loader.component';
 import { FeedLoaderComponent } from './feed-loader.component';
 import { NoTasksComponent } from './notasks.component';
 
-import { DialogsService } from './confirm-dialog';
-
 @NgModule({
   imports: [
     BrowserModule
@@ -20,9 +18,6 @@ import { DialogsService } from './confirm-dialog';
     LoaderComponent,
     FeedLoaderComponent,
     NoTasksComponent
-  ],
-  providers: [
-    DialogsService
   ]
 })
 

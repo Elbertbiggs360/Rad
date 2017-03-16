@@ -11,6 +11,9 @@ html{
 .mat-button {
   min-width:none;
 }
+.mat-dialog-container {
+  padding: 0;
+}
 a{
   text-decoration: none;
   -webkit-transition: color .2s ease,background-color .2s ease,border-color .2s ease;
@@ -448,6 +451,9 @@ main {
 .u-padding0 {
   padding: 0!important;
 }
+.u-padding-24 {
+  padding: -24px;
+}
 .u-padding10 {
   padding: 10px!important;
 }
@@ -510,7 +516,12 @@ main {
 .u-maxWidth150 {
   max-width: 150px!important;
 }
-
+.u-maxWidth30pct {
+  max-width: 30%!important;
+}
+.u-minWidth360 {
+  min-width: 360px!important;
+}
 .u-maxWidthNone {
   max-width: none!important
 }
@@ -1942,8 +1953,12 @@ main {
 }
 
 .link--accent {
-    color: #1565c0;
-    text-decoration: none
+  color: #1565c0;
+  text-decoration: none
+}
+.alert--success {
+  color: #00c853;
+  text-decoration: none
 }
 .nav--accent {
   color: #626364;

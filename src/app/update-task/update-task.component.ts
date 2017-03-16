@@ -1,11 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MdDialogRef, MdSnackBar } from '@angular/material';
+import { FileUploader } from 'ng2-file-upload';
 
 import { Task } from '../shared/task';
 import { TaskService } from '../shared/task.service';
 
 import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
+
+const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 @Component({
   selector: 'update-task',
@@ -14,7 +17,9 @@ import { UserService } from '../shared/user.service';
   providers: [TaskService, UserService]
 })
 export class UpdateTaskComponent implements OnInit {
-
+ 
+  public uploader:FileUploader = new FileUploader({url: URL});
+  public hasBaseDropZoneOver:boolean = false;
   model: any = {};
   category: any = {};
   loading = false;
@@ -36,6 +41,10 @@ export class UpdateTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserDetails();
+  }
+
+  public fileOverBase(e:any):void {
+    this.hasBaseDropZoneOver = e;
   }
 
   getUserDetails() {

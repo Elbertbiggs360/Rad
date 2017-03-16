@@ -3,9 +3,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
+
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { CoreModule } from './shared/core/core.module';
 
@@ -17,12 +18,17 @@ import {HeaderComponent} from './header';
 import { LoginComponent } from './login';
 import { CreateTaskComponent } from './create-task';
 import { UpdateTaskComponent } from './update-task';
-import { ConfirmDialogComponent }   from './shared/core/confirm-dialog';
 
 
 import { TaskSearchService } from './shared/task-search.service';
 import { TaskService } from './shared/task.service';
 import { AuthService } from './shared/auth.service';
+import { DialogsService } from './shared/core/dialogs.service';
+
+import { ConfirmDialog }   from './shared/core/confirm.dialog';
+import { CreateDialog } from './shared/core/create.dialog';
+import { UpdateDialog } from './shared/core/update.dialog';
+
 import { AuthGuard } from './shared/auth.guard';
 
 @NgModule({
@@ -33,6 +39,7 @@ import { AuthGuard } from './shared/auth.guard';
     HttpModule,
     rootRouterConfig,
     MaterialModule,
+    FileUploadModule,
     CoreModule
   ],
   declarations: [
@@ -43,18 +50,23 @@ import { AuthGuard } from './shared/auth.guard';
     HeaderComponent,
     CreateTaskComponent,
     UpdateTaskComponent,
-    ConfirmDialogComponent
+    ConfirmDialog,
+    CreateDialog,
+    UpdateDialog
   ],
   entryComponents:[
     CreateTaskComponent,
     UpdateTaskComponent,
-    ConfirmDialogComponent
+    ConfirmDialog,
+    CreateDialog,
+    UpdateDialog
   ],
   providers: [
     TaskSearchService,
     TaskService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    DialogsService
   ],
   bootstrap: [ AppComponent ]
 })

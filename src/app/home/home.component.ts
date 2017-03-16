@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {MdDialog} from '@angular/material';
 
 
 import { CreateTaskComponent } from '../create-task';
 import { UpdateTaskComponent } from '../update-task';
-import {DialogsService} from '../shared/core/confirm-dialog';
+import {DialogsService} from '../shared/core/dialogs.service';
 
 import { Task } from '../shared/task';
 import { TaskService } from '../shared/task.service';
@@ -75,11 +75,11 @@ export class HomeComponent implements OnInit {
 
     switch (componentName) {
       case "CreateTaskComponent":
-        this.dialog.open(CreateTaskComponent);
+        this.dialogsService.create();
         break;
 
       case "UpdateTaskComponent":
-        this.dialog.open(UpdateTaskComponent);
+        this.dialogsService.update();
         break;
 
       case "Confirm":
