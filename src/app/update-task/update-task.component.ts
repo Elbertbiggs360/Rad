@@ -72,7 +72,7 @@ export class UpdateTaskComponent implements OnInit {
 
     this.fileRename(today);
 
-    this.taskService.updateTask(this.model.id, this.model.completed_at)
+    this.taskService.updateTask(this.model)
         .subscribe(
           result => {
             if (result === true) {

@@ -24,8 +24,8 @@
                 </button>
                 <app-loader [loading]="loading" class="button button--chromeless u-baseColor--buttonNormal" style="padding: 0"></app-loader>
                 <a *ngIf="checkItem(authUser)" [routerLink]="['/profile']" class="button button--chromeless u-baseColor--buttonNormal " aria-haspopup="true" title="{{authUser[0].local.email}}">
-                  <div class="avatar">
-                  <img src="{{authUser[0].profile_pic_url}}" srcset="././assets/images/avatar.png" alt="{{authUser[0].first_name}}"  class="avatar-image avatar-image--icon">
+                  <div class="avatar u-inlineBlock">
+                  <md-icon  class="avatar-image avatar-image--icon">face</md-icon>
                   </div>
                 </a>
               </div>
@@ -47,7 +47,7 @@
                     <md-progress-bar
                       [color]="primary"
                        mode="determinate"
-                       value="45">
+                       value="{{task.progress}}">
                     </md-progress-bar>
                     <div class="streamItemConversationItem streamItemConversationItem--preview">
                       <div class="u-clearfix u-marginBottom10">
@@ -71,7 +71,8 @@
                           <div class="u-flexTop">
                             <div class="postMetaInline-avatar u-flex0">
                               <a class="link avatar u-baseColor--link" [routerLink]="['/profile']">
-                                <img src="././assets/images/0-vh_oAbnRXYzUGkDD.jpeg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{authUser[0].first_name}}" title="Go to the profile of {{authUser[0].first_name}} {{authUser[0].last_name}}">
+                                <img src="././assets/images/mavatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{authUser[0].first_name}}" title="Go to the profile of {{authUser[0].first_name}} {{authUser[0].last_name}}" *ngIf="male">
+                                <img src="././assets/images/favatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{authUser[0].first_name}}" title="Go to the profile of {{authUser[0].first_name}} {{authUser[0].last_name}}" *ngIf="female">
                               </a>
                             </div>
                             <div class="u-paddingLeft5">
@@ -221,7 +222,7 @@
                         </div>
                       </div>
                     </a>
-                    <a  md-button (click)="openDialog('CreateTaskComponent')" class="nav--accent u-paddingTop10 u-paddingBottom10 desktop-hidden">
+                    <a  md-button (click)="openDialog('LogOut')" class="nav--accent u-paddingTop10 u-paddingBottom10 desktop-hidden">
                       <div class="u-inline">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">

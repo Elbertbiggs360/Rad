@@ -22,6 +22,9 @@ export class Task {
 		public created_at: any,
 		public updated_at: any,
 		public completed_at: any,
+		public finish_date: number,
+
+		public progress: number,
 
 		public __v: any
 	) {}

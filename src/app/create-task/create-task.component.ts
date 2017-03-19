@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 import { Task } from '../shared/task';
 import { TaskService } from '../shared/task.service';
@@ -26,13 +27,13 @@ export class CreateTaskComponent implements OnInit {
   private today: number;
 
   color = 'secondary';
-  value: any = 40;
-  bufferValue = 75;
+  value: any = 10;
   max = 100;
   min = 0;
   step = 1;
   thumbLabel = true;
   vertical = false;
+  checked: boolean;
 
   submitted = false;
 
@@ -44,7 +45,8 @@ export class CreateTaskComponent implements OnInit {
   constructor(
   	private taskService: TaskService,
     public snackBar: MdSnackBar,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ){
   }
 
@@ -75,7 +77,11 @@ export class CreateTaskComponent implements OnInit {
   onSubmit() {
   	this.submitted = true;
   	this.model.created_at = this.today;
+    this.model.start_date = Date.parse(this.model.start_date);
+    this.model.created_by = this.authUser[0]._id;
+    this.model.duration = this.model.taskLength * 1000 * 60 * 60 * 24;
   	this.loading = !this.loading;
+    console.log(this.model);
 
     this.taskService.createTask(this.model)
         .subscribe(result => {
@@ -98,6 +104,7 @@ export class CreateTaskComponent implements OnInit {
     	} else {
     		this.success = true;
         this.openSnackBar("Task Created", "UNDO");
+        setTimeout(this.router.navigate(['/']), 1000);
     	}
 	}
 

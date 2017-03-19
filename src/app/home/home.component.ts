@@ -34,9 +34,12 @@ export class HomeComponent implements OnInit {
   errorMessage: any;
   color = 'primary';
   mode = 'determinate';
-  uncategorized = 'Uncategorized'
-  value = 50;
+  uncategorized = 'Uncategorized';
+  public taskProgress;
   bufferValue = 75;
+  start;
+  male: Boolean = false;
+  female: Boolean = false;
 
   constructor(
     private taskService: TaskService, 
@@ -46,7 +49,6 @@ export class HomeComponent implements OnInit {
     private dialogsService: DialogsService,
     private router: Router
   ) {}
-
 
   ngOnInit(): void {
     this.getUserDetails();
@@ -59,6 +61,7 @@ export class HomeComponent implements OnInit {
     .subscribe(result => {
             if (result === true) {
                 this.authUser = this.userService.authUser;
+                this.authUser[0].gender=='male'?this.male=true:this.female=true;
             }
         },
         error => {
@@ -115,6 +118,7 @@ export class HomeComponent implements OnInit {
         this.loading = !this.loading;
         this.allTasks = tasks;
         this.checkNumberOfTasks();
+        this.computeProgress(this.allTasks);
       },
       error => {
         this.errorMessage = error;
@@ -123,6 +127,20 @@ export class HomeComponent implements OnInit {
 
   getPriority() {
     this.priority = 'high';
+  }
+
+  computeProgress(allTasks: Task[]){
+    for(let i=0;i<allTasks.length;i++){
+      if(allTasks[i].start_date>=Date.now()){
+        this.allTasks[i].progress = parseInt((allTasks[i].start_date - Date.now())/allTasks[i].duration *1000));
+      } else if((allTasks[i].start_date+allTasks[i].duration)>=Date.now()){
+        this.allTasks[i].progress = parseInt((Date.now() - allTasks[i].start_date)/allTasks[i].duration *1000));
+      } else {
+        this.allTasks[i].progress = 0;
+      }
+      console.log(this.allTasks[i].progress);
+    }
+
   }
 
   checkItem(item: any) {
