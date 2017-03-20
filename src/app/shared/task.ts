@@ -14,14 +14,14 @@ export class Task {
 
 		//task users
 		public created_by: string,
-		public finished_by: any,
+		public finished_by: string,
 		public assigned_to: string,
 		
 		//task timing
-		public start_date: any,
-		public created_at: any,
-		public updated_at: any,
-		public completed_at: any,
+		public start_date: number,
+		public created_at: number,
+		public updated_at: number,
+		public completed_at: number,
 		public finish_date: number,
 
 		public progress: number,

@@ -132,9 +132,9 @@ export class HomeComponent implements OnInit {
   computeProgress(allTasks: Task[]){
     for(let i=0;i<allTasks.length;i++){
       if(allTasks[i].start_date>=Date.now()){
-        this.allTasks[i].progress = parseInt((allTasks[i].start_date - Date.now())/allTasks[i].duration *1000));
+        this.allTasks[i].progress = Math.floor((allTasks[i].start_date - Date.now())/allTasks[i].duration *1000);
       } else if((allTasks[i].start_date+allTasks[i].duration)>=Date.now()){
-        this.allTasks[i].progress = parseInt((Date.now() - allTasks[i].start_date)/allTasks[i].duration *1000));
+        this.allTasks[i].progress = Math.floor((Date.now() - allTasks[i].start_date)/allTasks[i].duration *1000);
       } else {
         this.allTasks[i].progress = 0;
       }

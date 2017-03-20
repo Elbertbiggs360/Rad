@@ -6,7 +6,7 @@ import { MdDialogRef, MdSnackBar } from '@angular/material';
     template: `
         <p>{{ title }}</p>
         <p>{{ message }}</p>
-        <div class="u-floatRight">
+        <div class="u-floatRight u-marginTop10">
         <button type="button" md-raised-button 
             (click)="dialogRef.close(true)">OK</button>
         <button type="button" md-button 

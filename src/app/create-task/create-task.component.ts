@@ -81,7 +81,6 @@ export class CreateTaskComponent implements OnInit {
     this.model.created_by = this.authUser[0]._id;
     this.model.duration = this.model.taskLength * 1000 * 60 * 60 * 24;
   	this.loading = !this.loading;
-    console.log(this.model);
 
     this.taskService.createTask(this.model)
         .subscribe(result => {
