@@ -23,6 +23,8 @@ export class UpdateTaskComponent implements OnInit {
   model: any = {};
   category: any = {};
   loading = false;
+  @Input() complete;
+  @Input() task_id;
   public authUser: User[];
   submitted = false;
   private errorMessage;
@@ -54,6 +56,7 @@ export class UpdateTaskComponent implements OnInit {
     .subscribe(result => {
             if (result === true) {
                 this.authUser = this.userService.authUser;
+                this.checkForComplete();
             } else {
                 this.getUserDetails();
             }
@@ -64,13 +67,20 @@ export class UpdateTaskComponent implements OnInit {
     return new Date(dateStr);
   }
 
+  checkForComplete(): void {
+    if(this.complete===true)
+      this.timer = setTimeout(this.markAsComplete(this.authUser[0]._id), 20);
+  }
+
   markAsComplete(id:string): void {
     this.submitted = true;
     this.loading = !this.loading;
     let today = Date.now();
-    this.model.completed_at = today => today = Date.now();
+    this.model.completed_at = Date.now();
+    this.model._id = this.task_id;
 
     this.fileRename(today);
+    console.log(this.model);
 
     this.taskService.updateTask(this.model)
         .subscribe(
@@ -90,9 +100,11 @@ export class UpdateTaskComponent implements OnInit {
   fileRename(today: number){
     let fileName: String = '';
     for ( let i=0;i<this.uploader.queue.length;i++){
-      let doc_ext =  this.uploader.queue[i].file.name.split('.').pop();
-      this.uploader.queue[i].file.name = fileName.concat(today.toString(), '-', this.authUser[0].first_name,'-',(i+1).toString(), '.', doc_ext);
-      this.model.attachments[i] = this.uploader.queue[i].file.name;
+      if(this.uploader.queue[i].isSuccess){
+        let doc_ext =  this.uploader.queue[i].file.name.split('.').pop();
+        this.uploader.queue[i].file.name = fileName.concat(today.toString(), '-', this.authUser[0].first_name,'-',(i+1).toString(), '.', doc_ext);
+        this.model.attachments[i] = this.uploader.queue[i].file.name;
+      }
     }
   }
 

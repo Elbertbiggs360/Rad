@@ -26,8 +26,13 @@ export class DialogsService {
       return this.dialog.open(CreateDialog);
     }
 
-    public update(): any {
-      return this.dialog.open(UpdateDialog);
+    public update(task_id): any {
+
+        let dialogRef: MdDialogRef<UpdateDialog>;
+
+        dialogRef = this.dialog.open(UpdateDialog);
+        dialogRef.componentInstance.task_id = task_id;
+      return dialogRef.afterClosed();
     }
 
 }

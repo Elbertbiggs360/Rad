@@ -18,6 +18,8 @@ import {HeaderComponent} from './header';
 import { LoginComponent } from './login';
 import { CreateTaskComponent } from './create-task';
 import { UpdateTaskComponent } from './update-task';
+import { InTasksComponent } from './in-tasks';
+import { OutTasksComponent } from './out-tasks';
 
 
 import { TaskSearchService } from './shared/task-search.service';
@@ -52,7 +54,9 @@ import { AuthGuard } from './shared/auth.guard';
     UpdateTaskComponent,
     ConfirmDialog,
     CreateDialog,
-    UpdateDialog
+    UpdateDialog,
+    InTasksComponent,
+    OutTasksComponent
   ],
   entryComponents:[
     CreateTaskComponent,

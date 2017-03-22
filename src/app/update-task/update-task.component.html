@@ -1,3 +1,9 @@
+<md-progress-bar
+  [color]="primary"
+   mode="indeterminate"
+   *ngIf="loading"
+  >
+</md-progress-bar>
 <div class="u-padding-24">
   <a class="link--accent">
     <md-icon class="material-icons">event_available</md-icon>
@@ -77,4 +83,8 @@
       </div>
     </div>
   </div>
+</div>
+<div class="u-padding-24 u-marginTop10 u-floatRight">
+  <button (click)=dialogRef.close(false) md-button color="primary">Cancel</button>
+  <button (click)=markAsComplete() md-raised-button color="primary"><md-icon>done</md-icon></button>
 </div>

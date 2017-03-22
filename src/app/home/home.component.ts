@@ -22,27 +22,14 @@ import { AuthService } from '../shared/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  allTasks: Task[];
   public authUser: User[];
-  priority: String;
-  model: any = {};
-  private moreTasks: boolean = false;
   public result: any;
   loading: boolean = false;
-  test: boolean = true;
-  someTasks: boolean = false;
   errorMessage: any;
-  color = 'primary';
-  mode = 'determinate';
-  uncategorized = 'Uncategorized';
-  public taskProgress;
-  bufferValue = 75;
-  start;
   male: Boolean = false;
   female: Boolean = false;
 
   constructor(
-    private taskService: TaskService, 
     private userService: UserService,
     private authService: AuthService,
     public dialog: MdDialog,
@@ -52,8 +39,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserDetails();
-    this.getPriority();
-    this.getAllTasks();
   }
   
   getUserDetails() {
@@ -69,31 +54,11 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  checkNumberOfTasks(){
-    if(this.allTasks.length<1){
-      this.someTasks = true;
-    } else if (this.allTasks.length > 5){
-      this.moreTasks = true;
-    }
-  }
-
   openDialog(componentName) {
 
     switch (componentName) {
       case "CreateTaskComponent":
         this.dialogsService.create();
-        break;
-
-      case "UpdateTaskComponent":
-        this.dialogsService.update();
-        break;
-
-      case "Confirm":
-        this.dialogsService
-            .confirm('Confirm Dialog', 'Are you sure you want to do this?')
-            .subscribe(res => {
-              this.result = res;
-            });
         break;
 
       case "LogOut":
@@ -109,38 +74,6 @@ export class HomeComponent implements OnInit {
         break;
     }
     //test
-  }
-
-  getAllTasks(): void {
-    this.loading = !this.loading;
-    this.taskService.getTasks().subscribe(
-      tasks => {
-        this.loading = !this.loading;
-        this.allTasks = tasks;
-        this.checkNumberOfTasks();
-        this.computeProgress(this.allTasks);
-      },
-      error => {
-        this.errorMessage = error;
-      });
-  }
-
-  getPriority() {
-    this.priority = 'high';
-  }
-
-  computeProgress(allTasks: Task[]){
-    for(let i=0;i<allTasks.length;i++){
-      if(allTasks[i].start_date>=Date.now()){
-        this.allTasks[i].progress = Math.floor((allTasks[i].start_date - Date.now())/allTasks[i].duration *1000);
-      } else if((allTasks[i].start_date+allTasks[i].duration)>=Date.now()){
-        this.allTasks[i].progress = Math.floor((Date.now() - allTasks[i].start_date)/allTasks[i].duration *1000);
-      } else {
-        this.allTasks[i].progress = 0;
-      }
-      console.log(this.allTasks[i].progress);
-    }
-
   }
 
   checkItem(item: any) {
