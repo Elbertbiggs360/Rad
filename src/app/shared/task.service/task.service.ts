@@ -65,7 +65,6 @@ export class TaskService {
     return this.http
                    .put(this.updateTaskUrl, JSON.stringify(model), this.requestoptions)
                    .map((res: Response) => {
-                      console.log(this.extractData(res));
                       return true;
                    })
                    .catch((err) => this.handleError(err));
