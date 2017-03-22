@@ -10,7 +10,7 @@ export class AuthService {
 	
   /*for production server */
 	/*private authUrl = 'http://10.1.10.54:8080/authenticate';*/
-  private authUrl = 'http://eradapi.herokuapp.com/authenticate'; //document.location
+  private authUrl = 'https://eradapi.herokuapp.com/authenticate';
 
 	public token: string;
 
@@ -21,37 +21,37 @@ export class AuthService {
     }
     
     login(email: string, password: string): Observable <Boolean> {
-        let headers = new Headers();
-        let data = {
-            'email': `${email}`,
-            'password': `${password}`
-        }
-        headers.append('Content-Type', 'application/json');
-        headers.append('Accept', 'application/json');
-        let requestoptions = new RequestOptions({
-            headers: headers
-        });
+      let headers = new Headers();
+      let data = {
+          'email': `${email}`,
+          'password': `${password}`
+      }
+      headers.append('Content-Type', 'application/json');
+      headers.append('Accept', 'application/json');
+      let requestoptions = new RequestOptions({
+          headers: headers
+      });
 
-        return this.http
-                   .post(this.authUrl, JSON.stringify(data), requestoptions)
-                   .map((res: Response) => {
-                       // login successful if there's a jwt token in the response message
-                       let token = res.json() && res.json().token;
-                       let id = res.json() && res.json().id;
-                       if (token) {
-                           // set token property
-                           this.token = token;
-                           // store id and jwt token in local storage to keep user logged in between page refreshes
-                           localStorage.setItem('currentUser', JSON.stringify({ id: id, token: token }));
+      return this.http
+                 .post(this.authUrl, JSON.stringify(data), requestoptions)
+                 .map((res: Response) => {
+                     // login successful if there's a jwt token in the response message
+                     let token = res.json() && res.json().token;
+                     let id = res.json() && res.json().id;
+                     if (token) {
+                         // set token property
+                         this.token = token;
+                         // store id and jwt token in local storage to keep user logged in between page refreshes
+                         localStorage.setItem('currentUser', JSON.stringify({ id: id, token: token }));
 
-                           // return true to indicate successful login
-                           return true;
-                       } else {
-                           // return false to indicate failed login
-                           return false;
-                       }
-                   })
-                   .catch((err) => this.handleError(err));
+                         // return true to indicate successful login
+                         return true;
+                     } else {
+                         // return false to indicate failed login
+                         return false;
+                     }
+                 })
+                 .catch((err) => this.handleError(err));
     }
 
     public extractData(res: Response) {

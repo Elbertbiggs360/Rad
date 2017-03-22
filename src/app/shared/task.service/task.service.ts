@@ -11,11 +11,11 @@ import { Task } from '../task';
 export class TaskService {
 
 
-  public tasksUrl = 'http://eradapi.herokuapp.com/viewTasks/in';
-  public tasksAssignedUrl = 'http://eradapi.herokuapp.com/viewTasks/out';
-  public addTasksUrl = 'http://eradapi.herokuapp.com/createTask';
-  public searchTasksUrl = 'http://eradapi.herokuapp.com/searchTask';
-  public updateTaskUrl = 'http://eradapi.herokuapp.com/updateTask';
+  public tasksUrl = 'https://eradapi.herokuapp.com/viewTasks/in';
+  public tasksAssignedUrl = 'https://eradapi.herokuapp.com/viewTasks/out';
+  public addTasksUrl = 'https://eradapi.herokuapp.com/createTask';
+  public searchTasksUrl = 'https://eradapi.herokuapp.com/searchTask';
+  public updateTaskUrl = 'https://eradapi.herokuapp.com/updateTask';
   private token: string;
   private id: string;
   headers;
