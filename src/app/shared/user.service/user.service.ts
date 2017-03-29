@@ -11,8 +11,10 @@ export class UserService {
 
     /*for production server */
     /*private getUserUrl = 'http://10.1.10.54:8080/user';*/
-    private getUserUrl = 'https://eradapi.herokuapp.com/user';
+    private getUserUrl = 'http://localhost:8080/user';
+    private getUserSubjectsUrl = 'http://localhost:8080/user/subjects';
     public authUser: User[];
+    public subjects: User[];
     private id: any;
     public token: string;
     headers;
@@ -34,15 +36,25 @@ export class UserService {
     }
 
     getUser(): Observable <Boolean> {
-      let bodyData = {
-        'id': `${this.id}`
-      };
       return this.http
-           .post(this.getUserUrl, JSON.stringify(bodyData), this.requestoptions)
+           .get(`${this.getUserUrl}/${this.id}`, this.requestoptions)
            .map((res: Response) => {
                 this.authUser = res.json();
                 return true; })
            .catch((err) => this.handleError(err));
+    }
+
+    getUserSubjects(user_permission: number, user_department: string): Observable <Boolean> {
+      let bodyData = {
+        'user_permission': `${user_permission}`,
+        'user_department': `${user_department}`
+      };
+      return this.http
+                 .post(this.getUserSubjectsUrl, JSON.stringify(bodyData), this.requestoptions)
+                 .map((res: Response) => {
+                  this.subjects = res.json();
+                  return true; })
+                 .catch((err) => this.handleError(err));
     }
 
     public extractData(res: Response) {

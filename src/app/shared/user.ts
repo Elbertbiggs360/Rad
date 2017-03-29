@@ -8,6 +8,7 @@ export class User {
 		public gender: string,
 		public is_active: boolean,
 		public role: string,
-		public senior: string
+		public user_permission: number,
+		public department: string
 	) {}
 }

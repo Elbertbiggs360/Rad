@@ -7,6 +7,7 @@ import { LoginComponent } from './login';
 import { CreateTaskComponent } from './create-task';
 import { InTasksComponent } from './in-tasks';
 import { OutTasksComponent } from './out-tasks';
+import { ProfileComponent } from './profile';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard]},
   { path: 'create', component: CreateTaskComponent, canActivate: [AuthGuard]},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

@@ -38,10 +38,10 @@
           <span class=" avatar u-assignee"><img src="./assets/images/0-vh_oAbnRXYzUGkDD.jpeg" alt="Me"></span>
           Me
         </md-option>
-        <span  *ngIf="authUser[0].subjects">
-          <md-option *ngFor="let user of authUser" [value]="user.subjects._id">
-            <span class=" avatar u-assignee"><img src="./assets/images/0-vh_oAbnRXYzUGkDD.jpeg" alt="{{user.subjects.first_name}}"></span>
-            <span class="u-inline">{{user.subjects.first_name}} {{user.subjects.last_name}}</span>
+        <span  *ngIf="subjects">
+          <md-option *ngFor="let subject of subjects" [value]="subject?._id">
+            <span class=" avatar u-assignee"><img src="./assets/images/0-vh_oAbnRXYzUGkDD.jpeg" alt="{{subject?.first_name}}"></span>
+            <span class="u-inline">{{subject?.first_name}} {{subject?.last_name}}</span>
           </md-option>
         </span>
     	</md-select>

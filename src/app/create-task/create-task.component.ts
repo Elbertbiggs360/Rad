@@ -23,6 +23,7 @@ export class CreateTaskComponent implements OnInit {
   confirmation = 'Task Created';
   action = 'Undo';
   public authUser: User[];
+  public subjects: User[];
 
   private today: number;
 
@@ -63,11 +64,25 @@ export class CreateTaskComponent implements OnInit {
     .subscribe(result => {
             if (result === true) {
                 this.authUser = this.userService.authUser;
+                if(this.authUser[0])
+                  this.getUserSubjects(this.authUser[0].user_permission, this.authUser[0].department);
                 this.loading = false;
             } else {
                 this.getUserDetails();
             }
         });
+  }
+
+  getUserSubjects(user_permission: number, user_department: string){
+    this.userService.getUserSubjects(user_permission, user_department)
+        .subscribe(
+          subjects => {
+            this.subjects = this.userService.subjects;
+          },
+          error => {
+            this.errorMessage = error;
+          }
+        )
   }
 
   stringAsDate(dateStr) {

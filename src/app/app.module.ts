@@ -30,6 +30,7 @@ import { DialogsService } from './shared/core/dialogs.service';
 import { ConfirmDialog }   from './shared/core/confirm.dialog';
 import { CreateDialog } from './shared/core/create.dialog';
 import { UpdateDialog } from './shared/core/update.dialog';
+import { ProfileComponent } from './profile';
 
 import { AuthGuard } from './shared/auth.guard';
 
@@ -56,7 +57,8 @@ import { AuthGuard } from './shared/auth.guard';
     CreateDialog,
     UpdateDialog,
     InTasksComponent,
-    OutTasksComponent
+    OutTasksComponent,
+    ProfileComponent
   ],
   entryComponents:[
     CreateTaskComponent,
