@@ -76,13 +76,13 @@ export class OutTasksComponent implements OnInit {
     }
   }
 
-  openDialog(componentName, activity, length) {
+  openDialog(componentName, activity, length, task_id) {
 
     switch (componentName) {
 
       case "UpdateTaskComponent":
         this.dialogsService
-            .update(activity, length)
+            .update(activity, length, task_id)
             .subscribe(res => {
               this.result = res;
             });

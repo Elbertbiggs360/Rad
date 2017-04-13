@@ -79,7 +79,7 @@
             <!-- <button class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon" title="Delete Task">
               <md-icon>delete</md-icon>
             </button> -->
-            <button (click)="openDialog('UpdateTaskComponent', task.activity[task.activity.length-1], task.activity.length)" class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon "  title="Mark as Complete">
+            <button (click)="openDialog('UpdateTaskComponent', task.activity[task.activity.length-1], task.activity.length, task._id)" class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon "  title="Mark as Complete">
               <span class="svgIcon svgIcon--arrowDown svgIcon--19px is-flushRight">
                 <md-icon>done</md-icon>
               </span>
