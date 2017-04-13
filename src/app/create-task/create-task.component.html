@@ -5,12 +5,13 @@
   >
 </md-progress-bar>
 <div class="u-overflowY u-padding10">
-  <form *ngIf="authUser" name="form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <form *ngIf="authUser" name="form" (ngSubmit)="onSubmit()">
     <div class="postMetaInline u-floatRight">
       <div class="u-flexTop">
         <div class="postMetaInline-avatar u-flex0">
           <a class="link avatar u-baseColor--link" href="#url#" data-action="show-user-card" data-action-value="63031a64c2da" data-action-type="hover" data-user-id="63031a64c2da" dir="auto">
-            <img src="././assets/images/0-vh_oAbnRXYzUGkDD.jpeg" class="avatar-image u-size36x36 u-xs-size32x32" alt="Go to the profile of Daniel Hošek">
+            <img src="././assets/images/mavatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{authUser[0]?.first_name}}" title="Go to the profile of {{authUser[0]?.first_name}} {{authUser[0]?.last_name}}" *ngIf="male">
+            <img src="././assets/images/favatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{authUser[0]?.first_name}}" title="Go to the profile of {{authUser[0]?.first_name}} {{authUser[0]?.last_name}}" *ngIf="female">
           </a>
         </div>
         <div class="u-paddingLeft5">
@@ -33,29 +34,30 @@
         <textarea mdInput placeholder="Task Description" name="description" [(ngModel)]="model.description" #description="ngModel" id="create-description" rows="3" class="create-description">Go to the 3rd floor and pick some items</textarea>
       </md-input-container>
       <div class="u-block u-marginTop20">
-    	<md-select placeholder="Assign to" id="create-assigned_to" class="u-floatLeft" [(ngModel)]="model.assigned_to" name="Assignee" #assigned_to="ngModel" required>
-        <md-option [value]="authUser[0]._id"  selected="selected">
-          <span class=" avatar u-assignee"><img src="./assets/images/0-vh_oAbnRXYzUGkDD.jpeg" alt="Me"></span>
-          Me
-        </md-option>
-        <span  *ngIf="subjects">
-          <md-option *ngFor="let subject of subjects" [value]="subject?._id">
-            <span class=" avatar u-assignee"><img src="./assets/images/0-vh_oAbnRXYzUGkDD.jpeg" alt="{{subject?.first_name}}"></span>
-            <span class="u-inline">{{subject?.first_name}} {{subject?.last_name}}</span>
+      	<md-select placeholder="Assign to" id="create-assigned_to" class="u-floatLeft u-marginRight40" [(ngModel)]="model.assigned_to" name="Assignee" #assigned_to="ngModel" required>
+          <md-option [value]="authUser[0]._id"  selected="selected">
+            <span class=" avatar u-assignee">
+              <img src="././assets/images/mavatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{authUser[0]?.first_name}}" title="Go to the profile of {{authUser[0]?.first_name}} {{authUser[0]?.last_name}}" *ngIf="male">
+              <img src="././assets/images/favatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{authUser[0]?.first_name}}" title="Go to the profile of {{authUser[0]?.first_name}} {{authUser[0]?.last_name}}" *ngIf="female">
+            </span>
+            Me
           </md-option>
-        </span>
-    	</md-select>
-      <md-select placeholder="Category" id="create-category" class="u-marginLeft20" [(ngModel)]="model.category" name="Category" #category="ngModel" required>
-        <md-option [value]="1"  selected="selected">
-          Category 1
-        </md-option>
-        <md-option [value]="2"  selected="selected">
-          Category 2
-        </md-option>
-        <md-option [value]="3"  selected="selected">
-          Category 3
-        </md-option>
-      </md-select>
+          <span  *ngIf="subjects">
+            <md-option *ngFor="let subject of subjects" [value]="subject?._id">
+              <span class=" avatar u-assignee"><img src="./assets/images/0-vh_oAbnRXYzUGkDD.jpeg" alt="{{subject?.first_name}}"></span>
+              <span class="u-inline">
+                <span class="u-flex0 u-marginTop5">
+                  {{subject?.first_name}} {{subject?.last_name}}
+                </span>
+              </span>
+            </md-option>
+          </span>
+      	</md-select>
+        <md-select placeholder="Category" id="create-category" class="u-marginLeft20" [(ngModel)]="model.category" name="Category" #category="ngModel" required>
+          <md-option *ngFor="let category of categories" [value]="category.value">
+            {{ category.viewValue }}
+          </md-option>
+        </md-select>
       </div>
       <div class="u-block u-marginTop20">
         <label for="create-duration" class="u-block">Duration (in days)</label>
@@ -84,12 +86,13 @@
     </div>
     <br class="u-block u-marginTop20">
     <div class="u-floatRight">
-      <md-slide-toggle class="u-inline"
+      <!-- TODO: Add priority option -->
+<!--       <md-slide-toggle class="u-inline"
           [color]="secondary"
           [checked]="checked"
           [disabled]="true">
         High Priority
-      </md-slide-toggle>
+      </md-slide-toggle> -->
       <button type="submit" class="u-inline" md-raised-button >Create Task</button>
     </div>
 	</form>

@@ -4,13 +4,15 @@ import { MdDialogRef } from '@angular/material';
 @Component({
     selector: 'confirm-dialog',
     template: `
-    <update-task [complete]="complete" [task_id]="task_id"></update-task>
+    <update-task [complete]="complete" [activity]="activity" [length]="length" [task_id]="task_id"></update-task>
     `,
 })
 export class UpdateDialog {
 
   complete: boolean = false;
-  task_id: any;
+  activity: any;
+  length: any;
+  task_id: string;
 
   constructor(
     public dialogRef: MdDialogRef<UpdateDialog>

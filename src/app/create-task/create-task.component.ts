@@ -17,8 +17,15 @@ import { UserService } from '../shared/user.service';
 export class CreateTaskComponent implements OnInit {
 
   model: any = {};
-  category: any = {};
-  start_date: any;
+  categories: any = [
+    {value: 'licensing', viewValue: 'Licensing'},
+    {value: 'typeApproval', viewValue: 'Type Approval'},
+    {value: 'numbering', viewValue: 'Numbering'},
+    {value: 'qualityOfService', viewValue: 'Quality Of Service'},
+    {value: 'complianceAssessment', viewValue: 'Compliance Assessment'},
+    {value: 'specialAssignment', viewValue: 'Special Assigment'},
+  ];
+  start_date: number;
   loading = true;
   confirmation = 'Task Created';
   action = 'Undo';
@@ -28,9 +35,9 @@ export class CreateTaskComponent implements OnInit {
   private today: number;
 
   color = 'secondary';
-  value: any = 10;
-  max = 100;
-  min = 0;
+  value: any = 5;
+  max = 10;
+  min = 1;
   step = 1;
   thumbLabel = true;
   vertical = false;
@@ -42,6 +49,8 @@ export class CreateTaskComponent implements OnInit {
   error;
   timer;
   success = false;
+  male: Boolean = false;
+  female: Boolean = false;
 
   constructor(
   	private taskService: TaskService,
@@ -65,7 +74,8 @@ export class CreateTaskComponent implements OnInit {
             if (result === true) {
                 this.authUser = this.userService.authUser;
                 if(this.authUser[0])
-                  this.getUserSubjects(this.authUser[0].user_permission, this.authUser[0].department);
+                  this.getUserSubjects(this.authUser[0].user_permission, this.authUser[0].department, this.authUser[0].division, this.authUser[0].unit);
+                  this.authUser[0].gender=='male'?this.male=true:this.female=true;
                 this.loading = false;
             } else {
                 this.getUserDetails();
@@ -73,8 +83,8 @@ export class CreateTaskComponent implements OnInit {
         });
   }
 
-  getUserSubjects(user_permission: number, user_department: string){
-    this.userService.getUserSubjects(user_permission, user_department)
+  getUserSubjects(user_permission: number, user_department: string, user_division: string, user_unit: string){
+    this.userService.getUserSubjects(user_permission, user_department, user_division, user_unit)
         .subscribe(
           subjects => {
             this.subjects = this.userService.subjects;
@@ -133,4 +143,5 @@ export class CreateTaskComponent implements OnInit {
       duration: 2000,
     });
   }
+
 }

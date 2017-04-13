@@ -25,8 +25,8 @@
                 <app-loader [loading]="loading" class="button button--chromeless u-baseColor--buttonNormal" style="padding: 0"></app-loader>
                 <a *ngIf="checkItem(authUser)" [routerLink]="['/profile']" class="button button--chromeless u-baseColor--buttonNormal " aria-haspopup="true" title="{{authUser[0].local.email}}">
                   <div class="avatar u-inlineBlock">
-                  <img src="././assets/images/mavatar.jpg" class="avatar-image avatar-image--icon" alt="{{authUser[0].first_name}}" title="Go to the profile of {{authUser[0].first_name}} {{authUser[0].last_name}}" *ngIf="male">
-                  <img src="././assets/images/favatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{authUser[0].first_name}}" title="Go to the profile of {{authUser[0].first_name}} {{authUser[0].last_name}}" *ngIf="female">
+                    <img src="././assets/images/mavatar.jpg" class="avatar-image avatar-image--icon" alt="{{authUser[0].first_name}}" title="Go to the profile of {{authUser[0].first_name}} {{authUser[0].last_name}}" *ngIf="checkGender( authUser[0].gender, 'male')">
+                    <img src="././assets/images/favatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{authUser[0].first_name}}" title="Go to the profile of {{authUser[0].first_name}} {{authUser[0].last_name}}" *ngIf="checkGender( authUser[0].gender, 'female')">
                   </div>
                 </a>
               </div>
@@ -134,7 +134,7 @@
                               <md-icon>power_settings_new</md-icon>
                             </span>
                             <div class="postMetaInline-authorLockupNav u-flex1">
-                              <p class="link--accent">Menu</p>
+                              <p class="link--accent">Log Out</p>
                             </div>
                           </div>
                         </div>

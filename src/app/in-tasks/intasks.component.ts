@@ -23,13 +23,14 @@ export class InTasksComponent implements OnInit {
   public authUser: User[];
   priority: String;
   model: any = {};
-  private moreTasks: boolean = false;
+  private moreTasks: boolean = false; //check if there are more than 5 tasks
   public result: any;
   loading: boolean = false;
   test: boolean = true;
-  someTasks: boolean = false;
+  someTasks: boolean = false;//check if there are some tasks
   errorMessage: any;
   color = 'primary';
+  chip_colors = [];
   mode = 'determinate';
   uncategorized = 'Uncategorized';
   public taskProgress;
@@ -72,13 +73,13 @@ export class InTasksComponent implements OnInit {
     }
   }
 
-  openDialog(componentName, task_id) {
+  openDialog(componentName, activity, length, task_id) {
 
     switch (componentName) {
 
       case "UpdateTaskComponent":
         this.dialogsService
-            .update(task_id)
+            .update(activity, length, task_id)
             .subscribe(res => {
               this.result = res;
             });
@@ -97,6 +98,7 @@ export class InTasksComponent implements OnInit {
         this.allTasks = tasks;
         this.checkNumberOfTasks();
         this.computeProgress(this.allTasks);
+        this.computeCategory(this.allTasks);
       },
       error => {
         this.errorMessage = error;
@@ -114,6 +116,52 @@ export class InTasksComponent implements OnInit {
       }
     }
 
+  }
+
+  computeCategory(allTasks: Task[]){
+    for(let i=0;i<allTasks.length;i++){
+      if(!allTasks[i].category)
+        this.allTasks[i].category = "Uncategorized"
+
+      switch (allTasks[i].category) {
+        case "licensing":
+          this.allTasks[i].category = "Licensing";
+          break;
+
+        case "typeApproval":
+          this.allTasks[i].category = "Type Approval"
+          break;
+
+        case "numbering":
+          this.allTasks[i].category = "Numbering";
+          this.chip_colors[i] = 'accent';
+          break;
+
+        case "qualityOfService":
+          this.allTasks[i].category = "Quality Of Service"
+          break;
+
+        case "complianceAssessment":
+          this.allTasks[i].category = "Compliance Assessment"
+          break;
+
+        case "specialAssignment":
+          this.allTasks[i].category = "Special Assessment"
+          break;
+
+        default:
+          this.chip_colors[i] = 'primary';
+          break;
+      }
+    }
+  }
+
+  checkGender(gender: String, preferred: String): Boolean {
+    if(gender==preferred){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   checkItem(item: any) {

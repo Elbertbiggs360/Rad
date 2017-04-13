@@ -24,10 +24,7 @@ export class HomeComponent implements OnInit {
 
   public authUser: User[];
   public result: any;
-  loading: boolean = false;
-  errorMessage: any;
-  male: Boolean = false;
-  female: Boolean = false;
+  private errorMessage: any;
 
   constructor(
     private userService: UserService,
@@ -46,7 +43,6 @@ export class HomeComponent implements OnInit {
     .subscribe(result => {
             if (result === true) {
                 this.authUser = this.userService.authUser;
-                this.authUser[0].gender=='male'?this.male=true:this.female=true;
             }
         },
         error => {
@@ -74,6 +70,14 @@ export class HomeComponent implements OnInit {
         break;
     }
     //test
+  }
+
+  checkGender(gender: String, preferred: String): Boolean {
+    if(gender==preferred){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   checkItem(item: any) {

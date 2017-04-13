@@ -10,7 +10,7 @@ export class AuthService {
 	
   /*for production server */
 	/*private authUrl = 'http://10.1.10.54:8080/authenticate';*/
-  private authUrl = 'http://localhost:8080/authenticate';
+  private authUrl = 'https://eradapi.herokuapp.com/authenticate';
 
 	public token: string;
 
@@ -43,7 +43,6 @@ export class AuthService {
                          this.token = token;
                          // store id and jwt token in local storage to keep user logged in between page refreshes
                          localStorage.setItem('currentUser', JSON.stringify({ id: id, token: token }));
-
                          // return true to indicate successful login
                          return true;
                      } else {
@@ -61,15 +60,17 @@ export class AuthService {
 
     public handleError (error: Response | any) {
         let errMsg: string;
+        let err;
         if (error instanceof Response) {
-            const body = error.json() || 'Failed';
-            const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+            err = JSON.stringify(error.json());
+            if(err == '{"message":"User not found"}')
+              err = 'Sorry, User email not found';
+            if(err == '{"message":"Incorrect password"}')
+              err = 'Wrong password';
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
-        console.error(errMsg);
-        return Observable.throw(errMsg);
+        return Observable.throw(err);
     }
 
     logout(): void {

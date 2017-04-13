@@ -7,16 +7,24 @@
 <div class="u-padding-24">
   <a class="link--accent">
     <md-icon class="material-icons">event_available</md-icon>
-    Mark As Complete?
+    Update Task
   </a>
-  <hr>
+  <div class="u-floatRight">
+    <md-slide-toggle
+        [color]="color"
+        [(ngModel)]="isChecked">
+      Complete
+    </md-slide-toggle>
+    </div>
+  <md-input-container>
+    <textarea mdInput placeholder="Add Comment" [(ngModel)]="model.task_comment" #task_comment="ngModel" name="comment" id="task-comment" rows="2" class="task-comment"></textarea>
+  </md-input-container>
   <div
     ng2FileDrop
     [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
     (fileOver)="fileOverBase($event)"
     [uploader]="uploader"
     class="well my-drop-zone u-flex u-paddingLeft20 u-paddingRight20">
-
     <div>
       To attach file, drag into dotted region <br> Or 
       Select
@@ -60,7 +68,7 @@
           </td>
         </tr>
         </tbody>
-      </table>
+      </table><!-- 
       <hr>
       <div>
         <div>
@@ -69,7 +77,7 @@
           </div>
         </div>
         <button md-button type="button" class="btn btn-success btn-s"
-          (click)="markAsComplete()" [disabled]="!uploader.getNotUploadedItems().length">
+          (click)="UpdateTask()" [disabled]="!uploader.getNotUploadedItems().length">
           <span class="glyphicon glyphicon-upload"></span> Upload all
         </button>
         <button md-button type="button" class="btn btn-warning btn-s"
@@ -80,11 +88,23 @@
           (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
           <span class="glyphicon glyphicon-trash"></span> Remove all
         </button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
-<div class="u-padding-24 u-marginTop10 u-floatRight">
+<div class="u-padding-24 u-marginTop20 u-floatRight">
+  <md-select placeholder="Forward to" id="forward-task" class="u-floatLeft u-marginRight40" [(ngModel)]="model.task_secondary" name="task_secondary" #task_secondary="ngModel" >
+    <span  *ngIf="subjects">
+      <md-option *ngFor="let subject of subjects" [value]="subject?._id" (click)="isChecked = !isChecked">
+        <span class=" avatar u-assignee"><img src="./assets/images/0-vh_oAbnRXYzUGkDD.jpeg" alt="{{subject?.first_name}}"></span>
+        <span class="u-inline">
+          <span class="u-flex0 u-marginTop5">
+            {{subject?.first_name}} {{subject?.last_name}}
+          </span>
+        </span>
+      </md-option>
+    </span>
+  </md-select>
   <button (click)=dialogRef.close(false) md-button color="primary">Cancel</button>
-  <button (click)=markAsComplete() md-raised-button color="primary"><md-icon>done</md-icon></button>
+  <button (click)=UpdateTask() md-raised-button color="primary"><md-icon>done</md-icon></button>
 </div>

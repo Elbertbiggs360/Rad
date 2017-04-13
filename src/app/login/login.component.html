@@ -27,13 +27,13 @@
               <input mdInput placeholder="Password" type="password" class="password" id="login_password" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="Password" />
             </md-input-container>
             <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-          </div>
+          </div><!-- 
           <div class="checkbox">
               <input type="checkbox" id="rememberme">
               <label for="rememberme" class="rememberme">
                   Remember me
               </label>
-          </div>
+          </div> -->
           <button md-raised-button [disabled]="loading" type="submit" class="btn btn-primary">LOG IN</button>
           <div *ngIf="error" class="error active">
               {{error}}

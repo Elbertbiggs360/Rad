@@ -9,6 +9,8 @@ export class User {
 		public is_active: boolean,
 		public role: string,
 		public user_permission: number,
-		public department: string
+		public department: string,
+		public division: string,
+		public unit: string,
 	) {}
 }

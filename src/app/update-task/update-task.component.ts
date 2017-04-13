@@ -8,7 +8,7 @@ import { TaskService } from '../shared/task.service';
 import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
 
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
+const URL = 'http://localhost:8080/uploadFile';
 
 @Component({
   selector: 'update-task',
@@ -24,13 +24,17 @@ export class UpdateTaskComponent implements OnInit {
   category: any = {};
   loading = false;
   @Input() complete;
+  @Input() activity;
+  @Input() length;
   @Input() task_id;
+  public subjects: User[];
   public authUser: User[];
   submitted = false;
   private errorMessage;
   error;
   timer;
   id: string;
+  isChecked = true;
   success = false;
 
   constructor(
@@ -55,12 +59,27 @@ export class UpdateTaskComponent implements OnInit {
     this.userService.getUser()
     .subscribe(result => {
             if (result === true) {
-                this.authUser = this.userService.authUser;
-                this.checkForComplete();
+              this.authUser = this.userService.authUser;
+              if(this.authUser[0]){
+                this.getUserSubjects(this.authUser[0].user_permission, this.authUser[0].department, this.authUser[0].division, this.authUser[0].unit);
+              }
+              this.checkForComplete();
             } else {
                 this.getUserDetails();
             }
         });
+  }
+
+  getUserSubjects(user_permission: number, user_department: string, user_division: string, user_unit: string){
+    this.userService.getUserSubjects(user_permission, user_department, user_division, user_unit)
+        .subscribe(
+          subjects => {
+            this.subjects = this.userService.subjects;
+          },
+          error => {
+            this.errorMessage = error;
+          }
+        )
   }
 
   stringAsDate(dateStr) {
@@ -69,19 +88,21 @@ export class UpdateTaskComponent implements OnInit {
 
   checkForComplete(): void {
     if(this.complete===true)
-      this.timer = setTimeout(this.markAsComplete(this.authUser[0]._id), 20);
+      this.timer = setTimeout(this.UpdateTask(this.authUser[0]._id), 20);
   }
 
-  markAsComplete(id:string): void {
+  UpdateTask(id:string): void {
     this.submitted = true;
     this.loading = !this.loading;
     let today = Date.now();
-    this.model.completed_at = Date.now();
-    this.model._id = this.task_id;
+    this.model.task_primary = this.authUser[0]._id;
+    this.model.completed_at = today;
+    this.model.activity = this.activity;
+    this.model.length = this.length;
+    this.model.task_id = this.task_id
+    console.log(this.model)
 
     this.fileRename(today);
-    console.log(this.model);
-
     this.taskService.updateTask(this.model)
         .subscribe(
           result => {

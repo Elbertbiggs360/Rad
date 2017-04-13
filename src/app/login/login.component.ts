@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authService.login(this.model.username, this.model.password)
         .subscribe(result => {
+            this.resetValues();
             if (result === true) {
                 this.router.navigate(['/']);
             }
@@ -40,5 +41,8 @@ export class LoginComponent implements OnInit {
             this.loading = false;
         });
   }
-  /*<form (ngSubmit)="onSubmit()" [formGroup]="form">*/
+
+  resetValues(): void {
+    this.model = null;
+  }
 }

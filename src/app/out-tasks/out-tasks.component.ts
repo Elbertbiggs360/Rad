@@ -33,6 +33,7 @@ export class OutTasksComponent implements OnInit {
   someTasks: boolean = false;
   errorMessage: any;
   color = 'primary';
+  chip_colors = [];
   mode = 'determinate';
   uncategorized = 'Uncategorized';
   public taskProgress;
@@ -75,13 +76,13 @@ export class OutTasksComponent implements OnInit {
     }
   }
 
-  openDialog(componentName, task_id) {
+  openDialog(componentName, activity, length) {
 
     switch (componentName) {
 
       case "UpdateTaskComponent":
         this.dialogsService
-            .update(task_id)
+            .update(activity, length)
             .subscribe(res => {
               this.result = res;
             });
@@ -100,6 +101,7 @@ export class OutTasksComponent implements OnInit {
         this.allTasks = tasks;
         this.checkNumberOfTasks();
         this.computeProgress(this.allTasks);
+        this.computeCategory(this.allTasks);
       },
       error => {
         this.errorMessage = error;
@@ -116,7 +118,44 @@ export class OutTasksComponent implements OnInit {
         this.allTasks[i].progress = 0;
       }
     }
+  }
 
+    computeCategory(allTasks: Task[]){
+    for(let i=0;i<allTasks.length;i++){
+      if(!allTasks[i].category)
+        this.allTasks[i].category = "Uncategorized"
+
+      switch (allTasks[i].category) {
+        case "licensing":
+          this.allTasks[i].category = "Licensing";
+          break;
+
+        case "typeApproval":
+          this.allTasks[i].category = "Type Approval"
+          break;
+
+        case "numbering":
+          this.allTasks[i].category = "Numbering";
+          this.chip_colors[i] = 'accent';
+          break;
+
+        case "qualityOfService":
+          this.allTasks[i].category = "Quality Of Service"
+          break;
+
+        case "complianceAssessment":
+          this.allTasks[i].category = "Compliance Assessment"
+          break;
+
+        case "specialAssignment":
+          this.allTasks[i].category = "Special Assessment"
+          break;
+
+        default:
+          this.chip_colors[i] = 'primary';//to be done
+          break;
+      }
+    }
   }
 
   checkItem(item: any) {
