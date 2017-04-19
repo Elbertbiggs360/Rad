@@ -63,6 +63,7 @@ export class TaskService {
   }
 
   updateTask(model) {
+    console.log(JSON.stringify(model))
     return this.http
                    .put(this.updateTaskUrl, JSON.stringify(model), this.requestoptions)
                    .map((res: Response) => {

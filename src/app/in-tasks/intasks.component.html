@@ -46,13 +46,10 @@
         </div>
         <div class="u-paddingRight20 u-paddingLeft20 u-marginTop20 u-description" >
           <a *ngFor="let comment of task.activity">
-            {{comment.task_comment}}
-            <ul class="u-margin0 u-padding0" *ngIf="checkItem(task.attachments)">
+            <ul class="u-margin0 u-padding0">
               <li  class="u-inline u-margin0 u-padding0">
-                <a class="u-fontSize12 attachment--link" href="#">Attachment 1</a>, 
-              </li>
-              <li  class="u-inline u-margin0 u-padding0">
-                <a class="u-fontSize12 attachment--link" href="#">Attachment 2</a>, 
+                <span class="u-fontSize12 attachment--link">{{comment.task_comment}}</span>
+                <a class="u-fontSize12 attachment--link" href="#" *ngIf="checkItem(task.attachments)">attachments</a>
               </li>
             </ul>
           </a>
@@ -79,7 +76,7 @@
               <!-- <button class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon" title="Delete Task">
                 <md-icon>delete</md-icon>
               </button> -->
-              <button (click)="openDialog('UpdateTaskComponent', task.activity[task.activity.length-1], task.activity.length, task._id)" class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon "  title="Mark as Complete">
+              <button (click)="openDialog('UpdateTaskComponent', task.activity, task.activity.length, task._id)" class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon "  title="Mark as Complete">
               <span class="svgIcon svgIcon--arrowDown svgIcon--19px is-flushRight">
                 <md-icon>done</md-icon>
               </span>
