@@ -21,8 +21,7 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css",
-        "ucc-theme.scss"
+        "styles.scss"
       ],
       "scripts": [
       ],
