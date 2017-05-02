@@ -11,12 +11,12 @@ import { Task } from '../task';
 export class TaskService {
 
 
-  public tasksUrl = 'https://eradapi.herokuapp.com/viewTasks/in';
-  public tasksAssignedUrl = 'https://eradapi.herokuapp.com/viewTasks/out';
-  public addTasksUrl = 'https://eradapi.herokuapp.com/createTask';
-  public searchTasksUrl = 'https://eradapi.herokuapp.com/searchTask';
-  public updateTaskUrl = 'https://eradapi.herokuapp.com/tasks/updateTask';
-  public fileUploadUrl = 'https://eradapi.herokuapp.com/uploadFile';
+  public tasksUrl = 'https://eradapi.herokuapp.com//viewTasks/in';
+  public tasksAssignedUrl = 'https://eradapi.herokuapp.com//viewTasks/out';
+  public addTasksUrl = 'https://eradapi.herokuapp.com//createTask';
+  public searchTasksUrl = 'https://eradapi.herokuapp.com//searchTask';
+  public updateTaskUrl = 'https://eradapi.herokuapp.com//tasks/updateTask';
+  public fileUploadUrl = 'https://eradapi.herokuapp.com//uploadFile';
   private token: string;
   private id: string;
   headers;
@@ -63,7 +63,6 @@ export class TaskService {
   }
 
   updateTask(model) {
-    console.log(JSON.stringify(model))
     return this.http
                    .put(this.updateTaskUrl, JSON.stringify(model), this.requestoptions)
                    .map((res: Response) => {
@@ -73,7 +72,7 @@ export class TaskService {
   }
 
   private extractData(res: Response) {
-    let body = res.json();
+  let body = res.json();
     return body;
   }
 
