@@ -53,7 +53,7 @@ export class CreateTaskComponent implements OnInit {
   female: Boolean = false;
 
   constructor(
-  	private taskService: TaskService,
+    private taskService: TaskService,
     public snackBar: MdSnackBar,
     private userService: UserService,
     private router: Router
@@ -62,7 +62,7 @@ export class CreateTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserDetails();
-  	this.today = Date.now();
+    this.today = Date.now();
     setInterval(() => {
       this.today = Date.now();
     }, 100);
@@ -73,9 +73,15 @@ export class CreateTaskComponent implements OnInit {
     .subscribe(result => {
             if (result === true) {
                 this.authUser = this.userService.authUser;
-                if(this.authUser[0])
-                  this.getUserSubjects(this.authUser[0].user_permission, this.authUser[0].department, this.authUser[0].division, this.authUser[0].unit);
-                  this.authUser[0].gender=='male'?this.male=true:this.female=true;
+                if(this.authUser[0]) {
+                  this.getUserSubjects(
+                    this.authUser[0].user_permission,
+                    this.authUser[0].department,
+                    this.authUser[0].division,
+                    this.authUser[0].unit
+                  );
+                  this.authUser[0].gender === 'male' ? this.male = true : this.female = true;
+                }
                 this.loading = false;
             } else {
                 this.getUserDetails();
@@ -83,7 +89,7 @@ export class CreateTaskComponent implements OnInit {
         });
   }
 
-  getUserSubjects(user_permission: number, user_department: string, user_division: string, user_unit: string){
+  getUserSubjects(user_permission: number, user_department: string, user_division: string, user_unit: string){ 
     this.userService.getUserSubjects(user_permission, user_department, user_division, user_unit)
         .subscribe(
           subjects => {
@@ -100,12 +106,12 @@ export class CreateTaskComponent implements OnInit {
   }
 
   onSubmit() {
-  	this.submitted = true;
-  	this.model.created_at = this.today;
+    this.submitted = true;
+    this.model.created_at = this.today;
     this.model.start_date = Date.parse(this.model.start_date);
     this.model.created_by = this.authUser[0]._id;
     this.model.duration = this.model.taskLength * 1000 * 60 * 60 * 24;
-  	this.loading = !this.loading;
+    this.loading = !this.loading;
 
     this.taskService.createTask(this.model)
         .subscribe(result => {
@@ -120,17 +126,17 @@ export class CreateTaskComponent implements OnInit {
     return this.stopTimer();
   }
 
-	onLoad () {
-    	this.loading = !this.loading;
-    	if(this.error){
-    		this.success = false;
-        this.openSnackBar("Failed", "RETRY");
-    	} else {
-    		this.success = true;
-        this.openSnackBar("Task Created", "UNDO");
+  onLoad () {
+      this.loading = !this.loading;
+      if(this.error){
+        this.success = false;
+        this.openSnackBar('Failed', 'RETRY');
+      } else {
+        this.success = true;
+        this.openSnackBar('Task Created', 'UNDO');
         setTimeout(this.router.navigate(['/']), 1000);
-    	}
-	}
+      }
+  }
 
   stopTimer() {
       if (this.timer) {
@@ -139,7 +145,7 @@ export class CreateTaskComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, "UNDO", {
+    this.snackBar.open(message, 'UNDO', {
       duration: 2000,
     });
   }

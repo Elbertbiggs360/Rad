@@ -1,19 +1,18 @@
-import { NgModule } from '@angular/core'
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { MaterialModule } from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 
-import { FileUploadModule } from 'ng2-file-upload';
 
 import { CoreModule } from './shared/core/core.module';
+import { CustomMaterialModule } from './custom-material.module';
 
 import { rootRouterConfig } from './app.routing';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
-import { AboutComponent } from './about';
 import {HeaderComponent} from './header';
 import { LoginComponent } from './login';
 import { CreateTaskComponent } from './create-task';
@@ -27,7 +26,7 @@ import { TaskService } from './shared/task.service';
 import { AuthService } from './shared/auth.service';
 import { DialogsService } from './shared/core/dialogs.service';
 
-import { ConfirmDialog }   from './shared/core/confirm.dialog';
+import { ConfirmDialog } from './shared/core/confirm.dialog';
 import { CreateDialog } from './shared/core/create.dialog';
 import { UpdateDialog } from './shared/core/update.dialog';
 import { ProfileComponent } from './profile';
@@ -37,18 +36,17 @@ import { AuthGuard } from './shared/auth.guard';
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     rootRouterConfig,
-    MaterialModule,
-    FileUploadModule,
+    CustomMaterialModule,
     CoreModule
   ],
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent,
     LoginComponent,
     HeaderComponent,
     CreateTaskComponent,
@@ -60,7 +58,7 @@ import { AuthGuard } from './shared/auth.guard';
     OutTasksComponent,
     ProfileComponent
   ],
-  entryComponents:[
+  entryComponents:[ 
     CreateTaskComponent,
     UpdateTaskComponent,
     ConfirmDialog,

@@ -14,10 +14,10 @@
   </form>
   <!-- <md-icon class="header-icon">search</md-icon> -->
   <span class="header-spacer mobile-hidden"></span>
-  <button class="header-icon mobile-hidden edge-icon" md-icon-button [mdMenuTriggerFor]="menu">
+  <button class="header-icon mobile-hidden edge-icon">
     <md-icon>account_circle</md-icon>
   </button>
-  <md-menu #menu="mdMenu">
+  <md-menu>
     <div class="dropdown-menu">
                 <div class="content">
                     <div *ngIf="authUser" class="av">

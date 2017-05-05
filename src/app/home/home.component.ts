@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   public authUser: User[];
   public result: any;
   private errorMessage: any;
+  public loading: boolean;
 
   constructor(
     private userService: UserService,
@@ -32,7 +33,9 @@ export class HomeComponent implements OnInit {
     public dialog: MdDialog,
     private dialogsService: DialogsService,
     private router: Router
-  ) {}
+  ) {
+     this.loading = false;
+  }
 
   ngOnInit(): void {
     this.getUserDetails();
@@ -61,7 +64,7 @@ export class HomeComponent implements OnInit {
         this.dialogsService
             .confirm('Confirm Dialog', 'Are you sure you want to log out?')
             .subscribe(res => {
-              res===true?this.logout():res=this.result;
+              res === true ? this.logout() : res = this.result;
             });
         break;
       
@@ -73,7 +76,7 @@ export class HomeComponent implements OnInit {
   }
 
   checkGender(gender: String, preferred: String): Boolean {
-    if(gender==preferred){
+    if(gender === preferred){
       return true;
     } else {
       return false;
@@ -81,7 +84,7 @@ export class HomeComponent implements OnInit {
   }
 
   checkItem(item: any) {
-    return (item === undefined || item.length == 0)?false:true;
+    return (item === undefined || item.length === 0)?false:true;
   }
 
   logout(){

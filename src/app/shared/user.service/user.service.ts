@@ -11,8 +11,8 @@ export class UserService {
 
     /*for production server */
     /*private getUserUrl = 'http://10.1.10.54:8080/user';*/
-    private getUserUrl = 'https://eradapi.herokuapp.com/user';
-    private getUserSubjectsUrl = 'https://eradapi.herokuapp.com/user/subjects';
+    private getUserUrl = 'https://eradpi.herokuapp.com/user';
+    private getUserSubjectsUrl = 'https://eradpi.herokuapp.com/user/subjects';
     public authUser: User[];
     public subjects: User[];
     private id: any;

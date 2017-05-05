@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MdDialogRef, MdSnackBar } from '@angular/material';
-import { FileUploader } from 'ng2-file-upload';
 
 import { Task } from '../shared/task';
 import { TaskService } from '../shared/task.service';
@@ -18,7 +17,6 @@ const URL = 'http://localhost:8080/uploadFile';
 })
 export class UpdateTaskComponent implements OnInit {
  
-  public uploader:FileUploader = new FileUploader({url: URL});
   public hasBaseDropZoneOver:boolean = false;
   model: any = {};
   category: any = {};
@@ -52,7 +50,6 @@ export class UpdateTaskComponent implements OnInit {
 
   public fileOverBase(e:any):void {
     this.hasBaseDropZoneOver = e;
-    this.uploader.uploadAll();
   }
 
   getUserDetails() {
@@ -102,7 +99,7 @@ export class UpdateTaskComponent implements OnInit {
     this.model.task_id = this.task_id
     console.log(this.model)
 
-    this.fileRename(today);
+    //this.fileRename(today);
     this.taskService.updateTask(this.model)
         .subscribe(
           result => {
@@ -118,7 +115,7 @@ export class UpdateTaskComponent implements OnInit {
     return this.stopTimer();
   }
 
-  fileRename(today: number){
+/*  fileRename(today: number){
     let fileName: String = '';
     for ( let i=0;i<this.uploader.queue.length;i++){
       if(this.uploader.queue[i].isSuccess){
@@ -127,7 +124,7 @@ export class UpdateTaskComponent implements OnInit {
         this.model.attachments[i] = this.uploader.queue[i].file.name;
       }
     }
-  }
+  }*/
 
 	onLoad () {
   	this.loading = !this.loading;

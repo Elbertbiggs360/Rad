@@ -10,18 +10,17 @@ import { User } from '../shared/user';
 
 export class HeaderComponent implements OnInit {
 
-	@Input() authUser: User[];
+  @Input() authUser: User[];
   @Output() onDrawn = new EventEmitter<String>();
   drawn: string;
 
-	private errorMessage;
+  private errorMessage;
 
-	constructor(){
-	}
+  constructor(){
+  }
 
-	ngOnInit(): void {
-		
-	}
+  ngOnInit(): void {
+  }
 
   operateSideDraw() {
     this.drawn = "sidenav.open()";
