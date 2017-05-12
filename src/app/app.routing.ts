@@ -7,6 +7,7 @@ import { CreateTaskComponent } from './create-task';
 import { InTasksComponent } from './in-tasks';
 import { OutTasksComponent } from './out-tasks';
 import { ProfileComponent } from './profile';
+import { HistoryComponent } from './history';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'in', pathMatch: 'full' },
       { path: 'in', component: InTasksComponent },
-      { path: 'out', component: OutTasksComponent }
+      { path: 'out', component: OutTasksComponent },
+      { path: 'history', component: HistoryComponent }
     ]
   },
   { path: 'create', component: CreateTaskComponent, canActivate: [AuthGuard]},

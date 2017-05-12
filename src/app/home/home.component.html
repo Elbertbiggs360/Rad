@@ -52,7 +52,7 @@
               <div class="u-height65 actionbar">
                 <div class=" u-maxWidth360 u-marginAuto u-relative">
                   <div class="u-inline u-floatLeft">
-                    <a  md-button [routerLink]="['/create']" class="nav--accent u-paddingTop10 u-paddingBottom10 desktop-hidden" >
+                    <a  md-button [routerLink]="['/create']" class="nav--accent u-paddingTop10 u-paddingBottom10 u-paddingRight8 u-paddingLeft8 u-minWidth68 desktop-hidden" >
                       <div class="u-inline">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">
@@ -80,7 +80,7 @@
                         </div>
                       </div>
                     </a>
-                    <a  md-button [routerLink]="['/tasks/in']" routerLinkActive="active" class="nav--accent u-paddingTop10 u-paddingBottom10">
+                    <a  md-button [routerLink]="['/tasks/in']" routerLinkActive="active" class="nav--accent u-paddingRight8 u-paddingLeft8 u-minWidth68 u-paddingTop10 u-paddingBottom10">
                       <div class="u-inline">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">
@@ -96,7 +96,7 @@
                     </a>
                   </div>
                   <div class="u u-inline u-floatCenter">
-                    <a  md-button [routerLink]="['/tasks/out']" routerLinkActive="active" class="nav--accent u-paddingTop10 u-paddingBottom10">
+                    <a  md-button [routerLink]="['/tasks/out']" routerLinkActive="active" class="nav--accent u-paddingRight8 u-paddingLeft8 u-minWidth68 u-paddingTop10 u-paddingBottom10">
                       <div class="u-inline u-marginRight5pct">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">
@@ -105,6 +105,22 @@
                             </span>
                             <div class="postMetaInline-authorLockupNav u-flex1">
                               <p class="link--accent">From You</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="u u-inline u-floatCenter">
+                    <a  md-button [routerLink]="['/tasks/history']" routerLinkActive="active" class="nav--accent u-paddingRight8 u-paddingLeft8 u-minWidth68 u-paddingTop10 u-paddingBottom10">
+                      <div class="u-inline u-marginRight5pct">
+                        <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
+                          <div class="buttonSet-inner">
+                            <span class="svgIcon svgIcon--twitter svgIcon--29px">
+                              <md-icon>history</md-icon>
+                            </span>
+                            <div class="postMetaInline-authorLockupNav u-flex1">
+                              <p class="link--accent">History</p>
                             </div>
                           </div>
                         </div>
@@ -126,7 +142,7 @@
                         </div>
                       </div>
                     </a>
-                    <a  md-button (click)="openDialog('LogOut')" class="nav--accent u-paddingTop10 u-paddingBottom10 desktop-hidden">
+                    <a  md-button (click)="openDialog('LogOut')" class="nav--accent u-paddingTop10 u-paddingBottom10 u-paddingRight8 u-paddingLeft8 u-minWidth68 desktop-hidden">
                       <div class="u-inline">
                         <div class="u-inline buttonSet buttonSet--withLabels u-marginTop20">
                           <div class="buttonSet-inner">

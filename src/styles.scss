@@ -456,6 +456,12 @@ main {
 .u-paddingRight20 {
   padding-right: 20px!important;
 }
+.u-paddingRight8 {
+  padding-right: 8px!important
+}
+.u-paddingLeft8 {
+  padding-left: 8px!important
+}
 .u-padding0 {
   padding: 0!important;
 }
@@ -530,11 +536,20 @@ main {
 .u-minWidth360 {
   min-width: 360px!important;
 }
+.u-maxWidth420 {
+    max-width: 420px!important
+}
+.u-minWidth68 {
+  min-width:68px!important
+}
 .u-maxWidthNone {
   max-width: none!important
 }
 .u-sm-hide {
   display: hidden
+}
+.u-maxWidth360 {
+    max-width: 360px!important
 }
 @media screen and (min-width: 767px) {
   .u-maxWidth1000{
@@ -543,9 +558,15 @@ main {
   .u-sm-hide {
     display: flex
   }
+  .u-minWidth68 {
+    min-width:88px!important
+  }
+  .u-maxWidth360 {
+    max-width: 480px!important;
+  }
 }
-.u-maxWidth360 {
-    max-width: 360px!important
+.u-maxWidth420 {
+    max-width: 420px!important
 }
 .u-maxWidth740 {
     max-width: 740px!important

@@ -1,0 +1,14 @@
+.mat-chip:not(.mat-basic-chip) {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 24px;
+  font-size: 11px;
+  line-height: 14px;
+}
+.cursor {
+  cursor: pointer;
+}
+.u-taskName {
+  overflow: auto;
+  max-width: 200px;
+}

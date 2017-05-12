@@ -19,6 +19,7 @@ import { CreateTaskComponent } from './create-task';
 import { UpdateTaskComponent } from './update-task';
 import { InTasksComponent } from './in-tasks';
 import { OutTasksComponent } from './out-tasks';
+import { HistoryComponent } from './history';
 
 
 import { TaskSearchService } from './shared/task-search.service';
@@ -56,7 +57,8 @@ import { AuthGuard } from './shared/auth.guard';
     UpdateDialog,
     InTasksComponent,
     OutTasksComponent,
-    ProfileComponent
+    ProfileComponent,
+    HistoryComponent
   ],
   entryComponents:[ 
     CreateTaskComponent,
