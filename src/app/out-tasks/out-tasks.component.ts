@@ -118,9 +118,10 @@ export class OutTasksComponent implements OnInit {
         this.allTasks[i].progress = 0;
       }
     }
+
   }
 
-    computeCategory(allTasks: Task[]){
+  computeCategory(allTasks: Task[]){
     for(let i=0;i<allTasks.length;i++){
       if(!allTasks[i].category)
         this.allTasks[i].category = "Uncategorized"
@@ -152,9 +153,17 @@ export class OutTasksComponent implements OnInit {
           break;
 
         default:
-          this.chip_colors[i] = 'primary';//to be done
+          this.chip_colors[i] = 'primary';
           break;
       }
+    }
+  }
+
+  checkGender(gender: String, preferred: String): Boolean {
+    if(gender==preferred){
+      return true;
+    } else {
+      return false;
     }
   }
 

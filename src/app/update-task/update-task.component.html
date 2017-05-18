@@ -29,7 +29,6 @@
       <!-- <div class="u-floatRight">
         <p>File Number: {{ uploader?.queue?.length }}</p>
       </div>
-
       <table class="table">
         <thead>
           <tr>
@@ -100,5 +99,5 @@
     </span>
   </md-select>
   <button (click)=dialogRef.close(false) md-button color="primary">Cancel</button>
-  <button (click)=UpdateTask() md-raised-button color="primary"><md-icon>done</md-icon></button>
+  <button (click)=UpdateTask(this.authUser[0]._id) md-raised-button color="primary"><md-icon>done</md-icon></button>
 </div>

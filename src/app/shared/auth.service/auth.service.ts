@@ -10,7 +10,7 @@ export class AuthService {
 	
   /*for production server */
 	/*private authUrl = 'http://10.1.10.54:8080/authenticate';*/
-  private authUrl = 'https://eradapi.herokuapp.com/authenticate';
+  private authUrl = 'http://localhost:8080/authenticate';
 
 	public token: string;
 

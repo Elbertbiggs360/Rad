@@ -12,7 +12,7 @@ import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
 
 @Component({
-  selector: '',
+  selector: 'app-task-history',
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.scss'],
   providers: [TaskService, UserService]

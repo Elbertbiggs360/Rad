@@ -5,8 +5,8 @@ import { TestBed } from '@angular/core/testing';
 
 import { HistoryComponent } from './history.component';
 
-describe('Home Component', () => {
-  const html = '<my-home></my-home>';
+describe('History Component', () => {
+  const html = '<app-task-history></app-task-history>';
 
   beforeEach(() => {
     TestBed.configureTestingModule({declarations: [HistoryComponent, TestComponent]});
@@ -16,7 +16,7 @@ describe('Home Component', () => {
   it('should ...', () => {
     const fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
-    expect(fixture.nativeElement.children[0].textContent).toContain('Home Works!');
+    expect(fixture.nativeElement.children[0].textContent).toContain('History Works!');
   });
 
 });

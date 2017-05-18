@@ -60,7 +60,6 @@ export class UpdateTaskComponent implements OnInit {
               if(this.authUser[0]){
                 this.getUserSubjects(this.authUser[0].user_permission, this.authUser[0].department, this.authUser[0].division, this.authUser[0].unit);
               }
-              this.checkForComplete();
             } else {
                 this.getUserDetails();
             }
@@ -97,7 +96,6 @@ export class UpdateTaskComponent implements OnInit {
     this.model.activity = this.activity;
     this.model.length = this.length;
     this.model.task_id = this.task_id
-    console.log(this.model)
 
     //this.fileRename(today);
     this.taskService.updateTask(this.model)
