@@ -9,8 +9,8 @@ import { User } from '../user';
 export class AuthService {
 	
   /*for production server */
-	/*private authUrl = 'http://10.1.10.54:8080/authenticate';*/
-  private authUrl = 'http://localhost:8080/authenticate';
+	private authUrl = 'http://192.168.1.226:9090/authenticate';
+  /*private authUrl = 'http://localhost:9090/authenticate';*/
 
 	public token: string;
 

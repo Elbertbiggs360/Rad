@@ -11,8 +11,8 @@ export class UserService {
 
     /*for production server */
     /*private getUserUrl = 'http://10.1.10.54:8080/user';*/
-    private getUserUrl = 'http://localhost:8080/user';
-    private getUserSubjectsUrl = 'http://localhost:8080/user/subjects';
+    private getUserUrl = 'http://192.168.1.226:9090/user';
+    private getUserSubjectsUrl = 'http://192.168.1.226:9090/user/subjects';
     public authUser: User[];
     public subjects: User[];
     private id: any;
