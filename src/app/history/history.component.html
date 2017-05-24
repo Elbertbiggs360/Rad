@@ -43,15 +43,15 @@
           </div>
         </div>
         <div class="u-paddingRight20 u-paddingLeft20 u-marginTop20 u-description" >
-          <a *ngFor="let commentBlock of task.activity">
-            <ul class="u-margin0 u-padding0">
-              <li  class="u-inline u-margin0 u-padding0" *ngFor="let comment of commentBlock.task_comment">
-                <span class="u-fontSize12 attachment--link">{{comment.commentor}}</span>
-                <span class="u-fontSize12 attachment--link">{{comment.details}}</span>
-                <a class="u-fontSize12 attachment--link" href="#" *ngIf="checkItem(task.attachments)">attachments</a>
-              </li>
-            </ul>
-          </a>
+          <ul class="u-margin0 u-padding0" *ngFor="let commentBlock of task.activity">
+            <li  class="u-inline u-margin0 u-padding0" *ngFor="let comment of commentBlock.task_comment">
+              <span  *ngIf="available_users.length > 0">
+              <span class="u-fontSize12 attachment--link">{{getName(comment.commentor)}}</span>
+              <span class="u-fontSize12 ">{{comment.details}}</span>
+              <a class="u-fontSize12 " href="#" *ngIf="checkItem(task.attachments)">attachments</a>
+              </span>
+            </li>
+          </ul>
         </div>
         <div class="u-clearfix">
           <div class="buttonSet u-floatLeft">

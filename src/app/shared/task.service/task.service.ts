@@ -11,13 +11,13 @@ import { Task } from '../task';
 export class TaskService {
 
 
-  public tasksUrl = 'http://192.168.1.226:9090/viewTasks/in';
-  public tasksHistoryUrl = 'http://192.168.1.226:9090/viewTasks/history';
-  public tasksAssignedUrl = 'http://192.168.1.226:9090/viewTasks/out';
-  public addTasksUrl = 'http://192.168.1.226:9090/createTask';
-  public searchTasksUrl = 'http://192.168.1.226:9090/searchTask';
-  public updateTaskUrl = 'http://192.168.1.226:9090/tasks/updateTask';
-  public fileUploadUrl = 'http://192.168.1.226:9090/uploadFile';
+  public tasksUrl = 'http://localhost:9090/viewTasks/in';
+  public tasksHistoryUrl = 'http://localhost:9090/viewTasks/history';
+  public tasksAssignedUrl = 'http://localhost:9090/viewTasks/out';
+  public addTasksUrl = 'http://localhost:9090/createTask';
+  public searchTasksUrl = 'http://localhost:9090/searchTask';
+  public updateTaskUrl = 'http://localhost:9090/tasks/updateTask';
+  public fileUploadUrl = 'http://localhost:9090/uploadFile';
   private token: string;
   private id: string;
   headers;

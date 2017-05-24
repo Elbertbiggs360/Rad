@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   public result: any;
   private errorMessage: any;
   public loading: boolean;
+  private id: any;
 
   constructor(
     private userService: UserService,
@@ -35,14 +36,16 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) {
      this.loading = false;
+     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+     this.id = currentUser && currentUser.id;
   }
 
   ngOnInit(): void {
-    this.getUserDetails();
+    this.getUserDetails(this.id);
   }
   
-  getUserDetails() {
-    this.userService.getUser()
+  getUserDetails(id: any) {
+    this.userService.getUser(id)
     .subscribe(result => {
             if (result === true) {
                 this.authUser = this.userService.authUser;

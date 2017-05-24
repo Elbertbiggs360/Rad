@@ -11,19 +11,21 @@ export class UserService {
 
     /*for production server */
     /*private getUserUrl = 'http://10.1.10.54:8080/user';*/
-    private getUserUrl = 'http://192.168.1.226:9090/user';
-    private getUserSubjectsUrl = 'http://192.168.1.226:9090/user/subjects';
+    private getUserUrl = 'http://localhost:9090/user';
+    private getUserSubjectsUrl = 'http://localhost:9090/user/subjects';
     public authUser: User[];
+    public available_users;
     public subjects: User[];
-    private id: any;
     public token: string;
+    private auth_id: any;
     headers;
     requestoptions;
+    public availability
 
     constructor(private http: Http) {
       let currentUser = JSON.parse(localStorage.getItem('currentUser'));
       this.token = currentUser && currentUser.token;
-      this.id = currentUser && currentUser.id;
+      this.auth_id = currentUser && currentUser.id;
 
       this.headers = new Headers();
 
@@ -33,15 +35,28 @@ export class UserService {
       this.requestoptions = new RequestOptions({
           headers: this.headers
       });
+      this.available_users = []
     }
 
-    getUser(): Observable <Boolean> {
-      return this.http
-           .get(`${this.getUserUrl}/${this.id}`, this.requestoptions)
+    getUser(user_id: string): Observable <Boolean> {
+      let request_update = this.http
+           .get(`${this.getUserUrl}/${user_id}`, this.requestoptions)
            .map((res: Response) => {
+              if (res.json()[0]._id == this.auth_id && this.authUser == null){
                 this.authUser = res.json();
-                return true; })
+              } else {
+                this.available_users.push(res.json()[0])
+              }
+              return true; })
            .catch((err) => this.handleError(err));
+      let check_data = this.available_users.filter(function( obj ) {
+                  return obj._id == user_id;
+                });
+      if (check_data.length >= 1){
+        return
+      } else {
+        return request_update
+      }
     }
 
     getUserSubjects(user_permission: number, user_department: string, user_division, user_unit): Observable <Boolean> {

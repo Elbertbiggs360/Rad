@@ -22,15 +22,15 @@ import { AuthService } from '../shared/auth.service';
 })
 export class OutTasksComponent implements OnInit {
 
-  allTasks: Task[];
+  allTasks;
   public authUser: User[];
   priority: String;
   model: any = {};
-  private moreTasks: boolean = false;
+  private moreTasks: boolean = false; //check if there are more than 5 tasks
   public result: any;
   loading: boolean = false;
   test: boolean = true;
-  someTasks: boolean = false;
+  someTasks: boolean = false;//check if there are some tasks
   errorMessage: any;
   color = 'primary';
   chip_colors = [];
@@ -41,6 +41,8 @@ export class OutTasksComponent implements OnInit {
   start;
   male: Boolean = false;
   female: Boolean = false;
+  id: any;
+  public available_users;
 
   constructor(
     private taskService: TaskService, 
@@ -48,24 +50,72 @@ export class OutTasksComponent implements OnInit {
     public dialog: MdDialog,
     private dialogsService: DialogsService,
     private router: Router
-  ) {}
+  ) {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.id = currentUser && currentUser.id;
+    this.available_users = []
+    this.allTasks = []
+  }
 
   ngOnInit(): void {
-    this.getUserDetails();
+    this.authUser = this.userService.authUser;
     this.getAllTasks();
   }
   
-  getUserDetails() {
-    this.userService.getUser()
+  getUserDetails(id: any) {
+    let user_details = this.userService.getUser(id)
     .subscribe(result => {
             if (result === true) {
-                this.authUser = this.userService.authUser;
-                this.authUser[0].gender=='male'?this.male=true:this.female=true;
+              this.available_users = this.userService.available_users
             }
         },
         error => {
           this.errorMessage = error;
       });
+    let present = false
+    var check_data = this.available_users.filter(function( obj ) {
+                  return obj._id == id;
+                });
+    if (check_data.length >= 1){
+      present = true
+    } else {
+      return user_details
+    }
+  }
+
+  isMale(user){
+    if (user.gender=='male'){
+      return true
+    } else {
+      return false
+    }
+  }
+
+  fetchUserInfo(user_id: any, aggression: number): any {
+    if (aggression<1) {
+      return
+    } else if (this.getName(user_id) == false){
+      console.log('A')
+      this.getUserDetails(user_id)
+      return this.fetchUserInfo(user_id, aggression-1)
+    } else {
+      console.log('B')
+      let user_name = this.getName(user_id)
+      return user_name
+    }
+  }
+
+  getName(user_id: any): any {
+    var return_value: any
+    var check_data = this.available_users.filter(function( obj ) {
+                  return obj._id == user_id;
+                });
+    if (check_data.length >= 1){
+      return_value = check_data[0].first_name;
+    } else {
+      return_value = false
+    }
+    return return_value
   }
 
   checkNumberOfTasks(){
@@ -98,14 +148,31 @@ export class OutTasksComponent implements OnInit {
     this.taskService.getTasksAssigned().subscribe(
       tasks => {
         this.loading = !this.loading;
-        this.allTasks = tasks;
+        for (let i=0; i<tasks.length;i++){
+          this.allTasks.push(tasks[i]);
+        }
         this.checkNumberOfTasks();
         this.computeProgress(this.allTasks);
         this.computeCategory(this.allTasks);
+        this.getExtraUsers()
       },
       error => {
         this.errorMessage = error;
       });
+  }
+
+  getExtraUsers() {
+    for (let i=0; i<this.allTasks.length; i++){
+      for (let j=0; j<this.allTasks[i].activity.length; j++){
+        for (let k=0; k<this.allTasks[i].activity[j].task_comment.length; k++){
+          let commentor_name = this.fetchUserInfo(this.allTasks[i].activity[j].task_comment[k].commentor, 2)
+          this.allTasks[i].activity[j].task_comment[k].commentor_name = "name"
+          if ( commentor_name != undefined ) {
+            this.allTasks[i].activity[j].task_comment[k].commentor_name = commentor_name
+          }
+        }
+      }
+    }
   }
 
   computeProgress(allTasks: Task[]){
@@ -120,6 +187,7 @@ export class OutTasksComponent implements OnInit {
     }
 
   }
+
 
   computeCategory(allTasks: Task[]){
     for(let i=0;i<allTasks.length;i++){

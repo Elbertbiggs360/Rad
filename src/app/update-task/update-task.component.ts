@@ -31,7 +31,7 @@ export class UpdateTaskComponent implements OnInit {
   private errorMessage;
   error;
   timer;
-  id: string;
+  id: any;
   isChecked = true;
   success = false;
 
@@ -42,6 +42,8 @@ export class UpdateTaskComponent implements OnInit {
     private userService: UserService
   ){
     this.model.attachments = [];
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.id = currentUser && currentUser.id;
   }
 
   ngOnInit(): void {
@@ -53,7 +55,7 @@ export class UpdateTaskComponent implements OnInit {
   }
 
   getUserDetails() {
-    this.userService.getUser()
+    this.userService.getUser(this.id)
     .subscribe(result => {
             if (result === true) {
               this.authUser = this.userService.authUser;

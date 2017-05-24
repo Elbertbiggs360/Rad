@@ -15,7 +15,7 @@ export class Task {
 		//task users
 		public created_by: string,
 		public finished_by: string,
-		public assigned_to: string,
+		public currently_assigned_to: string,
 		
 		//task timing
 		public start_date: number,

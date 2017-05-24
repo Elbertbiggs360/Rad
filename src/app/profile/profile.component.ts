@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   errorMessage: any;
   male: Boolean = false;
   female: Boolean = false;
+  private id: any
 
   constructor(
     private userService: UserService,
@@ -29,14 +30,17 @@ export class ProfileComponent implements OnInit {
     public dialog: MdDialog,
     private dialogsService: DialogsService,
     private router: Router
-  ) {}
+  ) {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.id = currentUser && currentUser.id;
+  }
 
   ngOnInit(): void {
     this.getUserDetails();
   }
   
   getUserDetails() {
-    this.userService.getUser()
+    this.userService.getUser(this.id)
     .subscribe(result => {
             if (result === true) {
                 this.authUser = this.userService.authUser;

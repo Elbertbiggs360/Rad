@@ -31,6 +31,7 @@ export class CreateTaskComponent implements OnInit {
   action = 'Undo';
   public authUser: User[];
   public subjects: User[];
+  private id: any;
 
   private today: number;
 
@@ -58,6 +59,8 @@ export class CreateTaskComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ){
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.id = currentUser && currentUser.id;
   }
 
   ngOnInit(): void {
@@ -69,7 +72,7 @@ export class CreateTaskComponent implements OnInit {
   }
 
   getUserDetails() {
-    this.userService.getUser()
+    this.userService.getUser(this.id)
     .subscribe(result => {
             if (result === true) {
                 this.authUser = this.userService.authUser;
@@ -108,7 +111,7 @@ export class CreateTaskComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.model.created_at = this.today;
-    this.model.start_date = Date.parse(this.model.start_date);
+    this.model.start_date = this.today;
     this.model.created_by = this.authUser[0]._id;
     this.model.duration = this.model.taskLength * 1000 * 60 * 60 * 24;
     this.loading = !this.loading;
