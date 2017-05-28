@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MdDialogRef, MdSnackBar } from '@angular/material';
+import { FileUploader } from 'ng2-file-upload';
 
 import { Task } from '../shared/task';
 import { TaskService } from '../shared/task.service';
@@ -7,7 +8,7 @@ import { TaskService } from '../shared/task.service';
 import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
 
-const URL = 'http://localhost:8080/uploadFile';
+const URL = 'http://localhost:9090/uploadFile';
 
 @Component({
   selector: 'update-task',
@@ -16,7 +17,8 @@ const URL = 'http://localhost:8080/uploadFile';
   providers: [TaskService, UserService]
 })
 export class UpdateTaskComponent implements OnInit {
- 
+
+  public uploader:FileUploader = new FileUploader({url:URL});
   public hasBaseDropZoneOver:boolean = false;
   model: any = {};
   category: any = {};
@@ -30,6 +32,7 @@ export class UpdateTaskComponent implements OnInit {
   submitted = false;
   private errorMessage;
   error;
+  file_true: Boolean = true;
   timer;
   id: any;
   isChecked = true;
@@ -47,11 +50,20 @@ export class UpdateTaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
+    this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+    //overide the onCompleteItem property of the uploader so we are 
+    //able to deal with the server response.
+    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+      console.log("ImageUpload:uploaded:", item, status, response);
+    };
     this.getUserDetails();
   }
 
   public fileOverBase(e:any):void {
-    this.hasBaseDropZoneOver = e;
+    this.hasBaseDropZoneOver = e;    
+    var today = Date.now();
+    this.fileRename(today);
   }
 
   getUserDetails() {
@@ -97,9 +109,8 @@ export class UpdateTaskComponent implements OnInit {
     this.model.completed_at = today;
     this.model.activity = this.activity;
     this.model.length = this.length;
-    this.model.task_id = this.task_id
+    this.model.task_id = this.task_id;
 
-    //this.fileRename(today);
     this.taskService.updateTask(this.model)
         .subscribe(
           result => {
@@ -115,16 +126,15 @@ export class UpdateTaskComponent implements OnInit {
     return this.stopTimer();
   }
 
-/*  fileRename(today: number){
+  fileRename(today: number){
     let fileName: String = '';
     for ( let i=0;i<this.uploader.queue.length;i++){
-      if(this.uploader.queue[i].isSuccess){
-        let doc_ext =  this.uploader.queue[i].file.name.split('.').pop();
-        this.uploader.queue[i].file.name = fileName.concat(today.toString(), '-', this.authUser[0].first_name,'-',(i+1).toString(), '.', doc_ext);
-        this.model.attachments[i] = this.uploader.queue[i].file.name;
-      }
+      let doc_ext =  this.uploader.queue[i].file.name.split('.').pop();
+      this.uploader.queue[i].file.name = fileName.concat(today.toString(), '-', this.authUser[0].first_name,'-',(i+1).toString().toLowerCase(), '.', doc_ext);
+      this.model.attachments[i] = this.uploader.queue[i].file.name;
     }
-  }*/
+    this.uploader.uploadAll();
+  }
 
 	onLoad () {
   	this.loading = !this.loading;

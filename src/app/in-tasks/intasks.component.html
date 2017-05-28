@@ -48,10 +48,18 @@
               <span  *ngIf="available_users.length > 0">
               <span class="u-fontSize12 attachment--link">{{getName(comment.commentor)}}</span>
               <span class="u-fontSize12 ">{{comment.details}}</span>
-              <a class="u-fontSize12 " href="#" *ngIf="checkItem(task.attachments)">attachments</a>
               </span>
             </li>
           </ul>
+        </div>
+        <div *ngFor="let commentBlock of task.activity" class="u-paddingRight20 u-paddingLeft20 u-marginTop20">
+          <span *ngFor="let attachment of commentBlock.attachments">
+            <span *ngFor="let file of attachment.details">
+              <a target="_blank" class="u-fontSize12 " href="http://localhost:9090{{file}}">
+                <img src="././assets/images/download_icon.png" width="35px">
+              </a>
+            </span>
+          </span>
         </div>
         <div class="u-clearfix">
           <div class="buttonSet u-floatLeft">

@@ -5,6 +5,7 @@ import { LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
+import { FileUploadModule } from "ng2-file-upload";
 
 
 import { CoreModule } from './shared/core/core.module';
@@ -43,7 +44,8 @@ import { AuthGuard } from './shared/auth.guard';
     HttpModule,
     rootRouterConfig,
     CustomMaterialModule,
-    CoreModule
+    CoreModule,
+    FileUploadModule
   ],
   declarations: [
     AppComponent,

@@ -18,15 +18,19 @@
     <textarea mdInput placeholder="Add Comment" [(ngModel)]="model.task_comment" #task_comment="ngModel" name="comment" id="task-comment" rows="2" class="task-comment"></textarea>
   </md-input-container>
   <div
+    ng2FileDrop
+    [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+    (fileOver)="fileOverBase($event)"
+    [uploader]="uploader"
     class="well my-drop-zone u-flex u-paddingLeft20 u-paddingRight20">
     <div>
-      To attach file, drag into dotted region <br> Or 
+      To attach file, drag into dotted region <br><span class="desktop-hidden"> Or 
       Select
-      <input type="file" multiple  /><br/>
+      <input type="file" ng2FileSelect [uploader]="uploader" /><br/></span>
     </div>
 
     <div class="u-padding10 u-minWidth360">
-      <!-- <div class="u-floatRight">
+      <div class="u-floatRight">
         <p>File Number: {{ uploader?.queue?.length }}</p>
       </div>
       <table class="table">
@@ -36,7 +40,7 @@
           </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr *ngFor="let item of uploader.queue">
           <td nowrap><md-icon class="material-icons">insert_drive_file</md-icon><strong>{{ item?.file?.name.length>10?item.file.name.substr(0,10):item?.file?.name }}</strong></td>
           <td>|</td>
           <td nowrap class="link--accent">{{ item?.file?.size/1024 | number:'.2' }} KB</td>
@@ -61,7 +65,8 @@
           </td>
         </tr>
         </tbody>
-      </table> --><!-- 
+      </table>
+      
       <hr>
       <div>
         <div>
@@ -70,7 +75,7 @@
           </div>
         </div>
         <button md-button type="button" class="btn btn-success btn-s"
-          (click)="UpdateTask()" [disabled]="!uploader.getNotUploadedItems().length">
+          (click)="fileOverBase(file_true)" [disabled]="!uploader.getNotUploadedItems().length">
           <span class="glyphicon glyphicon-upload"></span> Upload all
         </button>
         <button md-button type="button" class="btn btn-warning btn-s"
@@ -81,7 +86,7 @@
           (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
           <span class="glyphicon glyphicon-trash"></span> Remove all
         </button>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>

@@ -146,6 +146,7 @@ export class InTasksComponent implements OnInit {
         for (let i=0; i<tasks.length;i++){
           this.allTasks.push(tasks[i]);
         }
+        console.log(this.allTasks[0].activity[0].attachments[0].details[0])
         this.checkNumberOfTasks();
         this.computeProgress(this.allTasks);
         this.computeCategory(this.allTasks);
