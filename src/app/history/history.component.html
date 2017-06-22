@@ -25,18 +25,23 @@
               </div>
             </div>
           </div>
-          <div class="postMetaInline u-floatRight u-maxWidth150">
+          <div class="postMetaInline u-floatRight">
             <div class="u-flexTop">
               <div class="postMetaInline-avatar u-flex0">
                 <a class="link avatar u-baseColor--link" [routerLink]="['/profile']">
-                  <img src="././assets/images/mavatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{task.created_by?.first_name}}" title="Go to the profile of {{task.created_by}} {{task.created_by?.last_name}}" *ngIf="checkGender( task.created_by[0]?.gender, 'male')">
-                  <img src="././assets/images/favatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{task.created_by?.first_name}}" title="Go to the profile of {{task.created_by?.first_name}} {{task.created_by?.last_name}}" *ngIf="checkGender( task.created_by?.gender, 'female')">
+                  <img *ngIf="processInfo(task.created_by, 'profile_pic_url')" src="http://localhost:9090{{processInfo(task.created_by, 'profile_pic_url')}}" class="avatar-image u-size36x36 u-xs-size32x32" title="Go to the profile of {{processInfo(task.created_by, 'first_name')}}">
+                  <span *ngIf="processInfo(task.created_by, 'profile_pic_url') == null">
+                    <img src="././assets/images/mavatar.jpg" class="avatar-image avatar-image--icon" alt="{{processInfo(task.created_by, 'first_name')}}" title="Go to the profile of {{processInfo(task.created_by, 'first_name')}}" *ngIf="checkGender(processInfo(task.created_by, 'gender'), 'male')">
+                    <img src="././assets/images/favatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{processInfo(task.created_by, 'first_name')}}" title="Go to the profile of {{processInfo(task.created_by, 'first_name')}}" *ngIf="checkGender(processInfo(task.created_by, 'gender'), 'female')">
+                  </span>
                 </a>
               </div>
               <div class="u-paddingLeft5">
-                <a class="link--accent u-accentColor--textNormal" href="#url#">{{task.created_by[0]?.first_name}} {{task.created_by[0]?.last_name}}</a>
+                <a class="link--accent u-accentColor--textNormal" [routerLink]="['/profile']">{{processInfo(task.created_by, 'first_name')}}</a>
                 <div class="u-fontSize12">
-                  <time >{{task.created_at | date:'HH:mm, dd/MM/yy'}}</time>
+                  <time datetime="2016-10-13T20:57:01.649Z">{{task.start_date | date:'H:m, MMM/yy'}}</time>
+                  <span class="middotDivider u-fontSize12"></span>
+                  <span title="Role">Officer</span>
                 </div>
               </div>
             </div>
@@ -44,14 +49,64 @@
         </div>
         <div class="u-paddingRight20 u-paddingLeft20 u-marginTop20 u-description" >
           <ul class="u-margin0 u-padding0" *ngFor="let commentBlock of task.activity">
-            <li  class="u-inline u-margin0 u-padding0" *ngFor="let comment of commentBlock.task_comment">
-              <span  *ngIf="available_users.length > 0">
-              <span class="u-fontSize12 attachment--link">{{getName(comment.commentor)}}</span>
-              <span class="u-fontSize12 ">{{comment.details}}</span>
-              <a class="u-fontSize12 " href="#" *ngIf="checkItem(task.attachments)">attachments</a>
-              </span>
-            </li>
+            <span *ngIf="commentBlock">
+              <li  class="u-inline u-margin0 u-padding0" *ngFor="let comment of commentBlock.task_comment">
+                <span  *ngIf="available_users.length > 0">
+                <span class="u-fontSize12 attachment--link">{{processInfo(comment.commentor, 'first_name')}}</span>
+                <span class="u-fontSize12 ">{{comment.details}}</span>
+                </span>
+              </li>
+            </span>
           </ul>
+        </div>
+        <div class="u-paddingRight20 u-paddingLeft20 u-marginTop20">
+          <span *ngFor="let commentBlock of task.activity">
+            <span *ngFor="let attachment of commentBlock.attachments">
+              <span *ngFor="let file of attachment.details">
+                <a target="_blank" class="u-fontSize12" href="http://localhost:9090{{file}}" title="{{file}}">  
+                  <div class="d-card u-inlineBlock">
+                      <figure class="front u-figure">
+                        <!-- <img src="././assets/images/365_the_end.png" alt="front"> -->
+                        <div class="caption ">
+                          <h2>{{processInfo(attachment.uploader, 'first_name')}}</h2>
+                          <p><md-icon>arrow_downward</md-icon></p>
+                        </div>      
+                      </figure>
+                    </div>
+                  </a>
+              </span>
+            </span>
+          </span>
+        </div>
+        <div class="u-clearfix">
+          <div class="buttonSet u-floatLeft">
+            <div class="buttonSet-inner">
+              <button class="button button--primary button--chromeless  u-accentColor--buttonNormal button--withIcon button--withSvgIcon u-accentColor--iconLight" title="Mark as Favorite" disabled="disabled">
+                <span class="button-defaultState">
+                  <span class="svgIcon">
+                    <svg class="svgIcon-use" width="25" height="25" viewBox="0 0 25 25"><path d="M12.5 21a.492.492 0 0 1-.327-.122c-.278-.24-.61-.517-.978-.826-2.99-2.5-7.995-6.684-7.995-10.565C3.2 6.462 5.578 4 8.5 4c1.55 0 3 .695 4 1.89a5.21 5.21 0 0 1 4-1.89c2.923 0 5.3 2.462 5.3 5.487 0 3.97-4.923 8.035-7.865 10.464-.42.35-.798.66-1.108.93a.503.503 0 0 1-.327.12zM8.428 4.866c-2.414 0-4.378 2.05-4.378 4.568 0 3.475 5.057 7.704 7.774 9.975.243.2.47.39.676.56.245-.21.52-.43.813-.68 2.856-2.36 7.637-6.31 7.637-9.87 0-2.52-1.964-4.57-4.377-4.57-1.466 0-2.828.76-3.644 2.04-.1.14-.26.23-.43.23-.18 0-.34-.09-.43-.24-.82-1.27-2.18-2.03-3.65-2.03z" fill-rule="evenodd"></path></svg>
+                  </span>
+                </span>
+                <span class="button-activeState">
+                  <span class="svgIcon svgIcon--heartFilled svgIcon--25px is-flushLeft">
+                    <svg class="svgIcon-use" width="25" height="25" viewBox="0 0 25 25"><path d="M12.5 21a.492.492 0 0 1-.327-.122c-.278-.24-.61-.517-.978-.826-2.99-2.5-7.995-6.684-7.995-10.565C3.2 6.462 5.578 4 8.5 4c1.55 0 3 .695 4 1.89a5.21 5.21 0 0 1 4-1.89c2.923 0 5.3 2.462 5.3 5.487 0 3.97-4.923 8.035-7.865 10.464-.42.35-.798.66-1.108.93a.503.503 0 0 1-.327.12z" fill-rule="evenodd"></path></svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="buttonSet u-floatRight">
+            <div class="buttonSet-inner ">
+              <!-- <button class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon" title="Delete Task">
+                <md-icon>delete</md-icon>
+              </button> -->
+              <button (click)="openDialog('UpdateTaskComponent', task.activity, task.activity.length, task._id)" class="button button--chromeless u-baseColor--buttonNormal button--withIcon button--withSvgIcon "  title="Mark as Complete">
+              <span class="svgIcon svgIcon--arrowDown svgIcon--19px is-flushRight">
+                <md-icon>done</md-icon>
+              </span>
+            </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -59,7 +114,7 @@
 
   <div class="container u-maxWidth640 u-marginTop20" *ngIf="moreTasks">
     <div class="row u-marginBottom20">
-      <button  md-button [routerLink]="['/tasks/all']" class="button button--primary button--withChrome u-accentColor--buttonNormal responsesStream-showOtherResponses cardChromeless u-sizeFullWidth" data-action="show-other-responses">Show More</button>
+      <button  md-button [routerLink]="['/tasks/all']" class="button button--primary button--withChrome u-accentColor--buttonNormal responsesStream-showOtherResponses cardChromeless u-sizeFullWidth" data-action="show-other-responses">Show all Tasks</button>
     </div>
   </div>
 </span>
