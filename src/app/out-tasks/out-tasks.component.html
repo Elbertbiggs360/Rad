@@ -25,18 +25,23 @@
               </div>
             </div>
           </div>
-          <div class="postMetaInline u-floatRight u-maxWidth150">
+          <div class="postMetaInline u-floatRight">
             <div class="u-flexTop">
               <div class="postMetaInline-avatar u-flex0">
                 <a class="link avatar u-baseColor--link" [routerLink]="['/profile']">
-                  <img src="././assets/images/mavatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{task.created_by?.first_name}}" title="Go to the profile of {{task.created_by}} {{task.created_by?.last_name}}" *ngIf="checkGender( task.created_by[0]?.gender, 'male')">
-                  <img src="././assets/images/favatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{task.created_by?.first_name}}" title="Go to the profile of {{task.created_by?.first_name}} {{task.created_by?.last_name}}" *ngIf="checkGender( task.created_by?.gender, 'female')">
+                  <img *ngIf="processInfo(task.currently_assigned_to, 'profile_pic_url')" src="http://localhost:9090{{processInfo(task.currently_assigned_to, 'profile_pic_url')}}" class="avatar-image u-size36x36 u-xs-size32x32" title="Go to the profile of {{processInfo(task.currently_assigned_to, 'first_name')}}">
+                  <span *ngIf="processInfo(task.currently_assigned_to, 'profile_pic_url') == null">
+                    <img src="././assets/images/mavatar.jpg" class="avatar-image avatar-image--icon" alt="{{processInfo(task.currently_assigned_to, 'first_name')}}" title="Go to the profile of {{processInfo(task.currently_assigned_to, 'first_name')}}" *ngIf="checkGender(processInfo(task.currently_assigned_to, 'gender'), 'male')">
+                    <img src="././assets/images/favatar.jpg" class="avatar-image u-size36x36 u-xs-size32x32" alt="{{processInfo(task.currently_assigned_to, 'first_name')}}" title="Go to the profile of {{processInfo(task.currently_assigned_to, 'first_name')}}" *ngIf="checkGender(processInfo(task.currently_assigned_to, 'gender'), 'female')">
+                  </span>
                 </a>
               </div>
               <div class="u-paddingLeft5">
-                <a class="link--accent u-accentColor--textNormal" href="#url#">{{task.created_by[0]?.first_name}} {{task.created_by[0]?.last_name}}</a>
+                <a class="link--accent u-accentColor--textNormal" [routerLink]="['/profile']">{{processInfo(task.currently_assigned_to, 'first_name')}}</a>
                 <div class="u-fontSize12">
-                  <time >{{task.created_at | date:'HH:mm, dd/MM/yy'}}</time>
+                  <time datetime="2016-10-13T20:57:01.649Z">{{task.start_date | date:'H:m, MMM/yy'}}</time>
+                  <span class="middotDivider u-fontSize12"></span>
+                  <span title="Role">Officer</span>
                 </div>
               </div>
             </div>
@@ -44,14 +49,34 @@
         </div>
         <div class="u-paddingRight20 u-paddingLeft20 u-marginTop20 u-description" >
           <ul class="u-margin0 u-padding0" *ngFor="let commentBlock of task.activity">
-            <li  class="u-inline u-margin0 u-padding0" *ngFor="let comment of commentBlock.task_comment">
-              <span  *ngIf="available_users.length > 0">
-              <span class="u-fontSize12 attachment--link">{{getName(comment.commentor)}}</span>
-              <span class="u-fontSize12 ">{{comment.details}}</span>
-              <a class="u-fontSize12 " href="#" *ngIf="checkItem(task.attachments)">attachments</a>
-              </span>
-            </li>
+            <span *ngIf="commentBlock">
+              <li  class="u-inline u-margin0 u-padding0" *ngFor="let comment of commentBlock.task_comment">
+                <span  *ngIf="available_users.length > 0">
+                <span class="u-fontSize12 attachment--link">{{processInfo(comment.commentor, 'first_name')}}</span>
+                <span class="u-fontSize12 ">{{comment.details}}</span>
+                </span>
+              </li>
+            </span>
           </ul>
+        </div>
+        <div class="u-paddingRight20 u-paddingLeft20 u-marginTop20">
+          <span *ngFor="let commentBlock of task.activity">
+            <span *ngFor="let attachment of commentBlock.attachments">
+              <span *ngFor="let file of attachment.details">
+                <a target="_blank" class="u-fontSize12" href="http://localhost:9090{{file}}" title="{{file}}">  
+                  <div class="d-card u-inlineBlock">
+                      <figure class="front u-figure">
+                        <!-- <img src="././assets/images/365_the_end.png" alt="front"> -->
+                        <div class="caption ">
+                          <h2>{{processInfo(attachment.uploader, 'first_name')}}</h2>
+                          <p><md-icon>arrow_downward</md-icon></p>
+                        </div>      
+                      </figure>
+                    </div>
+                  </a>
+              </span>
+            </span>
+          </span>
         </div>
         <div class="u-clearfix">
           <div class="buttonSet u-floatLeft">

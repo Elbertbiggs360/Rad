@@ -94,24 +94,38 @@ export class OutTasksComponent implements OnInit {
   fetchUserInfo(user_id: any, aggression: number): any {
     if (aggression<1) {
       return
-    } else if (this.getName(user_id) == false){
-      console.log('A')
+    } else if (this.processInfo(user_id, 'first_name') == false){
       this.getUserDetails(user_id)
       return this.fetchUserInfo(user_id, aggression-1)
     } else {
-      console.log('B')
-      let user_name = this.getName(user_id)
+      let user_name = this.processInfo(user_id, 'first_name')
       return user_name
     }
   }
 
-  getName(user_id: any): any {
+  processInfo(user_id:any, return_arg: any): any {
     var return_value: any
     var check_data = this.available_users.filter(function( obj ) {
                   return obj._id == user_id;
                 });
     if (check_data.length >= 1){
-      return_value = check_data[0].first_name;
+      switch(return_arg){
+        case 'profile_pic_url':
+          return_value = check_data[0].profile_pic_url;
+          break;
+
+        case 'first_name':
+          return_value = check_data[0].first_name;
+          break;
+
+        case 'gender':
+          return_value = check_data[0].gender;
+          break;
+
+        default:
+          return_value = check_data[0].last_name;
+          break;
+      }
     } else {
       return_value = false
     }
@@ -163,6 +177,7 @@ export class OutTasksComponent implements OnInit {
 
   getExtraUsers() {
     for (let i=0; i<this.allTasks.length; i++){
+      this.fetchUserInfo(this.allTasks[i].currently_assigned_to, 2);
       for (let j=0; j<this.allTasks[i].activity.length; j++){
         for (let k=0; k<this.allTasks[i].activity[j].task_comment.length; k++){
           let commentor_name = this.fetchUserInfo(this.allTasks[i].activity[j].task_comment[k].commentor, 2)
