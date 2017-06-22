@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
@@ -16,6 +16,8 @@ import { UserService } from '../shared/user.service';
 })
 export class CreateTaskComponent implements OnInit {
 
+  @Output() notifyParent: EventEmitter<any> = new EventEmitter();
+
   model: any = {};
   categories: any = [
     {value: 'licensing', viewValue: 'Licensing'},
@@ -32,9 +34,7 @@ export class CreateTaskComponent implements OnInit {
   public authUser: User[];
   public subjects: User[];
   private id: any;
-
   private today: number;
-
   color = 'secondary';
   value: any = 5;
   max = 10;
@@ -43,9 +43,7 @@ export class CreateTaskComponent implements OnInit {
   thumbLabel = true;
   vertical = false;
   checked: boolean;
-
   submitted = false;
-
   private errorMessage;
   error;
   timer;
@@ -120,6 +118,7 @@ export class CreateTaskComponent implements OnInit {
         .subscribe(result => {
             if (result === true) {
               this.timer = setTimeout(this.onLoad(), 3000);
+              this.sendCloseNotification()
             }
         }, 
         errMsg => {
@@ -127,6 +126,10 @@ export class CreateTaskComponent implements OnInit {
           this.timer = setTimeout(this.onLoad(), 3000);
         });
     return this.stopTimer();
+  }
+
+  sendCloseNotification(){
+    this.notifyParent.emit(true);
   }
 
   onLoad () {
@@ -151,6 +154,14 @@ export class CreateTaskComponent implements OnInit {
     this.snackBar.open(message, 'UNDO', {
       duration: 2000,
     });
+  }
+  
+  checkGender(gender: String, preferred: String): Boolean {
+    if(gender==preferred){
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

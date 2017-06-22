@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MdDialogRef, MdSnackBar } from '@angular/material';
 import { FileUploader } from 'ng2-file-upload';
 
@@ -27,6 +27,7 @@ export class UpdateTaskComponent implements OnInit {
   @Input() activity;
   @Input() length;
   @Input() task_id;
+  @Output() notifyParent: EventEmitter<any> = new EventEmitter();
   public subjects: User[];
   public authUser: User[];
   submitted = false;
@@ -116,6 +117,7 @@ export class UpdateTaskComponent implements OnInit {
           result => {
             if (result === true) {
               this.timer = setTimeout(this.onLoad(), 3000);
+              this.sendCloseNotification()
             }
           },
           errMsg => {
@@ -124,6 +126,10 @@ export class UpdateTaskComponent implements OnInit {
           }
         );
     return this.stopTimer();
+  }
+
+  sendCloseNotification(){
+    this.notifyParent.emit(true);
   }
 
   fileRename(today: number){
